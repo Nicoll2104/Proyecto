@@ -41,12 +41,12 @@ const httpUsuario = {
         const Contrasena =bcryptjs.hashSync(contrasena, salt)
     
         try{
-            const usuarios  =await usuario.findByIdAndUpdate(id, { telefono, email, contrasena: Contrasena }, { new: true });
+            const usuarios  = await usuario.findByIdAndUpdate(id, { nombre, cedula, correo, telefono,rol, contrasena: Contrasena }, { new: true });
 
             if(!usuarios){
                 return res.status(404).json({mensaje: 'El cliente no existe' })
             }
-            res.json({ mensaje: 'Cliente actualizado con éxito', usuarios });
+            res.json({ mensaje: 'Usuario actualizado con éxito', usuarios });
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
         }
@@ -62,7 +62,7 @@ const httpUsuario = {
             }
             res.json({ mensaje: 'El usuario ha sido eliminado' });
         }catch(error){
-            res.status(500).json({ error: 'Ocurrió un error al intentar eliminar al cliente' });
+            res.status(500).json({ error: 'Ocurrió un error al intentar eliminar el usuario' });
         }
     },
 
@@ -79,7 +79,7 @@ const httpUsuario = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const usuarios = await usuario.findByIdAndUpdate(id,{status:0},{new:true})
+            const usuarios = await usuario.findByIdAndUpdate(id,{status:1},{new:true})
             res.json({usuarios})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
