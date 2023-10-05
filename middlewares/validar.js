@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import usuario from "../models/cliente.js";
+import usuario from "../models/usuario.js";
 import "dotenv/config"
 
 const generarJWT = (uid) => {
