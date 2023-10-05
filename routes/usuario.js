@@ -1,43 +1,36 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import httpUsuario from "../controllers/usuario.js";
+import httpUsuarios from "../controllers/usuario.js";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import {validarJWT} from "../middlewares/validar.js"
 
-const router= Router();
+const router = Router();
 
-router.get("/usuario", httpUsuario.getUsuario);
+router.get("/ver", httpUsuarios.getUsuarios);
 
-router.get("/usuario/:id",[
-    check("id", "El id es obligatorio").not().isEmpty(),
-    validarcampos
-], httpUsuario.getUsuario);
+router.get("/usuario/:id", httpUsuarios.getUsuariosid);
 
 router.post("/agregar",[
-    check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("cedula", "La cedula es obligatoria").not().isEmpty(),
-    check("correo", "El correo es obligatorio").isEmail(),
-    check("contrasena", "La contrasena es obligatoria").not().isEmpty(),
-    check("telefono", "El telefono es obligatorio").not().isEmpty(),
-    check("rol","El rol es obligatorio").not().isEmpty(),
+    check('cedula', 'La cédula es obligatoria y debe tener entre 7 y 10 caracteres').isLength({ min: 7, max: 10 }),
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('apellido', 'El apellido es obligatorio').not().isEmpty(),
+    check('telefono', 'El teléfono es obligatorio y debe tener al menos 10 caracteres').isLength({ min: 10, max:10 }),
+    check('email', 'El email es obligatorio').isEmail(),
+    check('contrasena', 'La contraseña es obligatoria y debe tener al menos 8 caracteres').isLength({ min: 8 }),
+    check('maleta', 'El número de maleta es obligatorio y debe tener hasta 3 dígitos').isInt({ min: 1, max: 3 }),
+validarcampos
+],httpUsuarios.postUsuarios);
+
+router.put("/modificar/:id",[
+    check('telefono', 'El teléfono es obligatorio y debe tener al menos 10 caracteres').isLength({ min: 10, max:10 }),
+    check('email', 'El email es obligatorio').isEmail(),
+    check('contrasena', 'La contraseña es obligatoria y debe tener al menos 8 caracteres').isLength({ min: 8 }),
     validarcampos
-], httpUsuario.postUsuario);
+], httpUsuarios.putUsuarios)
 
-router.put("/activar/:id", [
-    check("id", "Digite ID").not().isEmpty(),
-/*     check("id", "Digite ID").isMongoId(), */
-    validarcampos
-], httpUsuario.putActivar);
+router.delete("/eliminar/:id", httpUsuarios.deleteUsuarios);
 
-router.put("/inactivar/:id", [
-    check("id", "Digite ID").not().isEmpty(),
-/*     check("id", "Digite ID").isMongoId(), */
-    validarcampos
-], httpUsuario.putInactivar);
+router.put("/inactivar/:id",httpUsuarios.putInactivar)
 
+router.put("/activar/:id",httpUsuarios.putActivar)
 
-router.post('/login', httpUsuario.login);
-
-router.delete('/eliminar/:id',httpUsuario.deleteUsuario);
-
-export default router
+export default router;

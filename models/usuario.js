@@ -1,14 +1,17 @@
 import mongoose from "mongoose";
 const usuario = new mongoose.Schema(
     {
-        nombre: {type: String, require:true},
-        cedula: {type:String, require:true},
-        correo: {type:String, require:true},
-        contrasena: {type:String, require:true},
-        telefono: {type:String, require:true},
-        rol:{type:String, require:true},
+        cedula:{type:String, required: true,unique:true,minlength:7,maxlength:10},
+        nombre:{type:String, required: true},
+        apellido:{type:String, required:true},
+        edad:{type:String},
+        telefono:{type:String, required:true,minlength:10, maxlength:10},
+        email:{type:String, required:true},
+        contrasena:{type:String, required:true,minlength:8},
+        maleta:{type:String, required:true,maxlength:3},
         createdAt: { type: Date, default: Date.now },
-        status:{type:Number,default:1},
+        status:{type:String,default:1}
     })
-    
+
     export default mongoose.model("Usuario", usuario)
+  
