@@ -19,8 +19,8 @@ const httpProducto = {
 
     postProducto: async (req,res)=>{
         try{
-            const {codigo, nombre, Descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento}=req.body;
-            const productos = new producto({codigo, nombre, Descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento});
+            const {codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento}=req.body;
+            const productos = new producto({codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento});
     
 
             await productos.save();
@@ -73,52 +73,12 @@ const httpProducto = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const productos = await producto.findByIdAndUpdate(id,{status:0},{new:true})
+            const productos = await producto.findByIdAndUpdate(id,{status:1},{new:true})
             res.json({productos})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
-    },
-
-/* login: async (req,res) =>{
-    const {correo, contrasena}=req.body;
-
-    try{
-        const usuarios = await usuario.findOne({correo})
-        if (!usuarios){
-            return res.status(400).json({
-                mensaje: "usuario/ contrasena no son correctos"
-            })
-        }
-
-        if(usuarios.status ==0){
-            return res.status(400).json({
-                mensaje:"Usuario inactivo"
-            });
-        }
-
-
-        const validcontrasena = bcryptjs.compareSync(contrasena, usuarios.contrasena);
-        if(!validcontrasena){
-            return res.status(401).json({
-                mensaje:"contraseña incorrecta"
-            })
-        }
-
-
-        const token = await generarJWT(usuarios.id);
-
-        res.json({
-            usuarios,
-            token
-        })
-
-    }catch (error){
-        return res.status(500).json({
-            mensaje:"Habla con el webMaster"
-        })
     }
-},*/
     
 } 
 

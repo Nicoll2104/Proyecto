@@ -39,7 +39,7 @@ router.put("/inactivar/:id",[
     validarcampos
 ], httpUsuario.putInactivar);
 
-router.put("activar/:id",[
+router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
 ], httpUsuario.putActivar);

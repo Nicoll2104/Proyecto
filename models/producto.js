@@ -4,7 +4,7 @@ const producto = new mongoose.Schema(
     {
         codigo:{type:String, required: true, unique:true,},
         nombre:{type:String, required: true,},
-        Descripcion:{type:String, required: true},
+        descripcion:{type:String, required: true},
         unidad_medida:{type:String, required:true,},
         precio_unitario:{type:Number, required:true},
         impestos:{type:Number, required:true},
