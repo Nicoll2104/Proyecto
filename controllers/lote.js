@@ -20,8 +20,8 @@ const httpLote = {
 
     postLotes: async (req , res )=>{
         try{
-            const {codigo_presupuestal,nombre,presupuesto_inicial,ano,modificaciones,presupuesto_definitivo}=req.body;
-            const lotes = new lote({codigo_presupuestal,nombre,presupuesto_inicial,ano,modificaciones,presupuesto_definitivo});
+            const {codigo_presupuestal,nombre,presupuesto_inicial,año,modificaciones,presupuesto_definitivo}=req.body;
+            const lotes = new lote({codigo_presupuestal,nombre,presupuesto_inicial,año,modificaciones,presupuesto_definitivo});
 
             await lotes.save();
             res.json({mensaje:'Lote agregado con exito'})
