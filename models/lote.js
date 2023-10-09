@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const usuario = new mongoose.Schema(
+const lote = new mongoose.Schema(
     {
         codigo_presupuestal:{type:String, required: true,},
         nombre:{type:String, required: true,},
@@ -12,4 +12,4 @@ const usuario = new mongoose.Schema(
         status:{type:String,default:1}
     })
 
-    export default mongoose.model("Lotes", usuario)
+    export default mongoose.model("Lote", lote)
