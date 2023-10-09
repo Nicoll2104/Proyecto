@@ -40,7 +40,7 @@ const httpItem = {
             }
             res.json({mensaje: 'Items_presupuesto actualizado con éxito',items  })
         }catch(error){
-            res.status(500).json({'Error interno del servidor'});
+            res.status(500).json({ error: 'Error interno del servidor'});
         }
     },
 
@@ -68,7 +68,7 @@ const httpItem = {
         }
     },
 
-    putInactivar: async (req, res) =>{
+    putactivar: async (req, res) =>{
         try{
             const {id}=req.params
             const items = await items_presupuesto.findByIdAndUpdate(id,{status:1},{new:true})
@@ -78,4 +78,4 @@ const httpItem = {
         }
     },
 }
-export default httpItem
+export default httpItem;
