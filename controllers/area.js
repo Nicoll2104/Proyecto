@@ -3,7 +3,7 @@ import area from "../models/area.js";
 const httpArea ={
     getArea: async (req, res) => {
         try {
-            const areas = await area.find().populate("ficha_id")
+            const areas = await area.find()
             res.json({ areas })
 
         } catch (error) {
@@ -41,9 +41,9 @@ const httpArea ={
             const areas  = await area.findByIdAndUpdate(id, { nombre, presupuesto, ficha_id }, { new: true });
 
             if(!areas){
-                return res.status(404).json({mensaje: 'La ruta no existe' })
+                return res.status(404).json({mensaje: 'El area no existe' })
             }
-            res.json({ mensaje: 'Area actualizado con éxito', usuarios });
+            res.json({ mensaje: 'Area actualizado con éxito', areas });
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
         }

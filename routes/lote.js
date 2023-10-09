@@ -15,7 +15,7 @@ router.get("/lote/:id",[
 router.post("/agregar",[
     check("codigo_presupuestal","El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').isEmail().notEmpty(),
+    check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
     check("modificaciones", "Las modificaciones son obligatorias").not().isEmpty(),
     check("presupuesto_definitivo","El presupuesto definitivo es obligatorio").not().isEmpty(),
@@ -25,7 +25,7 @@ router.post("/agregar",[
 router.put("/modificar/:id",[
     check("codigo_presupuestal","El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').isEmail().notEmpty(),
+    check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
     check("modificaciones", "Las modificaciones son obligatorias").not().isEmpty(),
     check("presupuesto_definitivo","El presupuesto definitivo es obligatorio").not().isEmpty(),
@@ -37,7 +37,7 @@ router.put("/inactivar/:id",[
     validarcampos
 ], httpLote.putInactivar);
 
-router.put("activar/:id",[
+router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
 ], httpLote.putActivar);
