@@ -15,7 +15,7 @@ router.get("/item/:id",[
 router.post("/agregar",[
     check("codigo_presupuesto","El codigo_presupuesto es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('presupuesto_inicial', 'El presupuesto_inicial es obligatorio').not().notEmpty(),
+    check('presupuesto_inicial', 'El presupuesto_inicial es obligatorio').not().isEmpty(),
     check("año", "El año  es obligatorio").not().isEmpty(),
     validarcampos
 ], httpItem.postItem);
@@ -23,7 +23,7 @@ router.post("/agregar",[
 router.put("/modificar/:id",[
     check("codigo_presupuesto","El codigo_presupuesto es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('presupuesto_inicial', 'El presupuesto_inicial es obligatorio').not().notEmpty(),
+    check('presupuesto_inicial', 'El presupuesto_inicial es obligatorio').not().isEmpty(),
     check("año", "El año  es obligatorio").not().isEmpty(),
     validarcampos
 ], httpItem.putItem);
@@ -33,7 +33,7 @@ router.put("/inactivar/:id",[
     validarcampos
 ], httpItem.putInactivar);
 
-router.put("/inactivar/:id",[
+router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
 ], httpItem.putactivar);
