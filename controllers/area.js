@@ -43,7 +43,7 @@ const httpArea ={
             if(!areas){
                 return res.status(404).json({mensaje: 'La ruta no existe' })
             }
-            res.json({ mensaje: 'Ruta actualizado con éxito', usuarios });
+            res.json({ mensaje: 'Area actualizado con éxito', usuarios });
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
         }

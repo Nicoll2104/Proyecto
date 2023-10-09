@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/ver", httpArea.getArea);
 
-router.get("/usuario/:id",[
+router.get("/area/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
 ], httpArea.getAreaId);
