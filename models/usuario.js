@@ -4,7 +4,7 @@ const usuario = new mongoose.Schema(
     {
         nombre:{type:String, required: true,},
         cedula:{type:String, required: true, unique:true,},
-        correo:{type:String, required: true},
+        correo:{type:String, required: true, match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/},
         telefono:{type:String, required:true,minlength:10, maxlength:10},
         contrasena:{type:String, required:true,minlength:8},
         rol:{type:String, required:true},
