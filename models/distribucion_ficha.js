@@ -7,3 +7,5 @@ const distribucion_ficha = new mongoose.Schema(
         ficha:{type:mongoose.Schema.Types.ObjectId,ref:'ficha',required:true},
     }
 )
+
+export default mongoose.model("Distribucion_ficha", distribucion_ficha)

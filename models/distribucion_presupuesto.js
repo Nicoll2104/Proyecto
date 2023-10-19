@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const distribucion = new mongoose.Schema(
+const distribucion_presupuesto = new mongoose.Schema(
     {
         codigo_presupuestal:{type:String, required: true,},
         nombre:{type:String, required: true,},
@@ -12,4 +12,4 @@ const distribucion = new mongoose.Schema(
         status:{type:String,default:1}
     })
 
-    export default mongoose.model("Distribucion", distribucion)
+    export default mongoose.model("Distribucion_presupuesto", distribucion_presupuesto)
