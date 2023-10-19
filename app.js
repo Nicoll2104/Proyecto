@@ -9,6 +9,7 @@ import area from './routes/area.js';
 import producto from './routes/productos.js';
 import items from './routes/items_presupuesto.js';
 import distribucion_presupuesto from './routes/distribucion_presupuesto.js';
+import distribucion_ficha from './routes/distribucion_ficha.js';
 
 
 const app = express()
@@ -17,6 +18,7 @@ app.use(cors());
 
 
 app.use("/api/area", area)
+app.use("/api/disFicha", distribucion_ficha)
 app.use("/api/disPresupues", distribucion_presupuesto)
 app.use("/api/ficha", ficha)
 app.use("/api/items", items)

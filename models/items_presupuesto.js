@@ -8,6 +8,7 @@ const items = new mongoose.Schema(
         año:{type:String, required: true},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}
+        
     })
 
     export default mongoose.model("Items_presupuesto", items)

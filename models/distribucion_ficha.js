@@ -5,6 +5,8 @@ const distribucion_ficha = new mongoose.Schema(
         presupuesto:{type:Number, required: true},
         distribucion_presupuesto:{type:mongoose.Schema.Types.ObjectId,},
         ficha:{type:mongoose.Schema.Types.ObjectId,ref:'ficha',required:true},
+        createdAt: { type: Date, default: Date.now },
+        status:{type:String,default:1}
     }
 )
 
