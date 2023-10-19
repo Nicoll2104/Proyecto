@@ -13,7 +13,7 @@ const httpArea ={
     getAreaId: async (req, res) => {
         const { id } = req.params
         try {
-            const areas = await area.findById({id})
+            const areas = await area.findById(id)
             res.json({ areas })
 
         } catch (error) {
@@ -62,7 +62,7 @@ const httpArea ={
     putInactivar: async (req,res)=>{
         try {
             const {id}=req.params
-            const areas=await area.findByIdAndUpdate(id,{estado:0},{new:true})
+            const areas=await area.findByIdAndUpdate(id,{status:0},{new:true})
             res.json({areas})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
@@ -72,7 +72,7 @@ const httpArea ={
     putActivar: async (req,res)=>{
         try {
             const {id}=req.params
-            const areas=await area.findByIdAndUpdate(id,{estado:1},{new:true})
+            const areas=await area.findByIdAndUpdate(id,{status:1},{new:true})
             res.json({areas})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
