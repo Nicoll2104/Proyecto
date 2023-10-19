@@ -15,10 +15,9 @@ router.get("/ficha/:id",[
 router.post("/agregar",[
     check("codigo_ficha","El codigo ficha es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('nivel_de_formacion', 'El nivel de formacion').not().isEmpty(),
+    check("nivel_de_formacion", 'El nivel de formacion').not().isEmpty(),
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
-    check("estado","El estado es obligatorio").not().isEmpty(),
     check("codigo_area","El codigo area es obligatorio").not().isEmpty(),
     validarcampos
 ], httpFicha.postFicha);
@@ -26,11 +25,10 @@ router.post("/agregar",[
 router.put("/modificar/:id",[
     check("codigo_ficha","El codigo ficha es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('nivel_de_formacion', 'El nivel de formacion').not().isEmpty(),
+    check("nivel_de_formacion", 'El nivel de formacion').not().isEmpty(),
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
-    check("estado","El estado es obligatorio").not().isEmpty(),
-    check("codigo_area","El codigo de area es obligatorio").not().isEmpty(),
+    check("codigo_area","El codigo area es obligatorio").not().isEmpty(),
     validarcampos
 ],httpFicha.putFicha);
 
