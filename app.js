@@ -10,6 +10,7 @@ import producto from './routes/productos.js';
 import items from './routes/items_presupuesto.js';
 import distribucion_presupuesto from './routes/distribucion_presupuesto.js';
 import distribucion_ficha from './routes/distribucion_ficha.js';
+import det_pedido from './routes/det_pedido.js';
 
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(cors());
 
 
 app.use("/api/area", area)
+app.use("/api/detPedido", det_pedido)
 app.use("/api/disFicha", distribucion_ficha)
 app.use("/api/disPresupues", distribucion_presupuesto)
 app.use("/api/ficha", ficha)

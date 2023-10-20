@@ -23,37 +23,37 @@ const httpDetPedido ={
 
     postDetPedido: async (req, res) => {
         try {
-            const { cantidad} = req.body
-            const areas = new area({ nombre, presupuesto, ficha_id })
-            await areas.save()
+            const { cantidad, pedido_id, producto_id} = req.body
+            const Det_pedido = new det_pedido({ cantidad, pedido_id, producto_id })
+            await Det_pedido.save()
 
-            res.json({ mensaje: 'Area agregada exitosamente' })
+            res.json({ mensaje: 'Detalle Pedido agregada exitosamente' })
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' })
         }
     },
 
-    putArea: async (req,res) =>{
+    putDetPedido: async (req,res) =>{
         const {id} = req.params;
-        const {nombre, presupuesto, ficha_id} = req.body;
+        const {cantidad, pedido_id, producto_id} = req.body;
 
         try{
-            const areas  = await area.findByIdAndUpdate(id, { nombre, presupuesto, ficha_id }, { new: true });
+            const Det_pedido  = await det_pedido.findByIdAndUpdate(id, {cantidad, pedido_id, producto_id}, { new: true });
 
-            if(!areas){
-                return res.status(404).json({mensaje: 'El area no existe' })
+            if(!Det_pedido){
+                return res.status(404).json({mensaje: 'El detalle pedido no existe' })
             }
-            res.json({ mensaje: 'Area actualizado con éxito', areas });
+            res.json({ mensaje: 'Detalle de pedido actualizado con éxito', Det_pedido });
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
 
-    deleteArea: async(req,res)=>{
+    deleteDetPedido: async(req,res)=>{
         try {
             const {id}=req.params
-            const areas= await area.findByIdAndRemove(id)
-            res.json({areas})
+            const Det_pedido= await det_pedido.findByIdAndRemove(id)
+            res.json({Det_pedido})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
         }
@@ -62,8 +62,8 @@ const httpDetPedido ={
     putInactivar: async (req,res)=>{
         try {
             const {id}=req.params
-            const areas=await area.findByIdAndUpdate(id,{status:0},{new:true})
-            res.json({areas})
+            const Det_pedido=await det_pedido.findByIdAndUpdate(id,{status:0},{new:true})
+            res.json({Det_pedido})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
             
@@ -72,8 +72,8 @@ const httpDetPedido ={
     putActivar: async (req,res)=>{
         try {
             const {id}=req.params
-            const areas=await area.findByIdAndUpdate(id,{status:1},{new:true})
-            res.json({areas})
+            const Det_pedido =await det_pedido.findByIdAndUpdate(id,{status:1},{new:true})
+            res.json({Det_pedido})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
         }
