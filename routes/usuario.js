@@ -23,7 +23,7 @@ router.post("/agregar",[
 ], httpUsuario.postUsuario);
 
 router.post("/login",[
-    check("cedula","Digite su cedula").not().isEmpty(),
+    check("correo","Digite su correo").not().isEmpty(),
     check("contrasena","Digite su contraseña").not().isEmpty(),
 ] ,httpUsuario.login)
 

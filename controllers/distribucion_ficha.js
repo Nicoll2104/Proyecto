@@ -23,8 +23,8 @@ const httpDistribucionFicha ={
 
     postDisFicha: async (req, res) => {
         try {
-            const { id_distribucion_ficha, presupuesto, distribucion_presupuesto, ficha } = req.body
-            const distribucion = new distribucion_ficha({ id_distribucion_ficha, presupuesto, distribucion_presupuesto, ficha })
+            const { presupuesto, distribucion_presupuesto, ficha } = req.body
+            const distribucion = new distribucion_ficha({ presupuesto, distribucion_presupuesto, ficha })
             await distribucion.save()
 
             res.json({ mensaje: 'Distribucion de la ficha agregada exitosamente' })
@@ -35,10 +35,10 @@ const httpDistribucionFicha ={
 
     putDisFicha: async (req,res) =>{
         const {id} = req.params;
-        const { id_distribucion_ficha, presupuesto, distribucion_presupuesto, ficha } = req.body;
+        const { presupuesto, distribucion_presupuesto, ficha } = req.body;
 
         try{
-            const distribucion  = await distribucion_ficha.findByIdAndUpdate(id, { id_distribucion_ficha, presupuesto, distribucion_presupuesto, ficha }, { new: true });
+            const distribucion  = await distribucion_ficha.findByIdAndUpdate(id, { presupuesto, distribucion_presupuesto, ficha }, { new: true });
 
             if(!distribucion){
                 return res.status(404).json({mensaje: 'La distribucion de la ficha no existe' })
