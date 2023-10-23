@@ -22,7 +22,10 @@ router.post("/agregar",[
     validarcampos
 ], httpUsuario.postUsuario);
 
-router.post("/login", httpUsuario.login)
+router.post("/login",[
+    check("cedula","Digite su cedula").not().isEmpty(),
+    check("contrasena","Digite su contraseña").not().isEmpty(),
+] ,httpUsuario.login)
 
 router.put("/modificar/:id",[
     check("nombre","El nombre es obligatorio").not().isEmpty(),
