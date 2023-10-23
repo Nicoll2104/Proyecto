@@ -20,8 +20,8 @@ const httpPedido = {
 
     postPedido: async (req , res )=>{
         try{
-            const {fecha_creacion, fecha_entrega, subtotal, total, impuestos, distribucion_ficha, uruario}=req.body;
-            const pedidos = new pedido({fecha_creacion, fecha_entrega, subtotal, total, impuestos, distribucion_ficha, uruario});
+            const {fecha_creacion, fecha_entrega, instructor_encargado, subtotal, total, impuestos, distribucion_ficha, uruario}=req.body;
+            const pedidos = new pedido({fecha_creacion, fecha_entrega, instructor_encargado, subtotal, total, impuestos, distribucion_ficha, uruario});
 
             await pedidos.save();
             res.json({mensaje:'Pedido agregado con exito'})
@@ -81,4 +81,4 @@ const httpPedido = {
     },
 }
 
-export default httpLote;
+export default httpPedido;

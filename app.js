@@ -11,6 +11,7 @@ import items from './routes/items_presupuesto.js';
 import distribucion_presupuesto from './routes/distribucion_presupuesto.js';
 import distribucion_ficha from './routes/distribucion_ficha.js';
 import det_pedido from './routes/det_pedido.js';
+import pedido from './routes/pedido.js';
 
 
 const app = express()
@@ -26,6 +27,7 @@ app.use("/api/ficha", ficha)
 app.use("/api/items", items)
 app.use("/api/lote", lote)
 app.use("/api/producto", producto)
+app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
 
 
