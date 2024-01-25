@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon app.js",
-    "dev": "nodemon app.js"
+    "start": "nodemon app.js"
   },
-  
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
