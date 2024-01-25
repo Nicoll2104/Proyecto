@@ -13,12 +13,13 @@ import distribucion_ficha from './routes/distribucion_ficha.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
 
+mongoose.connect(process.env.mongoDB)
+  .then(() => console.log('Connected to MongoDB'));
+
 
 const app = express()
 app.use(express.json())
 app.use(cors());
-
-
 app.use("/api/area", area)
 app.use("/api/detPedido", det_pedido)
 app.use("/api/disFicha", distribucion_ficha)
@@ -31,8 +32,6 @@ app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
 
 
-mongoose.connect(process.env.mongoDB)
-  .then(() => console.log('Connected!'));
 
 app.listen(process.env.PORT,()=>{
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
