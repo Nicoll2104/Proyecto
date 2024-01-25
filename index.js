@@ -31,7 +31,7 @@ app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/final')
+mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected!'));
 
 app.listen(process.env.PORT,()=>{
