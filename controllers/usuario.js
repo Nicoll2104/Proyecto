@@ -1,4 +1,4 @@
-import bcryptjs from "bcrypt";
+import bcryptjs from "bcryptjs";
 import usuario from "../models/usuario.js";
 import { generarJWT } from "../middlewares/validar.js";
 
