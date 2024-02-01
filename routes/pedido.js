@@ -20,7 +20,7 @@ router.post("/agregar",[
     check("total", "El total es obligatorio").not().isEmpty(),
     check("impuestos","Los impuestos son obligatorios").not().isEmpty(),
     check("distribucion_ficha", "La distribucion de la ficha es obligatoria").not().isEmpty(),
-    check('uruario', 'El uruario es obligatorio').not().isEmpty(),
+    check('usuario', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ], httpPedido.postPedido);
 
@@ -32,7 +32,7 @@ router.put("/modificar/:id",[
     check("total", "El total es obligatorio").not().isEmpty(),
     check("impuestos","Los impuestos son obligatorios").not().isEmpty(),
     check("distribucion_ficha", "La distribucion de la ficha es obligatoria").not().isEmpty(),
-    check('uruario', 'El uruario es obligatorio').not().isEmpty(),
+    check('usuario', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ],httpPedido.putPedido);
 
