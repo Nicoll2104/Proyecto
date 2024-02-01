@@ -32,10 +32,10 @@ const httpProducto = {
 
     putProducto: async (req,res) =>{
         const {id} = req.params;
-        const {codigo, nombre, Descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento} = req.body;
+        const {codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento} = req.body;
     
         try{
-            const productos  =await producto.findByIdAndUpdate(id, { codigo, nombre, Descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento}, { new: true });
+            const productos  =await producto.findByIdAndUpdate(id, { codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento}, { new: true });
 
             if(!productos){
                 return res.status(404).json({mensaje: 'El producto no existe' })

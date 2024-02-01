@@ -24,7 +24,7 @@ const httpLote = {
             const lotes = new lote({codigo_presupuestal,nombre,presupuesto_inicial,año,modificaciones,presupuesto_definitivo});
 
             await lotes.save();
-            res.json({mensaje:'Lote agregado con exito'})
+            res.json({mensaje:'Lote agregado con exito', lotes})
         }catch(error){
             res.status(500).json({error:'Error interno del servidor'})
         }
