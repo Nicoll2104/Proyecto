@@ -63,7 +63,7 @@ const httpDistribucionFicha ={
         try {
             const {id}=req.params
             const distribucion=await distribucion_ficha.findByIdAndUpdate(id,{status:0},{new:true})
-            res.json({mensaje: 'Cambio de estado exitoso', distribucion})
+            res.json({distribucion})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
             
@@ -73,7 +73,7 @@ const httpDistribucionFicha ={
         try {
             const {id}=req.params
             const distribucion=await distribucion_ficha.findByIdAndUpdate(id,{status:1},{new:true})
-            res.json({mensaje: 'Cambio de estado exitoso', distribucion})
+            res.json({distribucion})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
         }
