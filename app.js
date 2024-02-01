@@ -16,7 +16,6 @@ import pedido from './routes/pedido.js';
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
 
-
 const app = express()
 app.use(express.json())
 app.use(cors());
