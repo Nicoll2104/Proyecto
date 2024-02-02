@@ -64,7 +64,7 @@ const httpLote = {
         try{
             const {id}=req.params
             const lotes = await lote.findByIdAndUpdate(id,{status:0},{new:true})
-            res.json({lotes})
+            res.json({mensaje: 'Lote inactivado con exito', lotes})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
@@ -74,7 +74,7 @@ const httpLote = {
         try{
             const {id}=req.params
             const lotes = await lote.findByIdAndUpdate(id,{status:1},{new:true})
-            res.json({lotes})
+            res.json({mensaje: 'Lote activado con exito', lotes})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
