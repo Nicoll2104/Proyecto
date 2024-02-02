@@ -32,10 +32,10 @@ const httpLote = {
 
     putLote: async (req,res) =>{
         const {id} = req.params;
-        const {codigo_presupuestal,nombre,presupuesto_inicial,ano,modificaciones,presupuesto_definitivo} = req.body;
+        const {codigo_presupuestal,nombre,presupuesto_inicial,año,modificaciones,presupuesto_definitivo} = req.body;
 
         try{
-            const lotes  = await lote.findByIdAndUpdate(id, {codigo_presupuestal,nombre,presupuesto_inicial,ano,modificaciones,presupuesto_definitivo }, { new: true });
+            const lotes  = await lote.findByIdAndUpdate(id, {codigo_presupuestal,nombre,presupuesto_inicial,año,modificaciones,presupuesto_definitivo }, { new: true });
 
             if(!lotes){
                 return res.status(404).json({mensaje: 'El lote no existe' })
