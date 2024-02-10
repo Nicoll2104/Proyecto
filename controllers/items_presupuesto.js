@@ -22,7 +22,7 @@ const httpItem = {
             const items = new items_presupuesto({codigo_presupuesto, nombre, presupuesto_inicial, año});
 
             await items.save();
-            res.json({mensaje:'El item_presupuesto se agrego con exito' })
+            res.json({mensaje:'El item_presupuesto se agrego con exito', items })
         }catch(error){
             res.status(500).json({error:'Error interno del servidor'})
         }
