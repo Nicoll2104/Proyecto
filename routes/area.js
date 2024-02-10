@@ -15,14 +15,14 @@ router.get("/area/:id",[
 router.post("/agregar",[
     check("nombre","El nombre es obligatorio").not().isEmpty(),
     check("presupuesto", "El presupuesto es obligatorio").not().isEmpty(),
-    check("ficha_id", "El id de la ficha es obligatorio").not().isEmpty(),
+    check("ficha", "El id de la ficha es obligatorio").not().isEmpty(),
     validarcampos
 ], httpArea.postArea);
 
 router.put("/modificar/:id",[
     check("nombre","El nombre es obligatorio").not().isEmpty(),
     check("presupuesto", "El presupuesto es obligatorio").not().isEmpty(),
-    check("ficha_id", "El id de la ficha es obligatorio").not().isEmpty(),
+    check("ficha", "El id de la ficha es obligatorio").not().isEmpty(),
     validarcampos
 ],httpArea.putArea);
 
