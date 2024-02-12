@@ -20,8 +20,8 @@ const httpFicha = {
 
     postFicha: async (req,res)=>{
         try{
-            const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,codigo_area}=req.body;
-            const fichas = new ficha({codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,codigo_area});
+            const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area}=req.body;
+            const fichas = new ficha({codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area});
             
             await fichas.save();
             res.json({mensaje: 'Ficha agregada con éxito', fichas})
@@ -32,10 +32,10 @@ const httpFicha = {
 
     putFicha: async (req,res) =>{
         const {id} = req.params;
-        const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,codigo_area} = req.body;
+        const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area} = req.body;
     
         try{
-            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,codigo_area }, { new: true });
+            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true });
 
             if(!fichas){
                 return res.status(404).json({mensaje: 'La ficha no existe' })
