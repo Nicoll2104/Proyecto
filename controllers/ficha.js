@@ -27,7 +27,7 @@ const httpFicha = {
             const fichas = new ficha({codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area});
             
             await fichas.save();
-            await fichas.populate('area').execPopulate(); 
+            await fichas.populate('area')
             res.json({mensaje: 'Ficha agregada con éxito', fichas})
         } catch(error){
             res.status(500).json({ error: 'Error interno del servidor'});
