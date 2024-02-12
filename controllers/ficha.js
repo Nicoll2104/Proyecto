@@ -24,7 +24,7 @@ const httpFicha = {
             const fichas = new ficha({codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,codigo_area});
             
             await fichas.save();
-            res.json({mensaje: 'Ficha agregada con éxito'})
+            res.json({mensaje: 'Ficha agregada con éxito', fichas})
         } catch(error){
             res.status(500).json({ error: 'Error interno del servidor'});
         }
