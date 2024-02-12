@@ -1,6 +1,4 @@
 import ficha from "../models/ficha.js";
-import { generarJWT } from "../middlewares/validar.js";
-import area from "../models/area.js";
 
 const httpFicha = {
     getFicha: async (req,res)=>{
@@ -26,11 +24,9 @@ const httpFicha = {
         try {
             const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
             
-            // Poblar la referencia a 'area'
             const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area });
             await fichas.populate('area').execPopulate();
     
-            // Guardar el documento en la base de datos
             await fichas.save(); 
             
             res.json({ mensaje: 'Ficha agregada con éxito', fichas });
