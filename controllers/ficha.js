@@ -25,10 +25,9 @@ const httpFicha = {
     postFicha: async (req, res) => {
         try {
             const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
-            const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area });
+            const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area }).populate('area');
     
-            await fichas.save();
-            await fichas.populate('area').execPopulate(); // Corrección aquí
+            await fichas.save(); 
     
             res.json({ mensaje: 'Ficha agregada con éxito', fichas });
         } catch (error) {
