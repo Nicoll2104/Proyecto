@@ -7,7 +7,7 @@ const ficha = new mongoose.Schema(
         nivel_de_formacion:{type:String, required: true},
         fecha_inicio:{type:Date, required:true},
         fecha_fin:{type:Date, required:true},
-        codigo_area:{type:Number, required:true},
+        codigo_area:{type: mongoose.Schema.Types.ObjectId, ref: "Area", required: true },
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}
     })

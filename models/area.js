@@ -4,7 +4,6 @@ const area = new mongoose.Schema(
     {
         nombre:{type:String, required: true,},
         presupuesto:{type:Number, required: true,},
-        ficha:{type:mongoose.Schema.Types.ObjectId,ref:'ficha', require:true},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}
     })
