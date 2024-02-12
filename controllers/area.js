@@ -27,7 +27,7 @@ const httpArea ={
             const areas = new area({ nombre, presupuesto})
             await areas.save()
 
-            res.json({ mensaje: 'Area agregada exitosamente' })
+            res.json({ mensaje: 'Area agregada exitosamente',areas })
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' })
         }
