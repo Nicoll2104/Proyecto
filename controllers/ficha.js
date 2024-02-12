@@ -1,20 +1,23 @@
-
 import ficha from "../models/ficha.js";
 import { generarJWT } from "../middlewares/validar.js";
 
 const httpFicha = {
     getFicha: async (req,res)=>{
-        const fichas  = await ficha.find()
-        res.json(fichas);
+        try {
+            const fichas = await ficha.find().populate('area');
+            res.json(fichas);
+        } catch(error) {
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
     },
 
     getFichaid: async (req,res)=>{
         const {id}= req.params
-        try{
-            const fichas = await ficha.findById(id)
+        try {
+            const fichas = await ficha.findById(id).populate('area');
             res.json({fichas})
-        }catch(error){
-            res.status(400).json({error:'no encontramos el id'})
+        } catch(error) {
+            res.status(400).json({error:'No se encontró el id'})
         }
     },
 
@@ -35,7 +38,7 @@ const httpFicha = {
         const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area} = req.body;
     
         try{
-            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true });
+            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true }).populate('area');
 
             if(!fichas){
                 return res.status(404).json({mensaje: 'La ficha no existe' })
@@ -54,7 +57,7 @@ const httpFicha = {
             if(!fichas){
                 return res.status(404).json({ mensaje: 'La ficha no existe' });
             }
-            res.json({ mensaje: 'La ficha ha sido eliminado' });
+            res.json({ mensaje: 'La ficha ha sido eliminada' });
         }catch(error){
             res.status(500).json({ error: 'Ocurrió un error al intentar eliminar la ficha' });
         }
@@ -63,7 +66,7 @@ const httpFicha = {
     putInactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const fichas = await ficha.findByIdAndUpdate(id,{status:0},{new:true})
+            const fichas = await ficha.findByIdAndUpdate(id,{status:0},{new:true}).populate('area');
             res.json({fichas})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
@@ -73,7 +76,7 @@ const httpFicha = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const fichas = await ficha.findByIdAndUpdate(id,{status:1},{new:true})
+            const fichas = await ficha.findByIdAndUpdate(id,{status:1},{new:true}).populate('area');
             res.json({fichas})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
