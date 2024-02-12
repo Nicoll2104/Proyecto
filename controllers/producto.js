@@ -24,7 +24,7 @@ const httpProducto = {
     
 
             await productos.save();
-            res.json({mensaje: 'Producto agregado con éxito'})
+            res.json({mensaje: 'Producto agregado con éxito', productos})
         } catch(error){
             res.status(500).json({ error: 'Error interno del servidor'});
         }

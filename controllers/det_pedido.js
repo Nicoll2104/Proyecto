@@ -27,7 +27,7 @@ const httpDetPedido ={
             const Det_pedido = new det_pedido({ cantidad, pedido_id, producto_id })
             await Det_pedido.save()
 
-            res.json({ mensaje: 'Detalle Pedido agregada exitosamente' })
+            res.json({ mensaje: 'Detalle Pedido agregada exitosamente', Det_pedido})
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' })
         }

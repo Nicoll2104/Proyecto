@@ -27,7 +27,7 @@ const httpDistribucionPresupesto ={
             const distribucion = new distribucion_presupuesto({ codigo_presupuestal,nombre,presupuesto_inicial,año,lote,items })
             await distribucion.save()
 
-            res.json({ mensaje: 'Distribucion del presupuesto agregada exitosamente' })
+            res.json({ mensaje: 'Distribucion del presupuesto agregada exitosamente', distribucion })
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' })
         }

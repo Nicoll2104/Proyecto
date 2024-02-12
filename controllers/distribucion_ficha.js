@@ -27,7 +27,7 @@ const httpDistribucionFicha ={
             const distribucion = new distribucion_ficha({ presupuesto, distribucion_presupuesto, ficha })
             await distribucion.save()
 
-            res.json({ mensaje: 'Distribucion de la ficha agregada exitosamente' })
+            res.json({ mensaje: 'Distribucion de la ficha agregada exitosamente' , distribucion })
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' })
         }

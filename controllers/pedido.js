@@ -24,7 +24,7 @@ const httpPedido = {
             const pedidos = new pedido({fecha_creacion, fecha_entrega, instructor_encargado, subtotal, total, impuestos, distribucion_ficha, usuario});
 
             await pedidos.save();
-            res.json({mensaje:'Pedido agregado con exito'})
+            res.json({mensaje:'Pedido agregado con exito', pedidos})
         }catch(error){
             res.status(500).json({error:'Error interno del servidor'})
         }
