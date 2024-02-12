@@ -1,5 +1,6 @@
 import ficha from "../models/ficha.js";
 import { generarJWT } from "../middlewares/validar.js";
+import area from "../models/area.js";
 
 const httpFicha = {
     getFicha: async (req,res)=>{
@@ -27,28 +28,30 @@ const httpFicha = {
             const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area });
     
             await fichas.save();
-            await fichas.populate('area').execPopulate(); // Populate 'area'
+            await fichas.populate('area').execPopulate(); // Corrección aquí
+    
             res.json({ mensaje: 'Ficha agregada con éxito', fichas });
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
     
-    putFicha: async (req, res) => {
-        const { id } = req.params;
-        const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
+
+    putFicha: async (req,res) =>{
+        const {id} = req.params;
+        const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area} = req.body;
     
-        try {
-            const fichas = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area }, { new: true }).populate('area');
-    
-            if (!fichas) {
-                return res.status(404).json({ mensaje: 'La ficha no existe' });
+        try{
+            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true }).populate('area');
+
+            if(!fichas){
+                return res.status(404).json({mensaje: 'La ficha no existe' })
             }
-            res.json({ mensaje: 'Ficha actualizada con éxito', fichas });
-        } catch (error) {
+            res.json({ mensaje: 'Ficha actualizado con éxito', fichas });
+        }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
         }
-    },    
+    },
 
     deleteFicha: async (req,res) =>{
         try{
