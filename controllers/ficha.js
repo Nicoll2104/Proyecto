@@ -21,33 +21,34 @@ const httpFicha = {
         }
     },
 
-    postFicha: async (req,res)=>{
-        try{
-            const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area}=req.body;
-            const fichas = new ficha({codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area});
-            
-            await fichas.save();
-            res.json({mensaje: 'Ficha agregada con éxito', fichas})
-        } catch(error){
-            res.status(500).json({ error: 'Error interno del servidor'});
-        }
-    },
-
-    putFicha: async (req,res) =>{
-        const {id} = req.params;
-        const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area} = req.body;
+    postFicha: async (req, res) => {
+        try {
+            const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
+            const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area });
     
-        try{
-            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true }).populate('area');
-
-            if(!fichas){
-                return res.status(404).json({mensaje: 'La ficha no existe' })
-            }
-            res.json({ mensaje: 'Ficha actualizado con éxito', fichas });
-        }catch(error){
+            await fichas.save();
+            await fichas.populate('area').execPopulate(); // Populate 'area'
+            res.json({ mensaje: 'Ficha agregada con éxito', fichas });
+        } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
+    
+    putFicha: async (req, res) => {
+        const { id } = req.params;
+        const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
+    
+        try {
+            const fichas = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area }, { new: true }).populate('area');
+    
+            if (!fichas) {
+                return res.status(404).json({ mensaje: 'La ficha no existe' });
+            }
+            res.json({ mensaje: 'Ficha actualizada con éxito', fichas });
+        } catch (error) {
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
+    },    
 
     deleteFicha: async (req,res) =>{
         try{
