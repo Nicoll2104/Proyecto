@@ -23,17 +23,15 @@ const httpFicha = {
     postFicha: async (req, res) => {
         try {
             const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
-            
             const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area });
-            await fichas.populate('area').execPopulate();
-    
+            await fichas.populate('area')
             await fichas.save(); 
-            
             res.json({ mensaje: 'Ficha agregada con éxito', fichas });
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
+    
     
     putFicha: async (req,res) =>{
         const {id} = req.params;
