@@ -32,22 +32,21 @@ const httpFicha = {
         }
     },
     
+    putFicha: async (req, res) => {
+        const { id } = req.params;
+        const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
     
-    putFicha: async (req,res) =>{
-        const {id} = req.params;
-        const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area} = req.body;
+        try {
+            const fichas = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area }, { new: true }).populate('area');
     
-        try{
-            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true }).populate('area');
-
-            if(!fichas){
-                return res.status(404).json({mensaje: 'La ficha no existe' })
+            if (!fichas) {
+                return res.status(404).json({ mensaje: 'La ficha no existe' })
             }
             res.json({ mensaje: 'Ficha actualizado con éxito', fichas });
-        }catch(error){
+        } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
-    },
+    },    
 
     deleteFicha: async (req,res) =>{
         try{
