@@ -68,7 +68,7 @@ const httpFicha = {
             console.error(error); // Registrar el error en la consola para depuración
             res.status(500).json({ error: 'Error interno del servidor' });
         }
-    }
+    },
     
 
     deleteFicha: async (req,res) =>{
