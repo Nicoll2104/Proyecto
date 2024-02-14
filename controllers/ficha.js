@@ -1,4 +1,5 @@
 import ficha from "../models/ficha.js";
+import Area from '../models/area.js'
 
 const httpFicha = {
     getFicha: async (req,res)=>{
@@ -24,10 +25,14 @@ const httpFicha = {
         try {
             const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area } = req.body;
             const fichas = new ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, fecha_fin, area });
-            await fichas.populate('area').execPopulate(); 
+
+            const rArea = await Area.findById(area)
+
+            fichas.area = rArea
             await fichas.save(); 
             res.json({ mensaje: 'Ficha agregada con éxito', fichas });
         } catch (error) {
+            console.log(error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
@@ -38,11 +43,15 @@ const httpFicha = {
         const {codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area} = req.body;
     
         try{
-            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true }).populate('area');
+            const fichas  = await ficha.findByIdAndUpdate(id, { codigo_ficha, nombre,nivel_de_formacion, fecha_inicio, fecha_fin,area }, { new: true });
 
             if(!fichas){
                 return res.status(404).json({mensaje: 'La ficha no existe' })
             }
+
+            const rArea = await Area.findById(area)
+
+            fichas.area = rArea
             res.json({ mensaje: 'Ficha actualizado con éxito', fichas });
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
