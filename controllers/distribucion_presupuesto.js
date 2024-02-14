@@ -23,8 +23,8 @@ const httpDistribucionPresupesto ={
 
     postDisPresupuesto: async (req, res) => {
         try {
-            const { codigo_presupuestal,nombre,presupuesto_inicial,año,lote,items } = req.body
-            const distribucion = new distribucion_presupuesto({ codigo_presupuestal,nombre,presupuesto_inicial,año,lote,items })
+            const { codigo_presupuestal,nombre,presupuesto_inicial,ano,lote,items } = req.body
+            const distribucion = new distribucion_presupuesto({ codigo_presupuestal,nombre,presupuesto_inicial,ano,lote,items })
             await distribucion.save()
 
             res.json({ mensaje: 'Distribucion del presupuesto agregada exitosamente', distribucion })
@@ -35,10 +35,10 @@ const httpDistribucionPresupesto ={
 
     putDisPresupuesto: async (req,res) =>{
         const {id} = req.params;
-        const { codigo_presupuestal,nombre,presupuesto_inicial,año,lote,items } = req.body;
+        const { codigo_presupuestal,nombre,presupuesto_inicial,ano,lote,items } = req.body;
 
         try{
-            const distribucion  = await distribucion_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal,nombre,presupuesto_inicial,año,lote,items }, { new: true });
+            const distribucion  = await distribucion_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal,nombre,presupuesto_inicial,ano,lote,items }, { new: true });
 
             if(!distribucion){
                 return res.status(404).json({mensaje: 'La distribucion del presupuesto no existe' })
