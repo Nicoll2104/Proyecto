@@ -48,7 +48,7 @@ const httpDistribucionPresupuesto = {
         const { codigo_presupuestal, nombre, presupuesto_inicial, ano, lote, items } = req.body;
 
         try {
-            const distribucion = await distribucion_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal, nombre, presupuesto_inicial, ano, lote, items }, { new: true }).populate('lote items');
+            const distribucion = await distribucion_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal, nombre, presupuesto_inicial, ano, lote, items }, { new: true });
 
             if (!distribucion) {
                 return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
