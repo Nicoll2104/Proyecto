@@ -15,24 +15,22 @@ router.get("/pedido/:id",[
 router.post("/agregar",[
     check("fecha_creacion","La fecha de creacion es obligatoria").not().isEmpty(),
     check("fecha_entrega", "La fecha de entrega es obligatoria").not().isEmpty(),
-    check('instructor_encargado', 'El instructor encargado es obligatorio').not().isEmpty(),
     check("subtotal", "El subtotal es obligatorio").not().isEmpty(),
     check("total", "El total es obligatorio").not().isEmpty(),
     check("impuestos","Los impuestos son obligatorios").not().isEmpty(),
     check("ficha", "La ficha es obligatoria").not().isEmpty(),
-    check('usuario', 'El usuario es obligatorio').not().isEmpty(),
+    check('rol_usuario', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ], httpPedido.postPedido);
 
 router.put("/modificar/:id",[
     check("fecha_creacion","La fecha de creacion es obligatoria").not().isEmpty(),
     check("fecha_entrega", "La fecha de entrega es obligatoria").not().isEmpty(),
-    check('instructor_encargado', 'El instructor encargado es obligatorio').not().isEmpty(),
     check("subtotal", "El subtotal es obligatorio").not().isEmpty(),
     check("total", "El total es obligatorio").not().isEmpty(),
     check("impuestos","Los impuestos son obligatorios").not().isEmpty(),
     check("ficha", "La ficha es obligatoria").not().isEmpty(),
-    check('usuario', 'El usuario es obligatorio').not().isEmpty(),
+    check('rol_usuario', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ],httpPedido.putPedido);
 
