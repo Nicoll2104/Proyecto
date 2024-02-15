@@ -19,7 +19,7 @@ router.post("/agregar",[
     check("subtotal", "El subtotal es obligatorio").not().isEmpty(),
     check("total", "El total es obligatorio").not().isEmpty(),
     check("impuestos","Los impuestos son obligatorios").not().isEmpty(),
-    check("distribucion_ficha", "La distribucion de la ficha es obligatoria").not().isEmpty(),
+    check("ficha", "La ficha es obligatoria").not().isEmpty(),
     check('usuario', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ], httpPedido.postPedido);
@@ -31,7 +31,7 @@ router.put("/modificar/:id",[
     check("subtotal", "El subtotal es obligatorio").not().isEmpty(),
     check("total", "El total es obligatorio").not().isEmpty(),
     check("impuestos","Los impuestos son obligatorios").not().isEmpty(),
-    check("distribucion_ficha", "La distribucion de la ficha es obligatoria").not().isEmpty(),
+    check("ficha", "La ficha es obligatoria").not().isEmpty(),
     check('usuario', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ],httpPedido.putPedido);
