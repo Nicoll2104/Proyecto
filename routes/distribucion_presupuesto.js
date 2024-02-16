@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpDistribucionPresupesto from "../controllers/distribucion_presupuesto.js";
+import helpersDistriPresupuesto from "../helpers/hp_distribucion_presupuesto.js";
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.post("/agregar",[
     check("ano", "El año es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
     check("items","Los items son obligatorios").not().isEmpty(),
+    check("codigo_presupuestal").custom(helpersDistriPresupuesto.validarCodigo),
     validarcampos
 ], httpDistribucionPresupesto.postDisPresupuesto);
 
@@ -29,6 +31,7 @@ router.put("/modificar/:id",[
     check("ano", "El año es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
     check("items","Los items son obligatorios").not().isEmpty(),
+    check("codigo_presupuestal").custom(helpersDistriPresupuesto.validarCodigo),
     validarcampos
 ],httpDistribucionPresupesto.putDisPresupuesto);
 
