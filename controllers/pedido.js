@@ -20,8 +20,8 @@ const httpPedido = {
 
     postPedido: async (req , res )=>{
         try{
-            const {fecha_creacion, fecha_entrega, subtotal, total, impuestos, ficha, rol_usuario}=req.body;
-            const pedidos = new pedido({fecha_creacion, fecha_entrega, subtotal, total, impuestos, ficha, rol_usuario});
+            const {fecha_creacion, fecha_entrega,instructor_encargado, ficha, rol_usuario}=req.body;
+            const pedidos = new pedido({fecha_creacion, fecha_entrega,instructor_encargado, ficha, rol_usuario});
 
             await pedidos.save();
             res.json({mensaje:'Pedido agregado con exito', pedidos})
@@ -32,10 +32,10 @@ const httpPedido = {
 
     putPedido: async (req,res) =>{
         const {id} = req.params;
-        const {fecha_creacion, fecha_entrega, subtotal, total, impuestos, ficha, rol_usuario} = req.body;
+        const {fecha_creacion, fecha_entrega,instructor_encargado, ficha, rol_usuario} = req.body;
 
         try{
-            const pedidos  = await pedido.findByIdAndUpdate(id, {fecha_creacion, fecha_entrega, subtotal, total, impuestos, ficha, rol_usuario}, { new: true });
+            const pedidos  = await pedido.findByIdAndUpdate(id, {fecha_creacion, fecha_entrega,instructor_encargado, ficha, rol_usuario}, { new: true });
 
             if(!pedidos){
                 return res.status(404).json({mensaje: 'El pedido no existe' })
