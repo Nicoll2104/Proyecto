@@ -1,10 +1,10 @@
 
 import pedido from "../models/pedido.js";
-
+import Ficha from "../models/ficha.js";
 
 const httpPedido = {
     getPedido: async  ( req , res )=>{
-        const pedidos = await pedido.find()
+        const pedidos = await pedido.find().populate('ficha');
         res.json(pedidos);
     },
 

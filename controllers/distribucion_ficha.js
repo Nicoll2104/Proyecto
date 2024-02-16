@@ -1,5 +1,5 @@
 import distribucion_ficha from "../models/distribucion_ficha.js";
-import Ficha from "../models/ficha.js.js";
+import Ficha from "../models/ficha.js";
 import Distribucion_presupuesto from "../models/distribucion_presupuesto.js";;
 
 const httpDistribucionFicha ={
