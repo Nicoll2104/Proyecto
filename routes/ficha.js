@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpFicha from "../controllers/ficha.js";
+import helpersFicha from "../helpers/hp_ficha.js";
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.post("/agregar",[
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
     check("area","El  area es obligatorio").not().isEmpty(),
+    check("codigo_ficha").custom(helpersFicha.validarCodigo),
     validarcampos
 ], httpFicha.postFicha);
 
@@ -29,6 +31,7 @@ router.put("/modificar/:id",[
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
     check("area","El area es obligatorio").not().isEmpty(),
+    check("codigo_ficha").custom(helpersFicha.validarCodigo),
     validarcampos
 ],httpFicha.putFicha);
 
