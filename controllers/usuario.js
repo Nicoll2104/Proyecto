@@ -107,7 +107,7 @@ login: async (req,res) =>{
         const validcontrasena = bcryptjs.compareSync(contrasena, usuarios.contrasena);
         if(!validcontrasena){
             return res.status(401).json({
-                mensaje:"contraseña incorrecta"
+                mensaje:"usuario/ contrasena no son correctos"
             })
         }
 
