@@ -8,7 +8,7 @@ if(! errors.isEmpty()){
         return res.status(req.codeError).json({ error: errors });
     }
 
-    return res.status(400).json({ error: errors });
+    return res.status(400).json({ error: errors.errors[0].msg });
 }
 
 next();

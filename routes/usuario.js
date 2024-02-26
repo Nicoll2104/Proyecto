@@ -18,6 +18,7 @@ router.post("/agregar",[
     check("contrasena", "La contrasena es obligatoria").not().isEmpty(),
     check("rol","El rol es obligatorio").not().isEmpty(),
     check('cedula').custom(helpersUsuario.validarCedulaUnica),
+    check('correo').custom(helpersUsuario.ValidarCorreoUnico),
     validarcampos
 ], httpUsuario.postUsuario);
 
@@ -29,6 +30,18 @@ router.put("/modificar/:id",[
     check("contrasena", "La contrasena es obligatoria").not().isEmpty(),
     check("rol","El rol es obligatorio").not().isEmpty(),
     check('cedula').custom(helpersUsuario.validarCedulaUnica),
+    check('correo').custom(helpersUsuario.ValidarCorreoUnico),
+
+
+
+
+
+
+
+
+
+
+    
     validarcampos
 ],httpUsuario.putUsuario);
 

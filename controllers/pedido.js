@@ -4,7 +4,7 @@ import Ficha from "../models/ficha.js";
 
 const httpPedido = {
     getPedido: async  ( req , res )=>{
-        const pedidos = await pedido.find().populate('ficha');
+        const pedidos = await pedido.find()
         res.json(pedidos);
     },
 
