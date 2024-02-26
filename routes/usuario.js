@@ -31,17 +31,6 @@ router.put("/modificar/:id",[
     check("rol","El rol es obligatorio").not().isEmpty(),
     check('cedula').custom(helpersUsuario.validarCedulaUnica),
     check('correo').custom(helpersUsuario.ValidarCorreoUnico),
-
-
-
-
-
-
-
-
-
-
-    
     validarcampos
 ],httpUsuario.putUsuario);
 

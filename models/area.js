@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const area = new mongoose.Schema(
     {
-        nombre:{type:String, required: true,},
+        nombre:{type:String, index: 'text', required: true,},
         presupuesto:{type:Number, required: true,},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}

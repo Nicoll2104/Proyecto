@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpArea from "../controllers/area.js";
+import helpersArea from "../helpers/hp_area.js";
 
 const router = Router();
 
@@ -15,12 +16,14 @@ router.get("/area/:id",[
 router.post("/agregar",[
     check("nombre","El nombre es obligatorio").not().isEmpty(),
     check("presupuesto", "El presupuesto es obligatorio").not().isEmpty(),
+    check('nombre').custom(helpersArea.validarNombreUnico),
     validarcampos
 ], httpArea.postArea);
 
 router.put("/modificar/:id",[
     check("nombre","El nombre es obligatorio").not().isEmpty(),
     check("presupuesto", "El presupuesto es obligatorio").not().isEmpty(),
+    check('nombre').custom(helpersArea.validarNombreUnico),
     validarcampos
 ],httpArea.putArea);
 
