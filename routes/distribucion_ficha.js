@@ -13,6 +13,7 @@ router.get("/disFicha/:id",[
 ], httpDistribucionFicha.getDisFichaId);
 
 router.post("/agregar",[
+    check("codigo_auxiliar", "El codigo es obligatorio").not().isEmpty(),
     check("presupuesto", "El presupuesto es obligatorio").not().isEmpty(),
     check('distribucion_presupuesto', 'La distribucion_presupuesto es obligatoria').not().isEmpty(),
     check("ficha", "La  ficha es obligatoria").not().isEmpty(),
@@ -20,6 +21,7 @@ router.post("/agregar",[
 ], httpDistribucionFicha.postDisFicha);
 
 router.put("/modificar/:id",[
+    check("codigo_auxiliar", "El codigo es obligatorio").not().isEmpty(),
     check("presupuesto", "El presupuesto es obligatorio").not().isEmpty(),
     check('distribucion_presupuesto', 'La distribucion_presupuesto es obligatoria').not().isEmpty(),
     check("ficha", "La  ficha es obligatoria").not().isEmpty(),
