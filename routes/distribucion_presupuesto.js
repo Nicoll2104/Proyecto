@@ -13,7 +13,7 @@ router.get("/disPresupues/:id",[
 ], httpDistribucionPresupesto.getDisPresupuestoId);
 
 router.post("/agregar",[
-    check("codigo_presupuestal","El codigo presupuestal es obligatorio").not().isEmpty(),
+    check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("ano", "El año es obligatorio").not().isEmpty(),
@@ -23,7 +23,7 @@ router.post("/agregar",[
 ], httpDistribucionPresupesto.postDisPresupuesto);
 
 router.put("/modificar/:id",[
-    check("codigo_presupuestal","El codigo presupuestal es obligatorio").not().isEmpty(),
+    check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("ano", "El año es obligatorio").not().isEmpty(),
