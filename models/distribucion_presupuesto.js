@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const distribucion_presupuesto = new mongoose.Schema(
     {
         codigo_presupuestal:{type:String, required: true,},
-        nombre:{type:String, required: true,},
         presupuesto_inicial:{type:Number, required: true,},
         ano:{type:String, required: true,},
         lote:{type:mongoose.Schema.Types.ObjectId,ref:'Lote', require:true},

@@ -15,7 +15,6 @@ router.get("/disPresupues/:id",[
 
 router.post("/agregar",[
     check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
-    check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("ano", "El año es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
@@ -26,7 +25,6 @@ router.post("/agregar",[
 
 router.put("/modificar/:id",[
     check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
-    check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("ano", "El año es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
