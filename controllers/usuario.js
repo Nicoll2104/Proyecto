@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
 import usuario from "../models/usuario.js";
-import { generarJWT } from "../middlewares/validar.js";
+import { generarJWT, validarJWT } from "../middlewares/validar.js";
 
 const httpUsuario = {
     getUsuario: async (req,res)=>{
@@ -93,7 +93,7 @@ login: async (req,res) =>{
         const usuarios = await usuario.findOne({correo})
         if (!usuarios){
             return res.status(400).json({
-                mensaje: "usuario/ contrasena no son correctos"
+                mensaje: "el usuario o la contraseña no son correctos"
             })
         }
 
@@ -107,7 +107,7 @@ login: async (req,res) =>{
         const validcontrasena = bcryptjs.compareSync(contrasena, usuarios.contrasena);
         if(!validcontrasena){
             return res.status(401).json({
-                mensaje:"usuario/ contrasena no son correctos"
+                mensaje:"el usuario o la contraseña no son correctos"
             })
         }
 
@@ -122,6 +122,23 @@ login: async (req,res) =>{
     }catch (error){
         return res.status(500).json({
             mensaje:"Habla con el webMaster"
+        })
+    }
+},
+
+validartoken: async (req,res) =>{
+    const { token } = req.body;
+    try{
+
+        console.log('token resivido: ', token)
+        const x = await validarJWT(token)
+        console.log('token validado: ', x)
+        res.json({
+            x
+        })
+    }catch (error){
+        return res.status(500).json({
+            mensaje:"token no valido"
         })
     }
 },

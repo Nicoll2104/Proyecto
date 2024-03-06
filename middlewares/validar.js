@@ -19,7 +19,9 @@ const generarJWT = (uid) => {
 }
 
 const validarJWT = async (req, res, next) => {
-    const token = req.header("x-token");
+    /* const token = req.header("x-token"); */
+    const {token, correo, contrasena}=req.body
+    console.log('token resivido:', token)
     if (!token) {
         return res.status(401).json({
             msg: "No hay token en la petición"
@@ -27,7 +29,13 @@ const validarJWT = async (req, res, next) => {
     }
 
     try {
-        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY, (err, user) => {
+            if (err) {
+                return res.status(401).json({
+                    msg: "Token no válido"
+                });
+            }
+        });
 
         const usuarioEncontrado = await usuario.findById(uid);
 
@@ -39,11 +47,11 @@ const validarJWT = async (req, res, next) => {
 
         if (usuarioEncontrado.estado === 0) {
             return res.status(401).json({
-                msg: "Token no válido"
+                msg: "usuario inactivo"
             });
         }
 
-        req.usuario = usuarioEncontrado;
+        res.json(usuarioEncontrado);
         next();
 
     } catch (error) {
