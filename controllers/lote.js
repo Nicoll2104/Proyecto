@@ -1,4 +1,3 @@
-
 import lote from "../models/lote.js";
 
 
