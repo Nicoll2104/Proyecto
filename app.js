@@ -12,6 +12,7 @@ import distribucion_presupuesto from './routes/distribucion_presupuesto.js';
 import distribucion_ficha from './routes/distribucion_ficha.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
+import DisArea from './routes/distribucion_area.js';
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
@@ -29,6 +30,7 @@ app.use("/api/lote", lote)
 app.use("/api/producto", producto)
 app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
+app.use("/api/disArea", DisArea)
 
 
 
