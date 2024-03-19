@@ -19,7 +19,7 @@ router.post("/agregar",[
     check("nivel_de_formacion", 'El nivel de formacion').not().isEmpty(),
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
-    check("area","El  area es obligatorio").not().isEmpty(),
+    check("area_tematica","El  area es obligatorio").not().isEmpty(),
     check("codigo_ficha").custom(helpersFicha.validarCodigo),
     validarcampos
 ], httpFicha.postFicha);
@@ -30,7 +30,7 @@ router.put("/modificar/:id",[
     check("nivel_de_formacion", 'El nivel de formacion').not().isEmpty(),
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
-    check("area","El area es obligatorio").not().isEmpty(),
+    check("area_tematica","El  area es obligatorio").not().isEmpty(),
     check("codigo_ficha").custom(helpersFicha.validarCodigo),
     validarcampos
 ],httpFicha.putFicha);
