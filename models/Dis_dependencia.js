@@ -11,4 +11,4 @@ const distribucion_presupuesto = new mongoose.Schema(
         status:{type:String,default:1}
     })
 
-    export default mongoose.model("Distribucion_presupuesto", distribucion_presupuesto)
+    export default mongoose.model("Distribucion_Dependencias", distribucion_presupuesto)
