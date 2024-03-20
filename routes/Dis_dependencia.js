@@ -1,17 +1,16 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpDistribucionPresupesto from "../controllers/Dis_dependencia.js";
-import helpersDistriPresupuesto from "../helpers/hp_distribucion_presupuesto.js";
+import httpDistribucionDependencia from "../controllers/Dis_dependencia.js";
 
 const router = Router();
 
-router.get("/ver", httpDistribucionPresupesto.getDisPresupuesto);
+router.get("/ver", httpDistribucionDependencia.getDisPresupuesto);
 
 router.get("/disPresupues/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpDistribucionPresupesto.getDisPresupuestoId);
+], httpDistribucionDependencia.getDisPresupuestoId);
 
 router.post("/agregar",[
     check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
@@ -19,9 +18,8 @@ router.post("/agregar",[
     check("ano", "El año es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
     check("items","Los items son obligatorios").not().isEmpty(),
-    check("codigo_presupuestal").custom(helpersDistriPresupuesto.validarCodigo),
     validarcampos
-], httpDistribucionPresupesto.postDisPresupuesto);
+], httpDistribucionDependencia.postDisPresupuesto);
 
 router.put("/modificar/:id",[
     check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
@@ -29,23 +27,22 @@ router.put("/modificar/:id",[
     check("ano", "El año es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
     check("items","Los items son obligatorios").not().isEmpty(),
-    check("codigo_presupuestal").custom(helpersDistriPresupuesto.validarCodigo),
     validarcampos
-],httpDistribucionPresupesto.putDisPresupuesto);
+],httpDistribucionDependencia.putDisPresupuesto);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDistribucionPresupesto.putInactivar);
+], httpDistribucionDependencia.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDistribucionPresupesto.putActivar);
+], httpDistribucionDependencia.putActivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDistribucionPresupesto.deleteDisPresupuesto)
+], httpDistribucionDependencia.deleteDisPresupuesto)
 
 export default router;

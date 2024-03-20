@@ -1,11 +1,11 @@
-import distribucion_presupuesto from "../models/Dis_dependencia.js";
+import distribucion_dependencia from "../models/Dis_dependencia.js";
 import Lote from "../models/lote.js";
 import Items from "../models/items_presupuesto.js"
 
-const httpDistribucionPresupuesto = {
+const httpDistribucionDependencia = {
     getDisPresupuesto: async (req, res) => {
         try {
-            const distribucion = await distribucion_presupuesto.find().populate('lote').populate('items');
+            const distribucion = await distribucion_dependencia.find().populate('lote').populate('items');
             res.json({ distribucion });
 
         } catch (error) {
@@ -16,7 +16,7 @@ const httpDistribucionPresupuesto = {
     getDisPresupuestoId: async (req, res) => {
         const { id } = req.params;
         try {
-            const distribucion = await distribucion_presupuesto.findById(id).populate('lote').populate('items');
+            const distribucion = await distribucion_dependencia.findById(id).populate('lote').populate('items');
             res.json({ distribucion });
 
         } catch (error) {
@@ -27,7 +27,7 @@ const httpDistribucionPresupuesto = {
     postDisPresupuesto: async (req, res) => {
         try {
             const { codigo_presupuestal, presupuesto_inicial, ano, lote, items } = req.body;
-            const distribucion = new distribucion_presupuesto({ codigo_presupuestal, presupuesto_inicial, ano, lote, items });
+            const distribucion = new ddistribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, lote, items });
             
             const rlote = await Lote.findById(lote)
             const rItems = await Items.findById(items)
@@ -48,7 +48,7 @@ const httpDistribucionPresupuesto = {
         const { codigo_presupuestal, presupuesto_inicial, ano, lote, items } = req.body;
 
         try {
-            const distribucion = await distribucion_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal, presupuesto_inicial, ano, lote, items }, { new: true });
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { codigo_presupuestal, presupuesto_inicial, ano, lote, items }, { new: true });
 
             if (!distribucion) {
                 return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
@@ -69,7 +69,7 @@ const httpDistribucionPresupuesto = {
     deleteDisPresupuesto: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_presupuesto.findByIdAndRemove(id).populate('lote items');
+            const distribucion = await distribucion_dependencia.findByIdAndRemove(id).populate('lote items');
             res.json({ distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
@@ -79,7 +79,7 @@ const httpDistribucionPresupuesto = {
     putInactivar: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_presupuesto.findByIdAndUpdate(id, { status: 0 }, { new: true }).populate('lote').populate('items');
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 0 }, { new: true }).populate('lote').populate('items');
             res.json({ distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
@@ -90,7 +90,7 @@ const httpDistribucionPresupuesto = {
     putActivar: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_presupuesto.findByIdAndUpdate(id, { status: 1 }, { new: true }).populate('lote').populate('items');
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 1 }, { new: true }).populate('lote').populate('items');
             res.json({ distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
@@ -98,4 +98,4 @@ const httpDistribucionPresupuesto = {
     }
 };
 
-export default httpDistribucionPresupuesto;
+export default httpDistribucionDependencia;

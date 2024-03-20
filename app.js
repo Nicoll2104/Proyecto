@@ -11,11 +11,8 @@ import distribucion_dependencia from './routes/Dis_dependencia.js';
 import distribucion_ficha from './routes/distribucion_ficha.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
-<<<<<<< HEAD
-import DisArea from './routes/distribucion_area.js';
-=======
 import area_tematica from './models/area_tematica.js';
->>>>>>> 3f22adf49aeca6763daf277b4f839ca53c70d303
+
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
@@ -26,16 +23,13 @@ app.use(cors());
 app.use("/api/area_tematica", area_tematica)
 app.use("/api/detPedido", det_pedido)
 app.use("/api/disFicha", distribucion_ficha)
-app.use("/api/disPresupues", distribucion_dependencia)
+app.use("/api/disDepen", distribucion_dependencia)
 app.use("/api/ficha", ficha)
 app.use("/api/items", items)
 app.use("/api/lote", lote)
 app.use("/api/producto", producto)
 app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
-app.use("/api/disArea", DisArea)
-
-
 
 app.listen(process.env.PORT,()=>{
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
