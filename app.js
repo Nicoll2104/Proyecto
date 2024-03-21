@@ -11,11 +11,9 @@ import distribucion_dependencia from './routes/Dis_dependencia.js';
 import distribucion_ficha from './routes/distribucion_ficha.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
-<<<<<<< HEAD
 import DisArea from './routes/distribucion_area.js';
-=======
-import area_tematica from './models/area_tematica.js';
->>>>>>> 3f22adf49aeca6763daf277b4f839ca53c70d303
+import area_tematica from './routes/area_tematica.js';
+
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
