@@ -1,12 +1,12 @@
 import dependecia from "../models/dependecia.js";
 
 const httpDependencia = {
-    getdepe: async  ( req , res )=>{
+    getDepe: async  ( req , res )=>{
         const dependecias = await dependecia.find()
         res.json(dependecias);
     },
 
-    getdepeid: async (req, res)=>{
+    getDepeid: async (req, res)=>{
         const{id}= req.params
         try{
             const dependecias = await dependecia.findById(id)
@@ -16,7 +16,7 @@ const httpDependencia = {
         }
     },
 
-    postdepe: async (req , res )=>{
+    postDepe: async (req , res )=>{
         try{
             const {codigo,nombre,año}=req.body;
             const dependecias = new dependecia({codigo,nombre,año});
@@ -28,7 +28,7 @@ const httpDependencia = {
         }
     },
 
-    putdepe: async (req,res) =>{
+    putDepe: async (req,res) =>{
         const {id} = req.params;
         const {codigo,nombre,año} = req.body;
 
@@ -44,7 +44,7 @@ const httpDependencia = {
         }
     },
 
-    deletedepe: async (req,res) =>{
+    deleteDepe: async (req,res) =>{
         try{
             const {id} = req.params;
             const dependecias = await dependecia.findByIdAndDelete(id);

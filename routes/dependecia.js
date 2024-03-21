@@ -5,26 +5,26 @@ import httpDependencia from "../controllers/dependecia.js";
 
 const router = Router();
 
-router.get("/ver", httpDependencia.getdepe);
+router.get("/ver", httpDependencia.getDepe);
 
 router.get("/depen/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpDependencia.getdepeid);
+], httpDependencia.getDepeid);
 
 router.post("/agregar",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
     validarcampos
-], httpDependencia.postdepe);
+], httpDependencia.postDepe);
 
 router.put("/modificar/:id",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
     validarcampos
-],httpDependencia.putdepe);
+],httpDependencia.putDepe);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
@@ -39,6 +39,6 @@ router.put("/activar/:id",[
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDependencia.deletedepe)
+], httpDependencia.deleteDepe)
 
 export default router;
