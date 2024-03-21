@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const distribucion_presupuesto = new mongoose.Schema(
+const distribucion_Dependencia = new mongoose.Schema(
     {
         codigo_presupuestal:{type:String, required: true,},
         presupuesto_inicial:{type:Number, required: true,},
@@ -11,4 +11,4 @@ const distribucion_presupuesto = new mongoose.Schema(
         status:{type:String,default:1}
     })
 
-    export default mongoose.model("Distribucion_Dependencias", distribucion_presupuesto)
+    export default mongoose.model("Distribucion_Dependencias", distribucion_Dependencia)
