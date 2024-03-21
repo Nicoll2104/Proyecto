@@ -23,14 +23,15 @@ const httpDependencia = {
     postDepe: async (req, res)=>{
         try {
             const { codigo, nombre, año } = req.body;
-            const dependencia = new dependencia({ codigo, nombre, año });
+            const nuevaDependencia = new dependencia({ codigo, nombre, año }); // Cambia el nombre de la variable
     
-            await dependencia.save();
-            res.json({ mensaje: 'Dependencia agregada con éxito', dependencia });
+            await nuevaDependencia.save();
+            res.json({ mensaje: 'Dependencia agregada con éxito', dependencia: nuevaDependencia }); // Usa la nueva variable
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
+    
 
     putDepe: async (req,res) =>{
         const {id} = req.params;
