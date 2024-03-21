@@ -19,8 +19,8 @@ const httpProducto = {
 
     postProducto: async (req,res)=>{
         try{
-            const {codigo, nombre, descripcion, unidad_medida,precio_unitario,impestos,fecha_creacion,fecha_vencimiento}=req.body;
-            const productos = new producto({codigo, nombre, descripcion, unidad_medida,precio_unitario,impestos,fecha_creacion,fecha_vencimiento});
+            const {codigo, nombre, descripcion, unidad_medida,precio_unitario,impestos,fecha_creacion,fecha_vencimiento,id_tipo_producto}=req.body;
+            const productos = new producto({codigo, nombre, descripcion, unidad_medida,precio_unitario,impestos,fecha_creacion,fecha_vencimiento,id_tipo_producto});
 
             await productos.save();
             res.json({mensaje:'El producto se agrego con exito', productos })
@@ -31,10 +31,10 @@ const httpProducto = {
 
     putProducto: async (req,res) =>{
         const {id} = req.params;
-        const {codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento} = req.body;
+        const {codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento,id_tipo_producto} = req.body;
     
         try{
-            const productos  =await producto.findByIdAndUpdate(id, { codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento}, { new: true });
+            const productos  =await producto.findByIdAndUpdate(id, { codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento,id_tipo_producto}, { new: true });
 
             if(!productos){
                 return res.status(404).json({mensaje: 'El producto no existe' })
