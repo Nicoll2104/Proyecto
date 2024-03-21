@@ -3,7 +3,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import mongoose from "mongoose";
 import usuario from './routes/usuario.js';
-import lote from './routes/lote.js';
+import dependecia from './routes/dependecia.js';
 import ficha from './routes/ficha.js';
 import producto from './routes/productos.js';
 import items from './routes/items_presupuesto.js';
@@ -26,7 +26,7 @@ app.use("/api/disFicha", distribucion_ficha)
 app.use("/api/disDepen", distribucion_dependencia)
 app.use("/api/ficha", ficha)
 app.use("/api/items", items)
-app.use("/api/lote", lote)
+app.use("/api/dependecia", dependecia)
 app.use("/api/producto", producto)
 app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
