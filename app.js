@@ -13,6 +13,7 @@ import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
 import DisArea from './routes/distribucion_area.js';
 import area_tematica from './routes/area_tematica.js';
+import DisRed from './routes/distribucion_red.js';
 
 
 mongoose.connect(process.env.mongoDB)
@@ -32,6 +33,7 @@ app.use("/api/producto", producto)
 app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
 app.use("/api/disArea", DisArea)
+app.use("/api/disRed",DisRed )
 
 
 
