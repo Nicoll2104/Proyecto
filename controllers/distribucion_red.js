@@ -18,8 +18,8 @@ const httpDisRed = {
 
     postDistriRed: async (req,res)=>{
         try{
-            const {codigo_presupuesto, nombre, presupuesto_inicial, año}=req.body;
-            const DistRed = new distribucion_red({codigo_presupuesto, nombre, presupuesto_inicial, año});
+            const {codigo_auxiliar, valor_presupuesto,id_distribucion_dependencia ,id_red_conocimiento,id_tipo_producto }=req.body;
+            const DistRed = new distribucion_red({codigo_auxiliar, valor_presupuesto,id_distribucion_dependencia ,id_red_conocimiento,id_tipo_producto});
 
             await DistRed.save();
             res.json({mensaje:'La distribucion de red se agrego con exito', DistRed })
@@ -30,10 +30,10 @@ const httpDisRed = {
 
     putDistriRed: async (req,res)=>{
         const {id}=req.params;
-        const {codigo_presupuesto, nombre, presupuesto_inicial, año}=req.body;
+        const {codigo_auxiliar, valor_presupuesto,id_distribucion_dependencia ,id_red_conocimiento,id_tipo_producto}=req.body;
 
         try{
-            const DistRed = await distribucion_red.findByIdAndUpdate(id,{codigo_presupuesto, nombre, presupuesto_inicial, año}, {new: true});
+            const DistRed = await distribucion_red.findByIdAndUpdate(id,{codigo_auxiliar, valor_presupuesto,id_distribucion_dependencia ,id_red_conocimiento,id_tipo_producto}, {new: true});
         
             if(!DistRed){
                 return res.status(404).json({mensaje:'La distribucion red no existe' })
