@@ -1,9 +1,13 @@
 import dependencia from "../models/dependencia.js";
 
 const httpDependencia = {
-    getDepe: async  ( req , res )=>{
-        const dependecias = await dependencia.find()
-        res.json(dependecias);
+    getDepe: async (req, res) => {
+        try {
+            const dependencias = await dependencia.find();
+            res.json(dependencias);
+        } catch (error) {
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
     },
 
     getDepeid: async (req, res)=>{
@@ -16,15 +20,15 @@ const httpDependencia = {
         }
     },
 
-    postDepe: async (req , res )=>{
-        try{
-            const {codigo,nombre,año}=req.body;
-            const dependecias = new dependencia({codigo,nombre,año});
-
-            await dependecias.save();
-            res.json({mensaje:'Dependencia agregado con exito', dependecias})
-        }catch(error){
-            res.status(500).json({error:'Error interno del servidor'})
+    postDepe: async (req, res)=>{
+        try {
+            const { codigo, nombre, año } = req.body;
+            const dependencia = new dependencia({ codigo, nombre, año });
+    
+            await dependencia.save();
+            res.json({ mensaje: 'Dependencia agregada con éxito', dependencia });
+        } catch (error) {
+            res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
 
