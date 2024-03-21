@@ -1,15 +1,15 @@
-import dependecia from "../models/dependecia.js";
+import dependencia from "../models/dependencia.js";
 
 const httpDependencia = {
     getDepe: async  ( req , res )=>{
-        const dependecias = await dependecia.find()
+        const dependecias = await dependencia.find()
         res.json(dependecias);
     },
 
     getDepeid: async (req, res)=>{
         const{id}= req.params
         try{
-            const dependecias = await dependecia.findById(id)
+            const dependecias = await dependencia.findById(id)
             res.json({ dependecias})
         }catch(error){
             res.status(400).json({error:'No encontramos el id'})
@@ -19,7 +19,7 @@ const httpDependencia = {
     postDepe: async (req , res )=>{
         try{
             const {codigo,nombre,año}=req.body;
-            const dependecias = new dependecia({codigo,nombre,año});
+            const dependecias = new dependencia({codigo,nombre,año});
 
             await dependecias.save();
             res.json({mensaje:'Dependencia agregado con exito', dependecias})
@@ -33,7 +33,7 @@ const httpDependencia = {
         const {codigo,nombre,año} = req.body;
 
         try{
-            const dependecias  = await dependecia.findByIdAndUpdate(id, {codigo,nombre,año }, { new: true });
+            const dependecias  = await dependencia.findByIdAndUpdate(id, {codigo,nombre,año }, { new: true });
 
             if(!dependecias){
                 return res.status(404).json({mensaje: 'El dependencia no existe' })
@@ -47,7 +47,7 @@ const httpDependencia = {
     deleteDepe: async (req,res) =>{
         try{
             const {id} = req.params;
-            const dependecias = await dependecia.findByIdAndDelete(id);
+            const dependecias = await dependencia.findByIdAndDelete(id);
 
             if(!dependecias){
                 return res.status(404).json({ mensaje: 'El dependencia no existe' });
@@ -61,7 +61,7 @@ const httpDependencia = {
     putInactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const dependencias = await dependecia.findByIdAndUpdate(id,{status:0},{new:true})
+            const dependencias = await dependencia.findByIdAndUpdate(id,{status:0},{new:true})
             res.json({mensaje: 'Lote inactivado con exito', dependencias})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
@@ -71,7 +71,7 @@ const httpDependencia = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const dependencias = await dependecia.findByIdAndUpdate(id,{status:1},{new:true})
+            const dependencias = await dependencia.findByIdAndUpdate(id,{status:1},{new:true})
             res.json({mensaje: 'Lote activado con exito', dependencias})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
