@@ -33,7 +33,7 @@ const httpDistribucionDependencia = {
             const rdependencia = await Dependencia.findById(dependencia)
             const rItems = await Items.findById(items)
 
-            distribucion.dependecia = rdependencia
+            distribucion.dependencia = rdependencia
             distribucion.items = rItems
 
             await distribucion.save();
@@ -46,19 +46,19 @@ const httpDistribucionDependencia = {
 
     putDisDependencia: async (req, res) => {
         const { id } = req.params;
-        const { codigo_presupuestal, presupuesto_inicial, ano, dependecia, items } = req.body;
+        const { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items } = req.body;
 
         try {
-            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { codigo_presupuestal, presupuesto_inicial, ano, dependecia, items }, { new: true });
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items }, { new: true });
 
             if (!distribucion) {
                 return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
             }
 
-            const rdependencia = await Dependencia.findById(dependecia)
+            const rdependencia = await Dependencia.findById(dependencia)
             const rItems = await Items.findById(items)
 
-            distribucion.dependecia = rdependencia
+            distribucion.dependencia = rdependencia
             distribucion.items = rItems
 
             res.json({ mensaje: 'Distribucion del presupuesto actualizado con éxito', distribucion });
