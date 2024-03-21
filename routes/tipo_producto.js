@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/ver", httptipoproducto.getTipoproducto);
 
-router.get("/item/:id",[
+router.get("/tipoProducto/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
 ], httptipoproducto.getTipoproductoId);
