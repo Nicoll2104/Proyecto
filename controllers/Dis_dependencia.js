@@ -70,7 +70,7 @@ const httpDistribucionDependencia = {
     deleteDisDependencia: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_dependencia.findByIdAndRemove(id).populate('dependecia items');
+            const distribucion = await distribucion_dependencia.findByIdAndRemove(id).populate('dependencia items');
             res.json({ distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
@@ -80,7 +80,7 @@ const httpDistribucionDependencia = {
     putInactivar: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 0 }, { new: true }).populate('dependecia').populate('items');
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 0 }, { new: true }).populate('dependencia').populate('items');
             res.json({ distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
@@ -91,7 +91,7 @@ const httpDistribucionDependencia = {
     putActivar: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 1 }, { new: true }).populate('dependecia').populate('items');
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 1 }, { new: true }).populate('dependencia').populate('items');
             res.json({ distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
