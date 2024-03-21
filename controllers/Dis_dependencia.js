@@ -1,5 +1,7 @@
 import distribucion_dependencia from "../models/Dis_dependencia.js";
-import Items from "../models/items_presupuesto.js"
+import Items from "../models/items_presupuesto.js";
+import Dependencia from "../models/dependencia.js";
+
 
 const httpDistribucionDependencia = {
     getDisDependencia: async (req, res) => {
@@ -28,7 +30,7 @@ const httpDistribucionDependencia = {
             const { codigo_presupuestal, presupuesto_inicial, ano, dependecia, items } = req.body;
             const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, dependecia, items });
             
-            const rdependencia = await distribucion_dependencia.findById(dependecia)
+            const rdependencia = await Dependencia.findById(dependecia)
             const rItems = await Items.findById(items)
 
             distribucion.dependecia = rdependencia
@@ -53,7 +55,7 @@ const httpDistribucionDependencia = {
                 return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
             }
 
-            const rdependencia = await distribucion_dependencia.findById(dependecia)
+            const rdependencia = await Dependencia.findById(dependecia)
             const rItems = await Items.findById(items)
 
             distribucion.dependecia = rdependencia
