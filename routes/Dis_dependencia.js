@@ -16,7 +16,7 @@ router.post("/agregar",[
     check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
     check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("ano", "El año es obligatorio").not().isEmpty(),
-    check("lote", "El lote es obligatorio").not().isEmpty(),
+    check("dependecia", "La dependencia es obligatoria").not().isEmpty(),
     check("items","Los items son obligatorios").not().isEmpty(),
     validarcampos
 ], httpDistribucionDependencia.postDisDependencia);
@@ -25,7 +25,7 @@ router.put("/modificar/:id",[
     check("codigo_presupuestal","El codigo es obligatorio").not().isEmpty(),
     check('presupuesto_inicial', 'El presupuesto inicial es obligatorio').not().isEmpty(),
     check("ano", "El año es obligatorio").not().isEmpty(),
-    check("lote", "El lote es obligatorio").not().isEmpty(),
+    check("dependecia", "La dependencia es obligatoria").not().isEmpty(),
     check("items","Los items son obligatorios").not().isEmpty(),
     validarcampos
 ],httpDistribucionDependencia.putDisDependencia);
