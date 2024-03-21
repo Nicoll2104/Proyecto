@@ -3,7 +3,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import mongoose from "mongoose";
 import usuario from './routes/usuario.js';
-import dependencia from './models/dependencia.js';
+import dependencia from './routes/dependencia.js';
 import ficha from './routes/ficha.js';
 import producto from './routes/productos.js';
 import items from './routes/items_presupuesto.js';
@@ -16,6 +16,7 @@ import area_tematica from './routes/area_tematica.js';
 import DisRed from './routes/distribucion_red.js';
 import TipoProducto from './routes/tipo_producto.js';
 import requerimiento from './routes/requerimiento.js';
+import redconocimiento from './routes/red_conocimiento.js';
 
 
 mongoose.connect(process.env.mongoDB)
@@ -38,6 +39,7 @@ app.use("/api/disArea", DisArea)
 app.use("/api/disRed",DisRed )
 app.use("/api/tipoProducto", TipoProducto)
 app.use("/api/requerimiento", requerimiento)
+app.use("/api/redConomiento", redconocimiento)
 
 
 
