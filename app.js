@@ -16,6 +16,7 @@ import area_tematica from './routes/area_tematica.js';
 import DisRed from './routes/distribucion_red.js';
 import TipoProducto from './routes/tipo_producto.js';
 import requerimiento from './routes/requerimiento.js';
+import redconocimiento from './routes/red_conocimiento.js';
 
 
 mongoose.connect(process.env.mongoDB)
@@ -38,6 +39,7 @@ app.use("/api/disArea", DisArea)
 app.use("/api/disRed",DisRed )
 app.use("/api/tipoProducto", TipoProducto)
 app.use("/api/requerimiento", requerimiento)
+app.use("/api/redConomiento", redconocimiento)
 
 
 
