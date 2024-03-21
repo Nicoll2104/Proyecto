@@ -1,10 +1,12 @@
 import distribucion_dependencia from "../models/Dis_dependencia.js";
-import Items from "../models/items_presupuesto.js"
+import Items from "../models/items_presupuesto.js";
+import Dependencia from "../models/dependencia.js";
+
 
 const httpDistribucionDependencia = {
     getDisDependencia: async (req, res) => {
         try {
-            const distribucion = await distribucion_dependencia.find().populate('dependecia').populate('items');
+            const distribucion = await distribucion_dependencia.find().populate('dependencia').populate('items');
             res.json({ distribucion });
 
         } catch (error) {
@@ -15,7 +17,7 @@ const httpDistribucionDependencia = {
     getDisDependenciaId: async (req, res) => {
         const { id } = req.params;
         try {
-            const distribucion = await distribucion_dependencia.findById(id).populate('dependecia').populate('items');
+            const distribucion = await distribucion_dependencia.findById(id).populate('dependencia').populate('items');
             res.json({ distribucion });
 
         } catch (error) {
@@ -25,10 +27,10 @@ const httpDistribucionDependencia = {
 
     postDisDependencia: async (req, res) => {
         try {
-            const { codigo_presupuestal, presupuesto_inicial, ano, dependecia, items } = req.body;
-            const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, dependecia, items });
+            const { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items } = req.body;
+            const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, dependencia, items });
             
-            const rdependencia = await distribucion_dependencia.findById(dependecia)
+            const rdependencia = await Dependencia.findById(dependencia)
             const rItems = await Items.findById(items)
 
             distribucion.dependecia = rdependencia
@@ -53,7 +55,7 @@ const httpDistribucionDependencia = {
                 return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
             }
 
-            const rdependencia = await distribucion_dependencia.findById(dependecia)
+            const rdependencia = await Dependencia.findById(dependecia)
             const rItems = await Items.findById(items)
 
             distribucion.dependecia = rdependencia
