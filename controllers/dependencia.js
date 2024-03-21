@@ -3,7 +3,7 @@ import dependencia from "../models/dependencia.js";
 const httpDependencia = {
     getDepe: async (req, res) => {
         try {
-            const dependencias = await Dependencia.find();
+            const dependencias = await dependencia.find();
             res.json(dependencias);
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
