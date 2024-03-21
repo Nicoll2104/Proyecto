@@ -19,14 +19,13 @@ const httpProducto = {
 
     postProducto: async (req,res)=>{
         try{
-            const {codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento}=req.body;
-            const productos = new producto({codigo, nombre, descripcion, unidad_medida, precio_unitario, impestos, fecha_creacion,fecha_vencimiento});
-    
+            const {codigo, nombre, descripcion, unidad_medida,precio_unitario,impestos,fecha_creacion,fecha_vencimiento}=req.body;
+            const productos = new producto({codigo, nombre, descripcion, unidad_medida,precio_unitario,impestos,fecha_creacion,fecha_vencimiento});
 
             await productos.save();
-            res.json({mensaje: 'Producto agregado con éxito', productos})
-        } catch(error){
-            res.status(500).json({ error: 'Error interno del servidor'});
+            res.json({mensaje:'El producto se agrego con exito', productos })
+        }catch(error){
+            res.status(500).json({error:'Error interno del servidor'})
         }
     },
 

@@ -14,6 +14,7 @@ router.get("/producto/:id",[
 
 router.post("/agregar",[
     check("codigo", "El codigo es obligatorio").not().isEmpty(),
+    check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("descripcion","La descripcion es obligatoria").not().isEmpty(),
     check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
     check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
@@ -25,6 +26,7 @@ router.post("/agregar",[
 
 router.put("/modificar/:id",[
     check("codigo", "El codigo es obligatorio").not().isEmpty(),
+    check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("descripcion","La descripcion es obligatoria").not().isEmpty(),
     check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
     check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
