@@ -20,6 +20,7 @@ router.post("/agregar",[
     check("impestos"," Los impestos son obligatorios").not().isEmpty(),
     check("fecha_creacion", "La fecha_creacion es obligatoria").not().isEmpty(),
     check("fecha_vencimiento", "La fecha_vencimiento es obligatoria").not().isEmpty(),
+    check("tipo_producto", "El tio de producto es obligatorio").not().isEmpty(),
     validarcampos
 ], httpProducto.postProducto);
 
@@ -31,6 +32,7 @@ router.put("/modificar/:id",[
     check("impestos"," Los impestos son obligatorios").not().isEmpty(),
     check("fecha_creacion", "La fecha_creacion es obligatoria").not().isEmpty(),
     check("fecha_vencimiento", "La fecha_vencimiento es obligatoria").not().isEmpty(),
+    check("tipo_producto", "El tio de producto es obligatorio").not().isEmpty(),
     validarcampos
 ],httpProducto.putProducto);
 
