@@ -2,7 +2,7 @@ import distribucion_dependencia from "../models/Dis_dependencia.js";
 import Items from "../models/items_presupuesto.js"
 
 const httpDistribucionDependencia = {
-    getDisPresupuesto: async (req, res) => {
+    getDisDependencia: async (req, res) => {
         try {
             const distribucion = await distribucion_dependencia.find().populate('lote').populate('items');
             res.json({ distribucion });
@@ -12,7 +12,7 @@ const httpDistribucionDependencia = {
         }
     },
 
-    getDisPresupuestoId: async (req, res) => {
+    getDisDependenciaId: async (req, res) => {
         const { id } = req.params;
         try {
             const distribucion = await distribucion_dependencia.findById(id).populate('lote').populate('items');
@@ -23,10 +23,10 @@ const httpDistribucionDependencia = {
         }
     },
 
-    postDisPresupuesto: async (req, res) => {
+    postDisDependencia: async (req, res) => {
         try {
             const { codigo_presupuestal, presupuesto_inicial, ano, lote, items } = req.body;
-            const distribucion = new ddistribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, lote, items });
+            const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, lote, items });
             
             const rlote = await Lote.findById(lote)
             const rItems = await Items.findById(items)
@@ -42,7 +42,7 @@ const httpDistribucionDependencia = {
         }
     },
 
-    putDisPresupuesto: async (req, res) => {
+    putDisDependencia: async (req, res) => {
         const { id } = req.params;
         const { codigo_presupuestal, presupuesto_inicial, ano, lote, items } = req.body;
 
@@ -65,7 +65,7 @@ const httpDistribucionDependencia = {
         }
     },
 
-    deleteDisPresupuesto: async (req, res) => {
+    deleteDisDependencia: async (req, res) => {
         try {
             const { id } = req.params;
             const distribucion = await distribucion_dependencia.findByIdAndRemove(id).populate('lote items');
