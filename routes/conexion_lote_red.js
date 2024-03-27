@@ -1,16 +1,16 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpDisRed from "../controllers/distribucion_red.js";
+import httpConLoteRed from "../controllers/conexion_lote_red.js";
 
 const router = Router();
 
-router.get("/ver", httpDisRed.getDistriRed);
+router.get("/ver", httpConLoteRed.getConLoteRed);
 
-router.get("/disRed/:id",[
+router.get("/conLoteRed/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpDisRed.getDistriRedid);
+], httpConLoteRed.getConLoteRedid);
 
 router.post("/agregar",[
     check("codigo_auxiliar","El codigo auxiliar es obligatorio").not().isEmpty(),
@@ -19,7 +19,7 @@ router.post("/agregar",[
     check("id_red_conocimiento", "La red conocimiento  es obligatorio").not().isEmpty(),
     check("id_tipo_producto", "El tipo de producto  es obligatorio").not().isEmpty(),
     validarcampos
-], httpDisRed.postDistriRed);
+], httpConLoteRed.postConLoteRed);
 
 router.put("/modificar/:id",[
     check("codigo_auxiliar","El codigo auxiliar es obligatorio").not().isEmpty(),
@@ -28,21 +28,21 @@ router.put("/modificar/:id",[
     check("id_red_conocimiento", "La red conocimiento  es obligatorio").not().isEmpty(),
     check("id_tipo_producto", "El tipo de producto  es obligatorio").not().isEmpty(),
     validarcampos
-], httpDisRed.putDistriRed);
+], httpConLoteRed.putConLoteRed);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDisRed.putInactivar);
+], httpConLoteRed.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDisRed.putactivar);
+], httpConLoteRed.putactivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDisRed.deleteDistriRed);
+], httpConLoteRed.deleteConLoteRed);
 
 export default router;

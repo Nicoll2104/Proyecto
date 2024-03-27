@@ -4,7 +4,7 @@ const distribucion_area = new mongoose.Schema(
     {
         codigo_auxiliar:{type:Number, required: true},
         valor_presupuesto:{type:Number, required: true,},
-        distribucion_red:{type:mongoose.Schema.Types.ObjectId,ref:'Distribucion_red',required:true},
+        Conexion_lote_red:{type:mongoose.Schema.Types.ObjectId,ref:'Conexion_lote_red',required:true},
         area_tematica:{type:mongoose.Schema.Types.ObjectId,ref:'Area_tematica',required:true},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}

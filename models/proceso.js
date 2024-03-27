@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const tipo_producto = new mongoose.Schema(
+const proceso = new mongoose.Schema(
     {
         codigo:{type:Number, required: true},
         nombre:{type:String, required: true,},
@@ -9,4 +9,4 @@ const tipo_producto = new mongoose.Schema(
         
     })
 
-    export default mongoose.model("Tipo_producto", tipo_producto)
+    export default mongoose.model("Proceso", proceso)

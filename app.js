@@ -13,8 +13,8 @@ import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
 import DisArea from './routes/distribucion_area.js';
 import area_tematica from './routes/area_tematica.js';
-import DisRed from './routes/distribucion_red.js';
-import TipoProducto from './routes/tipo_producto.js';
+import ConLoteRed from './routes/conexion_lote_red.js';
+import proceso from './routes/proceso.js';
 import requerimiento from './routes/requerimiento.js';
 import redconocimiento from './routes/red_conocimiento.js';
 
@@ -36,8 +36,8 @@ app.use("/api/producto", producto)
 app.use("/api/pedido", pedido)
 app.use("/api/usuario", usuario)
 app.use("/api/disArea", DisArea)
-app.use("/api/disRed",DisRed )
-app.use("/api/tipoProducto", TipoProducto)
+app.use("/api/conLoteRed",ConLoteRed )
+app.use("/api/proceso", proceso)
 app.use("/api/requerimiento", requerimiento)
 app.use("/api/redConomiento", redconocimiento)
 

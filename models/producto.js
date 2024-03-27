@@ -10,7 +10,7 @@ const producto = new mongoose.Schema(
         impestos:{type:Number, required:true},
         fecha_creacion:{type:Date, required:true},
         fecha_vencimiento:{type:Date, required:true},
-        id_tipo_producto:{type:mongoose.Schema.Types.ObjectId,ref:'Tipo_producto',required:true},
+        id_proceso:{type:mongoose.Schema.Types.ObjectId,ref:'Proceso',required:true},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}
     })
