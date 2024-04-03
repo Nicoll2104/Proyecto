@@ -1,44 +1,44 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpDependencia from "../controllers/dependencia.js";
+import httpLote from "../controllers/lote.js";
 
 const router = Router();
 
-router.get("/ver", httpDependencia.getDepe);
+router.get("/ver", httpLote.getLote);
 
 router.get("/depen/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpDependencia.getDepeid);
+], httpLote.getLoteid);
 
 router.post("/agregar",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
     validarcampos
-], httpDependencia.postDepe);
+], httpLote.postLote);
 
 router.put("/modificar/:id",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
     validarcampos
-],httpDependencia.putDepe);
+],httpLote.putLote);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDependencia.putInactivar);
+], httpLote.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDependencia.putActivar);
+], httpLote.putActivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDependencia.deleteDepe)
+], httpLote.deleteLote)
 
 export default router;

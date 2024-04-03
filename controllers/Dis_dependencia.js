@@ -1,6 +1,6 @@
 import distribucion_dependencia from "../models/Dis_dependencia.js";
 import Items from "../models/items_presupuesto.js";
-import Dependencia from "../models/dependencia.js";
+import Lotes from "../models/lote.js";
 
 
 const httpDistribucionDependencia = {
@@ -30,7 +30,7 @@ const httpDistribucionDependencia = {
             const { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items } = req.body;
             const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, dependencia, items });
             
-            const rdependencia = await Dependencia.findById(dependencia)
+            const rdependencia = await Lotes.findById(dependencia)
             const rItems = await Items.findById(items)
 
             distribucion.dependencia = rdependencia
@@ -55,7 +55,8 @@ const httpDistribucionDependencia = {
                 return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
             }
 
-            const rdependencia = await Dependencia.findById(dependencia)
+            const rdependencia = await Lotes
+            .findById(dependencia)
             const rItems = await Items.findById(items)
 
             distribucion.dependencia = rdependencia
