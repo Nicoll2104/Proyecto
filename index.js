@@ -15,7 +15,7 @@ import DisAreaDes from './routes/dist_area_destino.js';
 import area_tematica from './routes/area_tematica.js';
 import ConLoteRed from './routes/conexion_lote_red.js';
 import proceso from './routes/proceso.js';
-import requerimiento from './routes/requerimiento.js';
+import contrato from './routes/contrato.js';
 import redconocimiento from './routes/red_conocimiento.js';
 
 
@@ -38,7 +38,7 @@ app.use("/api/usuario", usuario)
 app.use("/api/disAreaDes", DisAreaDes)
 app.use("/api/conLoteRed",ConLoteRed )
 app.use("/api/proceso", proceso)
-app.use("/api/requerimiento", requerimiento)
+app.use("/api/contrato", contrato)
 app.use("/api/redConomiento", redconocimiento)
 
 

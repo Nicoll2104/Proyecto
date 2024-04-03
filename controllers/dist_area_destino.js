@@ -18,8 +18,8 @@ const httpDistareadestino = {
 
     postDistAreaDestino: async (req,res)=>{
         try{
-            const {codigo_auxiliar, valor_presupuesto, distribucion_red, area_tematica}=req.body;
-            const distAreaDestino = new dist_area_destino({codigo_auxiliar, valor_presupuesto, distribucion_red, area_tematica});
+            const {presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino}=req.body;
+            const distAreaDestino = new dist_area_destino({presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino});
 
             await distAreaDestino.save();
             res.json({mensaje:'La distribucion area destino se agrego con exito', distAreaDestino })
@@ -30,10 +30,10 @@ const httpDistareadestino = {
 
     putDistAreaDestino: async (req,res)=>{
         const {id}=req.params;
-        const {codigo_auxiliar, valor_presupuesto, distribucion_red, area_tematica}=req.body;
+        const {presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino}=req.body;
 
         try{
-            const distAreaDestino = await dist_area_destino.findByIdAndUpdate(id,{codigo_auxiliar, valor_presupuesto, distribucion_red, area_tematica}, {new: true});
+            const distAreaDestino = await dist_area_destino.findByIdAndUpdate(id,{presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino}, {new: true});
         
             if(!distAreaDestino){
                 return res.status(404).json({mensaje:'La distribucion area destino no existe' })
