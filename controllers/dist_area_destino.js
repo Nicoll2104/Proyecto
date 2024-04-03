@@ -1,10 +1,11 @@
 import dist_area_destino from "../models/dist_area_destino.js";
 
 const httpDistareadestino = {
-    getDistAreaDestino: async (req,res)=>{
+    getDistAreaDestino: async (req, res) => {
         const distAreaDestino = await dist_area_destino.find()
         res.json(distAreaDestino);
     },
+    
 
     getDistAreaDestinoid: async (req,res)=>{
         const {id}=req.params
