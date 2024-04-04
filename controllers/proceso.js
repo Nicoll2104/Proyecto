@@ -18,8 +18,8 @@ const httpProceso = {
 
     postProceso: async (req,res)=>{
         try{
-            const {codigo, nombre}=req.body;
-            const Procesos = new proceso({codigo, nombre});
+            const {codigo, presupuestoAsignado, presupuestoDisponible, fecha}=req.body;
+            const Procesos = new proceso({codigo, presupuestoAsignado, presupuestoDisponible, fecha});
 
             await Procesos.save();
             res.json({mensaje:'El proceso se agrego con exito', Procesos })
@@ -30,10 +30,10 @@ const httpProceso = {
 
     putProceso: async (req,res)=>{
         const {id}=req.params;
-        const {codigo, nombre}=req.body;
+        const {codigo, presupuestoAsignado, presupuestoDisponible, fecha}=req.body;
 
         try{
-            const Procesos = await proceso.findByIdAndUpdate(id,{codigo, nombre}, {new: true});
+            const Procesos = await proceso.findByIdAndUpdate(id,{codigo, presupuestoAsignado, presupuestoDisponible, fecha}, {new: true});
         
             if(!Procesos){
                 return res.status(404).json({mensaje:'El proceso no existe' })
