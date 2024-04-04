@@ -1,46 +1,42 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpItem from "../controllers/items_presupuesto.js";
+import httpDependencia from "../controllers/dependencia.js";
 
 const router = Router();
 
-router.get("/ver", httpItem.getItem);
+router.get("/ver", httpDependencia.getDependencia);
 
-router.get("/item/:id",[
+router.get("/dependencia/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpItem.getItemid);
+], httpDependencia.getDependenciaid);
 
 router.post("/agregar",[
-    check("codigo_presupuesto","El codigo_presupuesto es obligatorio").not().isEmpty(),
+    check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('presupuesto_inicial', 'El presupuesto_inicial es obligatorio').not().isEmpty(),
-    check("año", "El año  es obligatorio").not().isEmpty(),
     validarcampos
-], httpItem.postItem);
+], httpDependencia.postDependencia);
 
 router.put("/modificar/:id",[
-    check("codigo_presupuesto","El codigo_presupuesto es obligatorio").not().isEmpty(),
+    check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('presupuesto_inicial', 'El presupuesto_inicial es obligatorio').not().isEmpty(),
-    check("año", "El año  es obligatorio").not().isEmpty(),
     validarcampos
-], httpItem.putItem);
+], httpDependencia.putDependencia);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpItem.putInactivar);
+], httpDependencia.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpItem.putactivar);
+], httpDependencia.putactivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpItem.deleteItem);
+], httpDependencia.deleteDependencia);
 
 export default router;
