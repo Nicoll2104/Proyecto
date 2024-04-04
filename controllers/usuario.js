@@ -27,7 +27,7 @@ const httpUsuario = {
             usuarios.contrasena =bcryptjs.hashSync(contrasena, salt)
 
             await usuarios.save();
-            res.json({mensaje: 'Cliente agregado con éxito'})
+            res.json({mensaje: 'Cliente agregado con éxito', usuarios})
         } catch(error){
             res.status(500).json({ error: 'Error interno del servidor'});
         }
