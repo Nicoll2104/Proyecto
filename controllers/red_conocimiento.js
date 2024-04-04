@@ -18,10 +18,6 @@ const httpRedConocimiento = {
 
     postRedcon: async (req,res)=>{
         try{
-<<<<<<< HEAD
-            const {nombre}=req.body;
-            const RedConoc = new red_conocimiento({nombre});
-=======
             const {codigo, nombre, id_dependencia}=req.body;
             const RedConoc = new red_conocimiento({codigo, nombre});
 >>>>>>> c9f35a88b1fe16f59c67ca4f2fd1f1586b4f3a0c
