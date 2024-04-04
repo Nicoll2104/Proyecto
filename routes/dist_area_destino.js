@@ -5,12 +5,12 @@ import httpDistareadestino from "../controllers/dist_area_destino.js";
 
 const router = Router();
 
-router.get("/ver", httpDistareadestino.getDistAreaDestino);
+router.get("/ver", httpDistareadestino.getDisArDs);
 
 router.get("/disAreaDes/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpDistareadestino.getDistAreaDestinoid);
+], httpDistareadestino.getDisArDsid);
 
 router.post("/agregar",[
     check("presupuesto_asignado","El presupuesto asignado es obligatorio").not().isEmpty(),
@@ -19,7 +19,7 @@ router.post("/agregar",[
     check("idDistribucionRedArea", "La distribucion red area es obligatoria").not().isEmpty(),
     check("idDestino", "El destino es obligatorio").not().isEmpty(),
     validarcampos
-], httpDistareadestino.postDistAreaDestino);
+], httpDistareadestino.postDisArDs);
 
 router.put("/modificar/:id",[
     check("presupuesto_asignado","El presupuesto asignado es obligatorio").not().isEmpty(),
@@ -28,12 +28,12 @@ router.put("/modificar/:id",[
     check("idDistribucionRedArea", "La distribucion red area es obligatoria").not().isEmpty(),
     check("idDestino", "El destino es obligatorio").not().isEmpty(),
     validarcampos
-], httpDistareadestino.putDistAreaDestino);
+], httpDistareadestino.putDisArDs);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDistareadestino.putInactivar);
+], httpDistareadestino.putDisArDs);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
@@ -43,6 +43,6 @@ router.put("/activar/:id",[
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpDistareadestino.deleteDistAreaDestino);
+], httpDistareadestino.deleteDisArDs);
 
 export default router;

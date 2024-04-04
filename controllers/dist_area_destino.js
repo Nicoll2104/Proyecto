@@ -1,56 +1,57 @@
-import dist_area_destino from "../models/dist_area_destino.js";
+
+
+import DistAreaDestino from "../models/dist_area_destino.js";
 
 const httpDistareadestino = {
-    getDistAreaDestino: async (req, res) => {
-        const distAreaDestino = await dist_area_destino.find()
-        res.json(distAreaDestino);
+    getDisArDs: async (req,res)=>{
+        const disAreaDest = await DistAreaDestino.find()
+        res.json(disAreaDest);
     },
-    
 
-    getDistAreaDestinoid: async (req,res)=>{
+    getDisArDsid: async (req,res)=>{
         const {id}=req.params
         try{
-            const distAreaDestino = await dist_area_destino.findById(id)
-            res.json({distAreaDestino})
+            const disAreaDest = await DistAreaDestino.findById(id)
+            res.json({disAreaDest})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})
         }
     },
 
-    postDistAreaDestino: async (req,res)=>{
+    postDisArDs: async (req,res)=>{
         try{
-            const {presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino}=req.body;
-            const distAreaDestino = new dist_area_destino({presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino});
+            const {presupuesto_asignado, presupuesto_actual, año,idDistribucionRedArea,idDestino }=req.body;
+            const disAreaDest = new DistAreaDestino({presupuesto_asignado, presupuesto_actual, año,idDistribucionRedArea,idDestino});
 
-            await distAreaDestino.save();
-            res.json({mensaje:'La distribucion area destino se agrego con exito', distAreaDestino })
+            await disAreaDest.save();
+            res.json({mensaje:'La distribucion area destino se agrego con exito', disAreaDest })
         }catch(error){
             res.status(500).json({error:'Error interno del servidor'})
         }
     },
 
-    putDistAreaDestino: async (req,res)=>{
+    putDisArDs: async (req,res)=>{
         const {id}=req.params;
-        const {presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino}=req.body;
+        const {presupuesto_asignado, presupuesto_actual, año,idDistribucionRedArea,idDestino}=req.body;
 
         try{
-            const distAreaDestino = await dist_area_destino.findByIdAndUpdate(id,{presupuesto_asignado,presupuesto_actual,año,idDistribucionRedArea,idDestino}, {new: true});
+            const disAreaDest = await DistAreaDestino.findByIdAndUpdate(id,{presupuesto_asignado, presupuesto_actual, año,idDistribucionRedArea,idDestino}, {new: true});
         
-            if(!distAreaDestino){
+            if(!disAreaDest){
                 return res.status(404).json({mensaje:'La distribucion area destino no existe' })
             }
-            res.json({mensaje: 'La distribucion area destino fue actualizada con éxito',distAreaDestino  })
+            res.json({mensaje: 'La distribucion area destino actualizada con éxito',disAreaDest  })
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor'});
         }
     },
 
-    deleteDistAreaDestino: async (req,res)=>{
+    deleteDisArDs: async (req,res)=>{
         try{
             const {id} =req.params;
-            const distAreaDestino = await dist_area_destino.findByIdAndDelete(id);
+            const disAreaDest = await DistAreaDestino.findByIdAndDelete(id);
 
-            if(!distAreaDestino){
+            if(!disAreaDest){
                 return res.status(404).json({mensaje: 'La distribucion area destino no existe' })
             }
             res.json({mensaje: 'La distribucion area destino ha sido eliminado'})
@@ -62,8 +63,8 @@ const httpDistareadestino = {
     putInactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const distAreaDestino = await dist_area_destino.findByIdAndUpdate(id,{status:0},{new:true})
-            res.json({distAreaDestino})
+            const disAreaDest = await DistAreaDestino.findByIdAndUpdate(id,{status:0},{new:true})
+            res.json({disAreaDest})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
@@ -72,8 +73,8 @@ const httpDistareadestino = {
     putactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const distAreaDestino = await dist_area_destino.findByIdAndUpdate(id,{status:1},{new:true})
-            res.json({distAreaDestino})
+            const disAreaDest = await DistAreaDestino.findByIdAndUpdate(id,{status:1},{new:true})
+            res.json({disAreaDest})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
