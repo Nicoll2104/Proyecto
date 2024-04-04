@@ -19,7 +19,7 @@ const httpRedConocimiento = {
     postRedcon: async (req,res)=>{
         try{
             const {codigo, nombre, id_dependencia}=req.body;
-            const RedConoc = new red_conocimiento({codigo, nombre, id_dependencia});
+            const RedConoc = new red_conocimiento({codigo, nombre});
 
             await RedConoc.save();
             res.json({mensaje:'La red conocimiento se agrego con exito', RedConoc })
@@ -30,10 +30,10 @@ const httpRedConocimiento = {
 
     putRedcon: async (req,res)=>{
         const {id}=req.params;
-        const {codigo, nombre, id_dependencia}=req.body;
+        const {codigo, nombre}=req.body;
 
         try{
-            const RedConoc = await red_conocimiento.findByIdAndUpdate(id,{codigo, nombre, id_dependencia}, {new: true});
+            const RedConoc = await red_conocimiento.findByIdAndUpdate(id,{codigo, nombre}, {new: true});
         
             if(!RedConoc){
                 return res.status(404).json({mensaje:'La red conocimiento no existe' })
