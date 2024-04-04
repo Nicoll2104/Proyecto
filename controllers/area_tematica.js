@@ -18,8 +18,8 @@ const httpArea_tematica = {
 
     postAreaTematica: async (req,res)=>{
         try{
-            const {codigo, nombre, id_red_conocimiento}=req.body;
-            const A_tematica = new area_tematica({codigo, nombre, id_red_conocimiento});
+            const {nombre}=req.body;
+            const A_tematica = new area_tematica({ nombre});
 
             await A_tematica.save();
             res.json({mensaje:'El Area tematica se agrego con exito', A_tematica })
@@ -30,10 +30,10 @@ const httpArea_tematica = {
 
     putAreaTematica: async (req,res)=>{
         const {id}=req.params;
-        const {codigo, nombre, id_red_conocimiento}=req.body;
+        const {nombre}=req.body;
 
         try{
-            const A_tematica = await area_tematica.findByIdAndUpdate(id,{codigo, nombre, id_red_conocimiento}, {new: true});
+            const A_tematica = await area_tematica.findByIdAndUpdate(id,{nombre}, {new: true});
         
             if(!A_tematica){
                 return res.status(404).json({mensaje:'El area tematica no existe' })

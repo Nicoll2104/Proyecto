@@ -13,16 +13,12 @@ router.get("/areaTematica/:id",[
 ], httpArea_tematica.getAreaTematicaid);
 
 router.post("/agregar",[
-    check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('id_red_conocimiento', 'La red de conocimiento es obligatoria').not().isEmpty(),
     validarcampos
 ], httpArea_tematica.postAreaTematica);
 
 router.put("/modificar/:id",[
-    check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check('id_red_conocimiento', 'La red de conocimiento es obligatoria').not().isEmpty(),
     validarcampos
 ], httpArea_tematica.putAreaTematica);
 
