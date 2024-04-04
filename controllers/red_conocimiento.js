@@ -18,7 +18,7 @@ const httpRedConocimiento = {
 
     postRedcon: async (req,res)=>{
         try{
-            const {codigo, nombre, id_dependencia}=req.body;
+            const {codigo, nombre}=req.body;
             const RedConoc = new red_conocimiento({codigo, nombre});
 
             await RedConoc.save();
