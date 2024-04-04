@@ -4,7 +4,7 @@ const httpLote = {
     getLote: async (req, res) => {
         try {
             const lotes = await lote.find();
-            res.json( "lotes:", lotes);
+            res.json(lotes);
         } catch (error) {
             console.error("Error al obtener el lote:", error);
             res.status(500).json({ error: 'Error interno del servidor' });
