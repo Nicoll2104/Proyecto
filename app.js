@@ -18,7 +18,7 @@ import entrada from './routes/entrada.js';
 import contrato from './routes/contrato.js';
 import redconocimiento from './routes/red_conocimiento.js';
 import det_Salida from './routes/det_Salida.js';
-
+import provedor from './routes/provedor.js';
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
@@ -42,6 +42,7 @@ app.use("/api/entrada", entrada)
 app.use("/api/contrato", contrato)
 app.use("/api/redConomiento", redconocimiento)
 app.use("/api/detSalida", det_Salida)
+app.use("/api/provedor",provedor)
 
 
 
