@@ -1,6 +1,6 @@
 import distribucion_dependencia from "../models/dis_dependencia.js";
-import Dependencia from "../models/dependencia.js";
-
+/* import Dependencia from "../models/dependencia.js";
+ */
 const httpDistribucionDependencia = {
     getDisDependencia: async (req, res) => {
         try {
@@ -28,9 +28,9 @@ const httpDistribucionDependencia = {
             const { codigo_presupuestal, presupuesto_asignado, presupuesto_actual, ano, dependencia } = req.body;
             const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_asignado, presupuesto_actual, ano, dependencia });
             
-            const rdependencia = await Dependencia.findById(dependencia)
+/*             const rdependencia = await Dependencia.findById(dependencia)
 
-            distribucion.dependencia = rdependencia
+            distribucion.dependencia = rdependencia */
 
             await distribucion.save();
             res.json({ mensaje: 'Distribucion de la dependencia agregada exitosamente', distribucion });
@@ -51,9 +51,9 @@ const httpDistribucionDependencia = {
                 return res.status(404).json({ mensaje: 'La distribucion de la dependencia no existe' });
             }
 
-            const rdependencia = await Dependencia.findById(dependencia)
+/*             const rdependencia = await Dependencia.findById(dependencia)
 
-            distribucion.dependencia = rdependencia
+            distribucion.dependencia = rdependencia */
 
             res.json({ mensaje: 'Distribucion de la dependencia actualizada con éxito', distribucion });
         } catch (error) {
