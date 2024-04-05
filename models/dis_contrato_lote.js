@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { required } from "nodemon/lib/config";
 
 const dis_contrato_lote = new mongoose.Schema(
     {
