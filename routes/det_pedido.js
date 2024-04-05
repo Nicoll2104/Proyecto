@@ -16,6 +16,7 @@ router.post("/agregar",[
     check("cantidad","La cantidad es obligatoria").not().isEmpty(),
     check("pedido_id", "El id del pedido es obligatorio").not().isEmpty(),
     check("producto_id", "El id de la ficha es obligatorio").not().isEmpty(),
+    check("subtotal", "El subtotal es obligatorio"),
     validarcampos
 ], httpDetPedido.postDetPedido);
 
@@ -23,6 +24,7 @@ router.put("/modificar/:id",[
     check("cantidad","La cantidad es obligatoria").not().isEmpty(),
     check("pedido_id", "El id del pedido es obligatorio").not().isEmpty(),
     check("producto_id", "El id de la ficha es obligatorio").not().isEmpty(),
+    check("subtotal", "El subtotal es obligatorio"),
     validarcampos
 ],httpDetPedido.putDetPedido);
 

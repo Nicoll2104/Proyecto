@@ -5,6 +5,7 @@ const det_pedido = new mongoose.Schema(
         cantidad:{type:Number, required: true,},
         pedido_id:{type:mongoose.Schema.Types.ObjectId,ref:'pedido', require:true}, 
         producto_id:{type:mongoose.Schema.Types.ObjectId,ref:'producto', require:true}, 
+        subtotal:{type:Number, requires: true,},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}
     })
