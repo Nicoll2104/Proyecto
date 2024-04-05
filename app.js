@@ -7,7 +7,7 @@ import lote from './routes/lote.js';
 import destino from './routes/destino.js';
 import producto from './routes/producto.js';
 import dependencia from './routes/dependencia.js';
-import distribucion_dependencia from './routes/Dis_dependencia.js';
+import distribucion_dependencia from './routes/dis_dependencia.js';
 import dis_contrato_lote from './routes/dis_contrato_lote.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
@@ -29,7 +29,7 @@ app.use(cors());
 app.use("/api/area_Tematica", area_tematica)
 app.use("/api/detPedido", det_pedido)
 app.use("/api/disConLote", dis_contrato_lote)
-app.use("/api/disPresupues", distribucion_dependencia)
+app.use("/api/disDependencia", distribucion_dependencia)
 app.use("/api/destino", destino)
 app.use("/api/dependencia", dependencia)
 app.use("/api/lote", lote)

@@ -6,7 +6,7 @@ const httpDisContratoLote ={
     getDisConL: async (req, res) => {
         try {
             const distribucion = await dis_contrato_lote.find().populate('lote').populate('contrato');
-            res.json({ distribucion })
+            res.json({ mensaje: 'Busqueda exitosa' , distribucion })
 
         } catch (error) {
             res.status(400).json({ error:'Error interno del servidor' })
@@ -16,7 +16,7 @@ const httpDisContratoLote ={
         const { id } = req.params
         try {
             const distribucion = await dis_contrato_lote.findById(id).populate('lote').populate('contrato');
-            res.json({ mensaje: 'Busqueda exitosa' , distribucion })
+            res.json({ mensaje: 'Distribucion del contrato y ficha encontrada exitosamente' , distribucion })
 
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor'  })
@@ -25,8 +25,8 @@ const httpDisContratoLote ={
 
     postDisConL: async (req, res) => {
         try {
-            const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, contrato, lote } = req.body;
-            const distribucion = new dis_contrato_lote({codigo_auxiliar, presupuesto_asignado, presupuesto_actual, contrato, lote })
+            const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote } = req.body;
+            const distribucion = new dis_contrato_lote({codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote })
             
             const rContrato = await Contrato.findById(contrato)
             const rLote = await Lote.findById(lote)
@@ -45,10 +45,10 @@ const httpDisContratoLote ={
 
     putDisConL: async (req,res) =>{
         const {id} = req.params;
-        const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, contrato, lote } = req.body;
+        const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote } = req.body;
 
         try{
-            const distribucion  = await dis_contrato_lote.findByIdAndUpdate(id, {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, contrato, lote }, { new: true });
+            const distribucion  = await dis_contrato_lote.findByIdAndUpdate(id, {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote }, { new: true });
 
             if(!distribucion){
                 return res.status(404).json({mensaje: 'Distribucion del contrato y ficha no existe' })
@@ -79,7 +79,7 @@ const httpDisContratoLote ={
     putInactivar: async (req,res)=>{
         try {
             const {id}=req.params
-            const distribucion=await dis_contrato_lote.findByIdAndUpdate(id,{status:0},{new:true})
+            const distribucion=await dis_contrato_lote.findByIdAndUpdate(id,{status:0},{new:true}).populate('lote').populate('contrato');
             res.json({mensaje: 'Distribucion del contrato y ficha inactivado exitosamente', distribucion})
         } catch (error) {
             res.status(400).json({error: 'Se produjo un error'})
@@ -89,7 +89,7 @@ const httpDisContratoLote ={
     putActivar: async (req,res)=>{
         try {
             const {id}=req.params
-            const distribucion=await dis_contrato_lote.findByIdAndUpdate(id,{status:1},{new:true})
+            const distribucion=await dis_contrato_lote.findByIdAndUpdate(id,{status:1},{new:true}).populate('lote').populate('contrato');
             res.json({distribucion})
         } catch (error) {
             res.json({mensaje: 'Distribucion del contrato y ficha activado exitosamente', distribucion})
