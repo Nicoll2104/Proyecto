@@ -4,7 +4,7 @@ const httpDestino = {
     getDestino: async (req, res) => {
         try {
             const destinos = await destino.find();
-            res.json(destinos);
+            res.json({ mensaje: '   Ejecución exitosa', destinos });
         } catch(error) {
             console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -15,7 +15,7 @@ const httpDestino = {
         const {id}= req.params
         try {
             const destinos = await destino.findById(id);
-            res.json({destinos})
+            res.json({ mensaje: 'Destino encontrado con éxito', destinos });
         } catch(error) {
             res.status(400).json({error:'No se encontró el id'})
         }
@@ -70,7 +70,7 @@ const httpDestino = {
         try{
             const {id}=req.params
             const destinos = await destino.findByIdAndUpdate(id,{status:0},{new:true});
-            res.json({destinos})
+            res.json({ mensaje: 'Destino inactivado con éxito', destinos });
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
@@ -79,7 +79,8 @@ const httpDestino = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const destinos = await destinos.findByIdAndUpdate(id,{status:1},{new:true});
+            const destinos = await destino.findByIdAndUpdate(id,{status:1},{new:true});
+            res.json({ mensaje: 'Destino activado con éxito', destinos });
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
