@@ -15,7 +15,7 @@ router.get("/salida/:id",[
 router.post("/agregar",[
     check("fecha_entrega", "La fecha de entrega es obligatoria").not().isEmpty(),
     check("entregado", "La verifcacion del entregado es obligatoria ").not().isEmpty(),
-    check("idAdmin", "El administrador es obligatorio").not().isEmpty(),
+    check("idUsuario", "El usuario es obligatorio").not().isEmpty(),
     check('idPedido', 'El pedido es obligatorio').not().isEmpty(),
     validarcampos
 ], httpSalida.postsalida);
@@ -23,7 +23,7 @@ router.post("/agregar",[
 router.put("/modificar/:id",[
     check("fecha_entrega", "La fecha de entrega es obligatoria").not().isEmpty(),
     check("entregado", "La verifcacion del entregado es obligatoria ").not().isEmpty(),
-    check("idAdmin", "El administrador es obligatorio").not().isEmpty(),
+    check("idUsuario", "El usuario es obligatorio").not().isEmpty(),
     check('idPedido', 'El pedido es obligatorio').not().isEmpty(),
     validarcampos
 ],httpSalida.putsalida);
