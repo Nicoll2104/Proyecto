@@ -18,10 +18,9 @@ router.post("/agregar",[
     check("descripcion","La descripcion es obligatoria").not().isEmpty(),
     check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
     check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
-    check("impestos"," Los impestos son obligatorios").not().isEmpty(),
-    check("fecha_creacion", "La fecha_creacion es obligatoria").not().isEmpty(),
-    check("fecha_vencimiento", "La fecha_vencimiento es obligatoria").not().isEmpty(),
-    check("id_tipo_producto", "El tipo de producto es obligatoria").not().isEmpty(),
+    check("iva"," El iva es obligatorios").not().isEmpty(),
+    check("cantidad", "La cantidad es obligatorio").not().isEmpty(),
+    check("lote", "El lote es obligatoria").not().isEmpty(),
     validarcampos
 ], httpProducto.postProducto);
 
@@ -31,10 +30,9 @@ router.put("/modificar/:id",[
     check("descripcion","La descripcion es obligatoria").not().isEmpty(),
     check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
     check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
-    check("impestos"," Los impestos son obligatorios").not().isEmpty(),
-    check("fecha_creacion", "La fecha_creacion es obligatoria").not().isEmpty(),
-    check("fecha_vencimiento", "La fecha_vencimiento es obligatoria").not().isEmpty(),
-    check("id_tipo_producto", "El tipo de producto es obligatoria").not().isEmpty(),
+    check("iva"," El iva es obligatorios").not().isEmpty(),
+    check("cantidad", "La cantidad es obligatorio").not().isEmpty(),
+    check("lote", "El lote es obligatoria").not().isEmpty(),
     validarcampos
 ],httpProducto.putProducto);
 
