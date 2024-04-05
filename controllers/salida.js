@@ -3,7 +3,7 @@ import salida from "../models/salida.js";
 const httpSalida = {
     getsalida: async (req, res) => {
         try {
-            const Salidas = await salida.find().populate('idUsuario').populate('idPedido');
+            const Salidas = await salida.find()
             res.json(Salidas);
         } catch (error) {
             console.error(error);
