@@ -1,6 +1,4 @@
 import dis_contrato_lote from "../models/dis_contrato_lote.js";
-import Lote from "../models/lote.js";
-import Contrato from "../models/contrato.js";
 
 const httpDisContratoLote ={
     getDisConL: async (req, res) => {
@@ -28,8 +26,8 @@ const httpDisContratoLote ={
             const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, contrato, lote } = req.body;
             const distribucion = new dis_contrato_lote({codigo_auxiliar, presupuesto_asignado, presupuesto_actual, contrato, lote })
             
-            const rContrato = await Contrato.findById(contrato)
-            const rLote = await Lote.findById(lote)
+            const rContrato = await contrato.findById(contrato)
+            const rLote = await lote.findById(lote)
 
             distribucion = rLote
             distribucion = rContrato
