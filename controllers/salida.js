@@ -2,24 +2,25 @@ import salida from "../models/salida.js";
 
 const httpSalida = {
     getsalida: async (req,res)=>{
-        const Salidas = await salida.find()
+        const Salidas = await salida.findById(id).populate('idUsuario').populate('idPedido');
         res.json(Salidas);
     },
 
     getsalidaId: async (req,res)=>{
         const {id}=req.params
         try{
-            const Salidas = await salida.findById(id)
+            const Salidas = await salida.findById(id).populate('idUsuario').populate('idPedido');
             res.json({Salidas})
         }catch(error){
-            res.status(400).json({error:'No encotramos el id'})
+            res.status(400).json({error:'No encontramos el id'})
         }
     },
+    
 
     postsalida: async (req,res)=>{
         try{
-            const {fecha_entrega,entregado,idAdmin,idPedido}=req.body;
-            const Salidas = new salida({fecha_entrega,entregado,idAdmin,idPedido});
+            const {fecha_entrega,entregado,idUsuario,idPedido}=req.body;
+            const Salidas = new salida({fecha_entrega,entregado,idUsuario,idPedido});
 
             await Salidas.save();
             res.json({mensaje:'La salida se agrego con exito', Salidas })
@@ -30,10 +31,10 @@ const httpSalida = {
 
     putsalida: async (req,res)=>{
         const {id}=req.params;
-        const {fecha_entrega,entregado,idAdmin,idPedido}=req.body;
+        const {fecha_entrega,entregado,idUsuario,idPedido}=req.body;
 
         try{
-            const Salidas = await salida.findByIdAndUpdate(id,{fecha_entrega,entregado,idAdmin,idPedido}, {new: true});
+            const Salidas = await salida.findByIdAndUpdate(id,{fecha_entrega,entregado,idUsuario,idPedido}, {new: true});
         
             if(!Salidas){
                 return res.status(404).json({mensaje:'El salida no existe' })
