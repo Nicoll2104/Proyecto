@@ -8,7 +8,7 @@ import destino from './routes/destino.js';
 import producto from './routes/producto.js';
 import dependencia from './routes/dependencia.js';
 import distribucion_dependencia from './routes/Dis_dependencia.js';
-import distribucion_ficha from './routes/distribucion_ficha.js';
+import dis_contrato_lote from './routes/dis_contrato_lote.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
 import DisAreaDes from './routes/dist_area_destino.js';
@@ -28,7 +28,7 @@ app.use(express.json())
 app.use(cors());
 app.use("/api/area_tematica", area_tematica)
 app.use("/api/detPedido", det_pedido)
-app.use("/api/disFicha", distribucion_ficha)
+app.use("/api/disConLote", dis_contrato_lote)
 app.use("/api/disPresupues", distribucion_dependencia)
 app.use("/api/destino", destino)
 app.use("/api/dependencia", dependencia)
