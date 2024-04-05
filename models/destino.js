@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ficha = new mongoose.Schema(
+const destino = new mongoose.Schema(
     {
         codigo:{type:Number, required: true,},
         nombre:{type:String, required: true, unique:true,},
@@ -11,4 +11,4 @@ const ficha = new mongoose.Schema(
         status:{type:String,default:1}
     })
 
-    export default mongoose.model("Ficha", ficha)
+    export default mongoose.model("Destino", destino)
