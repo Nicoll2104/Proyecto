@@ -2,19 +2,20 @@ import salida from "../models/salida.js";
 
 const httpSalida = {
     getsalida: async (req,res)=>{
-        const Salidas = await salida.find()
+        const Salidas = await salida.findById(id).populate('idUsuario').populate('idPedido');
         res.json(Salidas);
     },
 
     getsalidaId: async (req,res)=>{
         const {id}=req.params
         try{
-            const Salidas = await salida.findById(id)
+            const Salidas = await salida.findById(id).populate('idUsuario').populate('idPedido');
             res.json({Salidas})
         }catch(error){
-            res.status(400).json({error:'No encotramos el id'})
+            res.status(400).json({error:'No encontramos el id'})
         }
     },
+    
 
     postsalida: async (req,res)=>{
         try{
