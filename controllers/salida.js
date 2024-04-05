@@ -31,10 +31,10 @@ const httpSalida = {
 
     putsalida: async (req,res)=>{
         const {id}=req.params;
-        const {fecha_entrega,entregado,idAdmin,idPedido}=req.body;
+        const {fecha_entrega,entregado,idUsuario,idPedido}=req.body;
 
         try{
-            const Salidas = await salida.findByIdAndUpdate(id,{fecha_entrega,entregado,idAdmin,idPedido}, {new: true});
+            const Salidas = await salida.findByIdAndUpdate(id,{fecha_entrega,entregado,idUsuario,idPedido}, {new: true});
         
             if(!Salidas){
                 return res.status(404).json({mensaje:'El salida no existe' })
