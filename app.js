@@ -17,6 +17,7 @@ import ConLoteRed from './routes/conexion_lote_red.js';
 import entrada from './routes/entrada.js';
 import contrato from './routes/contrato.js';
 import redconocimiento from './routes/red_conocimiento.js';
+import det_Salida from './routes/det_Salida.js';
 
 
 mongoose.connect(process.env.mongoDB)
@@ -40,6 +41,7 @@ app.use("/api/conLoteRed",ConLoteRed )
 app.use("/api/entrada", entrada)
 app.use("/api/contrato", contrato)
 app.use("/api/redConomiento", redconocimiento)
+app.use("/api/detSalida", det_Salida)
 
 
 
