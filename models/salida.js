@@ -4,8 +4,8 @@ const salida = new mongoose.Schema(
     {
         fecha_entrega:{type:Date, required: true},
         entregado:{type:Boolean, required: true},
-        idAdmin:{type:Number, required: true},
-        idPedido:{type:String, required: true},
+        idUsuario:{type:mongoose.Schema.Types.ObjectId,ref:'Usuario', require:true},
+        idPedido:{type:mongoose.Schema.Types.ObjectId,ref:'Pedido', require:true},
         createdAt: { type: Date, default: Date.now },
         status:{type:String,default:1}
         
