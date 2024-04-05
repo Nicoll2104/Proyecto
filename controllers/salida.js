@@ -5,6 +5,7 @@ const httpSalida = {
         try {
             const Salidas = await salida.find().populate('idUsuario').populate('idPedido');
             res.json(Salidas);
+            console.log(Salidas);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
