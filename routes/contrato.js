@@ -14,7 +14,7 @@ router.get("/contrato/:id",[
 
 router.post("/agregar",[
     check("codigo","La fecha es obligatoria").not().isEmpty(),
-    check("nombre", "La distribucion ficha es obligatorio").not().isEmpty(),
+    check("nombre", "El nombre  es obligatorio").not().isEmpty(),
     check("presupuestoAsignado", "El presupuesto asignado es obligatorio").not().isEmpty(),
     check("presupuestoActual", "El presupuesto actual es obligatorio").not().isEmpty(),
     validarcampos

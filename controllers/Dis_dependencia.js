@@ -1,13 +1,11 @@
-import distribucion_dependencia from "../models/Dis_dependencia.js";
-
-import Lotes from "../models/lote.js";
-
+import distribucion_dependencia from "../models/dis_dependencia.js";
+import Dependencia from "../models/dependencia.js";
 
 const httpDistribucionDependencia = {
     getDisDependencia: async (req, res) => {
         try {
-            const distribucion = await distribucion_dependencia.find().populate('dependencia').populate('items');
-            res.json({ distribucion });
+            const distribucion = await distribucion_dependencia.find().populate('dependencia');
+            res.json({ mensaje: 'Busqueda Exitosa', distribucion });
 
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' });
@@ -17,8 +15,8 @@ const httpDistribucionDependencia = {
     getDisDependenciaId: async (req, res) => {
         const { id } = req.params;
         try {
-            const distribucion = await distribucion_dependencia.findById(id).populate('dependencia').populate('items');
-            res.json({ distribucion });
+            const distribucion = await distribucion_dependencia.findById(id).populate('dependencia');
+            res.json({ mensaje: 'Distribucion de la dependencia encontrada con éxito', distribucion });
 
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor' });
@@ -27,17 +25,15 @@ const httpDistribucionDependencia = {
 
     postDisDependencia: async (req, res) => {
         try {
-            const { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items } = req.body;
-            const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_inicial, ano, dependencia, items });
+            const { codigo_presupuestal, presupuesto_asignado, presupuesto_actual, ano, dependencia } = req.body;
+            const distribucion = new distribucion_dependencia({ codigo_presupuestal, presupuesto_asignado, presupuesto_actual, ano, dependencia });
             
-            const rdependencia = await Lotes.findById(dependencia)
-            const rItems = await Items.findById(items)
+            const rdependencia = await Dependencia.findById(dependencia)
 
             distribucion.dependencia = rdependencia
-            distribucion.items = rItems
 
             await distribucion.save();
-            res.json({ mensaje: 'Distribucion del presupuesto agregada exitosamente', distribucion });
+            res.json({ mensaje: 'Distribucion de la dependencia agregada exitosamente', distribucion });
         } catch (error) {
             console.log(error);
             res.status(400).json({ error: 'Error interno del servidor' });
@@ -46,23 +42,20 @@ const httpDistribucionDependencia = {
 
     putDisDependencia: async (req, res) => {
         const { id } = req.params;
-        const { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items } = req.body;
+        const { codigo_presupuestal, presupuesto_asignado, presupuesto_actual, ano, dependencia } = req.body;
 
         try {
-            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { codigo_presupuestal, presupuesto_inicial, ano, dependencia, items }, { new: true });
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { codigo_presupuestal, presupuesto_asignado, presupuesto_actual, ano, dependencia }, { new: true });
 
             if (!distribucion) {
-                return res.status(404).json({ mensaje: 'La distribucion del presupuesto no existe' });
+                return res.status(404).json({ mensaje: 'La distribucion de la dependencia no existe' });
             }
 
-            const rdependencia = await Lotes
-            .findById(dependencia)
-            const rItems = await Items.findById(items)
+            const rdependencia = await Dependencia.findById(dependencia)
 
             distribucion.dependencia = rdependencia
-            distribucion.items = rItems
 
-            res.json({ mensaje: 'Distribucion del presupuesto actualizado con éxito', distribucion });
+            res.json({ mensaje: 'Distribucion de la dependencia actualizada con éxito', distribucion });
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
@@ -72,7 +65,7 @@ const httpDistribucionDependencia = {
         try {
             const { id } = req.params;
             const distribucion = await distribucion_dependencia.findByIdAndRemove(id).populate('dependencia items');
-            res.json({ distribucion });
+            res.json({ mensaje: 'Distribucion de la dependencia eliminada con éxito', distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
         }
@@ -81,8 +74,8 @@ const httpDistribucionDependencia = {
     putInactivar: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 0 }, { new: true }).populate('dependencia').populate('items');
-            res.json({ distribucion });
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 0 }, { new: true }).populate('dependencia');
+            res.json({ mensaje: 'Distribucion de la dependencia inactivada con éxito', distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
 
@@ -92,8 +85,8 @@ const httpDistribucionDependencia = {
     putActivar: async (req, res) => {
         try {
             const { id } = req.params;
-            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 1 }, { new: true }).populate('dependencia').populate('items');
-            res.json({ distribucion });
+            const distribucion = await distribucion_dependencia.findByIdAndUpdate(id, { status: 1 }, { new: true }).populate('dependencia');
+            res.json({ mensaje: 'Distribucion de la dependencia activada con éxito', distribucion });
         } catch (error) {
             res.status(400).json({ error: 'Se produjo un error' });
         }

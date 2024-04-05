@@ -7,7 +7,7 @@ import lote from './routes/lote.js';
 import destino from './routes/destino.js';
 import producto from './routes/producto.js';
 import dependencia from './routes/dependencia.js';
-import distribucion_dependencia from './routes/Dis_dependencia.js';
+import distribucion_dependencia from './routes/dis_dependencia.js';
 import dis_contrato_lote from './routes/dis_contrato_lote.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
@@ -18,7 +18,9 @@ import entrada from './routes/entrada.js';
 import contrato from './routes/contrato.js';
 import redconocimiento from './routes/red_conocimiento.js';
 import det_Salida from './routes/det_Salida.js';
+import provedor from './routes/provedor.js';
 import salida from './routes/salida.js';
+
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
@@ -29,7 +31,7 @@ app.use(cors());
 app.use("/api/area_Tematica", area_tematica)
 app.use("/api/detPedido", det_pedido)
 app.use("/api/disConLote", dis_contrato_lote)
-app.use("/api/disPresupues", distribucion_dependencia)
+app.use("/api/disDependencia", distribucion_dependencia)
 app.use("/api/destino", destino)
 app.use("/api/dependencia", dependencia)
 app.use("/api/lote", lote)
@@ -42,6 +44,7 @@ app.use("/api/entrada", entrada)
 app.use("/api/contrato", contrato)
 app.use("/api/redConomiento", redconocimiento)
 app.use("/api/detSalida", det_Salida)
+app.use("/api/provedor",provedor)
 app.use("/api/salida", salida)
 
 

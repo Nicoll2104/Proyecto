@@ -16,6 +16,7 @@ router.post("/agregar",[
     check("codigo_auxiliar", "El codigo es obligatorio").not().isEmpty(),
     check("presupuesto_asignado", "El presupuesto asignado es obligatorio").not().isEmpty(),
     check('presupuesto_actual', 'El presupuesto actual es obligatorio').not().isEmpty(),
+    check('ano', 'El año es obligatorio').not().isEmpty(),
     check("contrato", "El contrato es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
     validarcampos
@@ -25,6 +26,7 @@ router.put("/modificar/:id",[
     check("codigo_auxiliar", "El codigo es obligatorio").not().isEmpty(),
     check("presupuesto_asignado", "El presupuesto asignado es obligatorio").not().isEmpty(),
     check('presupuesto_actual', 'El presupuesto actual es obligatorio').not().isEmpty(),
+    check('ano', 'El año es obligatorio').not().isEmpty(),
     check("contrato", "El contrato es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
     validarcampos
