@@ -1,6 +1,6 @@
 
 import pedido from "../models/pedido.js";
-import Ficha from "../models/ficha.js";
+import destino from "../models/destino.js";
 
 const httpPedido = {
     getPedido: async  ( req , res )=>{

@@ -1,11 +1,12 @@
 import destino from "../models/destino.js";
 
 const httpDestino = {
-    getDestino: async (req,res)=>{
+    getDestino: async (req, res) => {
         try {
             const destinos = await destino.find();
             res.json(destinos);
         } catch(error) {
+            console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
