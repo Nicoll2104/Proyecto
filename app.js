@@ -26,7 +26,7 @@ mongoose.connect(process.env.mongoDB)
 const app = express()
 app.use(express.json())
 app.use(cors());
-app.use("/api/area_tematica", area_tematica)
+app.use("/api/area_Tematica", area_tematica)
 app.use("/api/detPedido", det_pedido)
 app.use("/api/disFicha", distribucion_ficha)
 app.use("/api/disPresupues", distribucion_dependencia)

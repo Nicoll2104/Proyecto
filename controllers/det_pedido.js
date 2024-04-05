@@ -23,8 +23,8 @@ const httpDetPedido ={
 
     postDetPedido: async (req, res) => {
         try {
-            const { cantidad, pedido_id, producto_id} = req.body
-            const Det_pedido = new det_pedido({ cantidad, pedido_id, producto_id })
+            const { cantidad, pedido_id, producto_id,subtotal} = req.body
+            const Det_pedido = new det_pedido({ cantidad, pedido_id, producto_id,subtotal })
             await Det_pedido.save()
 
             res.json({ mensaje: 'Detalle Pedido agregada exitosamente', Det_pedido})
@@ -35,10 +35,10 @@ const httpDetPedido ={
 
     putDetPedido: async (req,res) =>{
         const {id} = req.params;
-        const {cantidad, pedido_id, producto_id} = req.body;
+        const {cantidad, pedido_id, producto_id,subtotal} = req.body;
 
         try{
-            const Det_pedido  = await det_pedido.findByIdAndUpdate(id, {cantidad, pedido_id, producto_id}, { new: true });
+            const Det_pedido  = await det_pedido.findByIdAndUpdate(id, {cantidad, pedido_id, producto_id,subtotal}, { new: true });
 
             if(!Det_pedido){
                 return res.status(404).json({mensaje: 'El detalle pedido no existe' })
