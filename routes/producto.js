@@ -17,9 +17,9 @@ router.post("/agregar",[
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("descripcion","La descripcion es obligatoria").not().isEmpty(),
     check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
-    check("consumible", "El cosumible es obligatorio").not().isEmpty(),
     check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
     check("iva"," El iva es obligatorios").not().isEmpty(),
+    check("cantidad", "La cantidad es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatoria").not().isEmpty(),
     validarcampos
 ], httpProducto.postProducto);
@@ -29,9 +29,9 @@ router.put("/modificar/:id",[
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("descripcion","La descripcion es obligatoria").not().isEmpty(),
     check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
-    check("consumible", "El cosumible es obligatorio").not().isEmpty(),
     check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
     check("iva"," El iva es obligatorios").not().isEmpty(),
+    check("cantidad", "La cantidad es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatoria").not().isEmpty(),
     validarcampos
 ],httpProducto.putProducto);

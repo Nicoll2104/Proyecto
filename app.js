@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import usuario from './routes/usuario.js';
 import lote from './routes/lote.js';
 import destino from './routes/destino.js';
-import producto from './routes/productos.js';
+import producto from './routes/producto.js';
 import dependencia from './routes/dependencia.js';
 import distribucion_dependencia from './routes/Dis_dependencia.js';
 import distribucion_ficha from './routes/distribucion_ficha.js';
