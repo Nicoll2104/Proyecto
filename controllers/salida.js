@@ -18,8 +18,8 @@ const httpSalida = {
 
     postsalida: async (req,res)=>{
         try{
-            const {fecha_entrega,entregado,idAdmin,idPedido}=req.body;
-            const Salidas = new salida({fecha_entrega,entregado,idAdmin,idPedido});
+            const {fecha_entrega,entregado,idUsuario,idPedido}=req.body;
+            const Salidas = new salida({fecha_entrega,entregado,idUsuario,idPedido});
 
             await Salidas.save();
             res.json({mensaje:'La salida se agrego con exito', Salidas })
