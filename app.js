@@ -7,7 +7,7 @@ import lote from './routes/lote.js';
 import destino from './routes/destino.js';
 import producto from './routes/producto.js';
 import dependencia from './routes/dependencia.js';
-import distribucion_dependencia from './routes/dis_dependencia.js';
+import distribucion_dependencia from './routes/Dis_dependencia.js';
 import dis_contrato_lote from './routes/dis_contrato_lote.js';
 import det_pedido from './routes/det_pedido.js';
 import pedido from './routes/pedido.js';
