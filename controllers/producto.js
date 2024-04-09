@@ -1,9 +1,10 @@
 import Producto from "../models/producto.js";
+import Lote from "../models/lote.js"
 
 const httpProducto = {
     getProducto: async (req, res) => {
         try {
-            const productos = await Producto.find().populate('lote'); // Cambiado 'producto' a 'Producto'
+            const productos = await Producto.find().populate('lote'); 
             res.json(productos);
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -13,7 +14,7 @@ const httpProducto = {
     getProductoId: async (req, res) => {
         const { id } = req.params;
         try {
-            const productos = await Producto.findById(id).populate('lote'); // Cambiado 'producto' a 'Producto'
+            const productos = await Producto.findById(id).populate('lote'); 
             if (!productos) {
                 return res.status(404).json({ mensaje: 'El producto no existe' });
             }
@@ -26,14 +27,15 @@ const httpProducto = {
     postProducto: async (req, res) => {
         try {
             const { codigo, nombre, descripcion, unidad_medida, precio_unitario, iva, cantidad, lote } = req.body;
-            const productos = new Producto({ codigo, nombre, descripcion, unidad_medida, precio_unitario, iva, cantidad, lote }); // Cambiado 'producto' a 'Producto'
+            const productos = new Producto({ codigo, nombre, descripcion, unidad_medida, precio_unitario, iva, cantidad, lote }); 
 
-            const rLote = await Lote.findById(lote); // Debes tener el modelo de Lote importado y definido
+            await productos.save();
+            const rLote = await Lote.findById(lote); 
 
             productos.lote = rLote;
-            await productos.save();
             res.json({ mensaje: 'El producto se agregó con éxito', productos });
         } catch (error) {
+            console.log(error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
@@ -49,12 +51,13 @@ const httpProducto = {
                 return res.status(404).json({mensaje: 'El producto no existe' })
             }
 
-            const rLote = await lote.findById(lote)
+            await productos.save();
+            const rLote = await Lote.findById(lote)
 
             productos.lote = rLote
-            await productos.save();
             res.json({ mensaje: 'Producto actualizado con éxito', productos });
         }catch(error){
+            console.log(error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },

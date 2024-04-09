@@ -1,7 +1,7 @@
 import salida from "../models/salida.js";
 
 const httpSalida = {
-   /*  getsalida: async (req, res) => {
+     getsalida: async (req, res) => {
         try {
             const Salidas = await salida.find().populate('idUsuario').populate('idPedido');
             res.json(Salidas);
@@ -10,11 +10,10 @@ const httpSalida = {
             console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
-    }, */
-    getsalida: async (req,res)=>{
+    }, 
+     /* getsalida: async (req,res)=>{
         const Salidas = await salida.find()
-        res.json(Salidas);
-    },
+        res.json(Salidas);*/
 
 
     getsalidaId: async (req,res)=>{
