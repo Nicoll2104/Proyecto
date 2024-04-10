@@ -2,7 +2,7 @@ import entrada from "../models/entrada.js";
 
 const httpEntrada = {
     getEntrada: async (req,res)=>{
-        const entrd = await entrada.find()
+        const entrd = await entrada.find().populate('idProducto')
         res.json(entrd);
     },
 
