@@ -3,7 +3,7 @@ import det_pedido from "../models/det_pedido.js";
 const httpDetPedido ={
     getDetPedido: async (req, res) => {
         try {
-            const Det_pedido = await det_pedido.find()
+            const Det_pedido = await det_pedido.find().populate('pedido_id').populate('producto_id');
             res.json({ Det_pedido })
 
         } catch (error) {
@@ -13,7 +13,7 @@ const httpDetPedido ={
     getDetPedidoId: async (req, res) => {
         const { id } = req.params
         try {
-            const Det_pedido = await det_pedido.findById(id)
+            const Det_pedido = await det_pedido.findById(id).populate('pedido_id').populate('producto_id');
             res.json({ Det_pedido })
 
         } catch (error) {
