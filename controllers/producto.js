@@ -1,30 +1,42 @@
-import producto from "../models/producto.js";
+import Producto from "../models/producto.js";
+import Lote from "../models/lote.js"
 
 const httpProducto = {
-    getProducto: async (req,res)=>{
-        const productos  = await producto.find()
-        res.json(productos);
-    },
-
-    getProductoId: async (req,res)=>{
-        const {id}= req.params
-        try{
-            const productos = await producto.findById(id)
-            res.json({productos})
-        }catch(error){
-            res.status(400).json({error:'no encontramos el id del producto'})
+    getProducto: async (req, res) => {
+        try {
+            const productos = await Producto.find().populate('lote'); 
+            res.json(productos);
+        } catch (error) {
+            res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
 
-    postProducto: async (req,res)=>{
-        try{
-            const {codigo, nombre, descripcion, unidad_medida,precio_unitario,iva,cantidad,lote}=req.body;
-            const productos = new producto({codigo, nombre, descripcion, unidad_medida,precio_unitario,iva,cantidad,lote});
+    getProductoId: async (req, res) => {
+        const { id } = req.params;
+        try {
+            const productos = await Producto.findById(id).populate('lote'); 
+            if (!productos) {
+                return res.status(404).json({ mensaje: 'El producto no existe' });
+            }
+            res.json({ productos });
+        } catch (error) {
+            res.status(400).json({ error: 'No se encontró el ID del producto' });
+        }
+    },
+
+    postProducto: async (req, res) => {
+        try {
+            const { codigo, nombre, descripcion, unidad_medida, precio_unitario, iva, cantidad, lote } = req.body;
+            const productos = new Producto({ codigo, nombre, descripcion, unidad_medida, precio_unitario, iva, cantidad, lote }); 
 
             await productos.save();
-            res.json({mensaje:'El producto se agrego con exito', productos })
-        }catch(error){
-            res.status(500).json({error:'Error interno del servidor'})
+            const rLote = await Lote.findById(lote); 
+
+            productos.lote = rLote;
+            res.json({ mensaje: 'El producto se agregó con éxito', productos });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
 
@@ -33,13 +45,19 @@ const httpProducto = {
         const {codigo, nombre, descripcion, unidad_medida,precio_unitario,iva,cantidad,lote} = req.body;
     
         try{
-            const productos  =await producto.findByIdAndUpdate(id, { codigo, nombre, descripcion, unidad_medida,precio_unitario,iva,cantidad,lote}, { new: true });
+            const productos  =await Producto.findByIdAndUpdate(id, { codigo, nombre, descripcion, unidad_medida,precio_unitario,iva,cantidad,lote}, { new: true });
 
             if(!productos){
                 return res.status(404).json({mensaje: 'El producto no existe' })
             }
+
+            await productos.save();
+            const rLote = await Lote.findById(lote)
+
+            productos.lote = rLote
             res.json({ mensaje: 'Producto actualizado con éxito', productos });
         }catch(error){
+            console.log(error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
@@ -47,7 +65,7 @@ const httpProducto = {
     deleteProducto: async (req,res) =>{
         try{
             const {id} = req.params;
-            const productos = await producto.findByIdAndDelete(id);
+            const productos = await Producto.findByIdAndDelete(id);
 
             if(!productos){
                 return res.status(404).json({ mensaje: 'El producto no existe' });
@@ -61,7 +79,7 @@ const httpProducto = {
     putInactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const productos = await producto.findByIdAndUpdate(id,{status:0},{new:true})
+            const productos = await Producto.findByIdAndUpdate(id,{status:0},{new:true})
             res.json({productos})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
@@ -71,7 +89,7 @@ const httpProducto = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const productos = await producto.findByIdAndUpdate(id,{status:1},{new:true})
+            const productos = await Producto.findByIdAndUpdate(id,{status:1},{new:true})
             res.json({productos})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})

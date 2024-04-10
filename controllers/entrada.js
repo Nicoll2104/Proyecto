@@ -2,14 +2,14 @@ import entrada from "../models/entrada.js";
 
 const httpEntrada = {
     getEntrada: async (req,res)=>{
-        const entrd = await entrada.find()
+        const entrd = await entrada.find().populate('idProducto')
         res.json(entrd);
     },
 
     getEntradaId: async (req,res)=>{
         const {id}=req.params
         try{
-            const entrd = await entrada.findById(id)
+            const entrd = await entrada.findById(id).populate('idProducto')
             res.json({entrd})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})

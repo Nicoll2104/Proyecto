@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpDistribucionDependencia from "../controllers/dis_dependencia.js";
+import httpDistribucionDependencia from "../controllers/Dis_dependencia.js";
 
 const router = Router();
 
