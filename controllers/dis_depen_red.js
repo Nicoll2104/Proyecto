@@ -1,4 +1,4 @@
-import distribucionDependeciaRed from "../models/Dis_depen_red.js";
+import distribucionDependeciaRed from "../models/dis_depen_red.js";
 import dis_depen from "../models/Dis_dependencia.js";
 import red_conoci from "../models/red_conocimiento.js";
 
@@ -24,8 +24,8 @@ const httpDisDepenRed ={
 
     postDisDepR: async (req, res) =>{
         try{
-            const { presuAsignado,presuActual,ano,disdepen,redconoci } = req.body;
-            const distribucion = new distribucionDependeciaRed({presuAsignado,presuActual,ano,disdepen,redconoci});
+            const { presupuesto_asignado,presupuesto_actual,ano,disdepen,redconoci } = req.body;
+            const distribucion = new distribucionDependeciaRed({presupuesto_asignado,presupuesto_actual,ano,disdepen,redconoci});
 
             await distribucionDependeciaRed.save();
             
@@ -44,10 +44,10 @@ const httpDisDepenRed ={
 
     putDisDepR: async (req,res) =>{
         const {id} = req.params;
-        const { presuAsignado,presuActual,ano,disdepen,redconoci } = req.body;
+        const { presupuesto_asignado,presupuesto_actual,ano,disdepen,redconoci } = req.body;
 
         try{
-            const distribucion = await distribucionDependeciaRed.findByIdAndUpdate(id,{ presuAsignado,presuActual,ano,disdepen,redconoci }, {new: true});
+            const distribucion = await distribucionDependeciaRed.findByIdAndUpdate(id,{ presupuesto_asignado,presupuesto_actual,ano,disdepen,redconoci }, {new: true});
 
             if(!distribucion){
                 return res.status(404).json({mensaje: 'La distribucion dependecia red no existe' })

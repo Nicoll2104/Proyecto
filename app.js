@@ -20,7 +20,7 @@ import redconocimiento from './routes/red_conocimiento.js';
 import det_Salida from './routes/det_Salida.js';
 import provedor from './routes/provedor.js';
 import salida from './routes/salida.js';
-
+import DisDepRed from './routes/dis_depen_red.js';
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
@@ -46,7 +46,7 @@ app.use("/api/redConomiento", redconocimiento)
 app.use("/api/detSalida", det_Salida)
 app.use("/api/provedor",provedor)
 app.use("/api/salida", salida)
-
+app.use("/api/disDepRed", DisDepRed)
 
 app.listen(process.env.PORT,()=>{
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);

@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const dis_depen_red = new mongoose.Schema(
     {
-        presuAsignado:{type:Number, required:true},
-        presuActual:{type:Number, required:true},
+        presupuesto_asignado:{type:Number, required:true},
+        presupuesto_actual:{type:Number, required:true},
         ano:{type:Number,required:true},
         disdepen:{type:mongoose.Schema.Types.ObjectId,ref:'Distribucion_Dependencias',required:true},
         redconoci:{type:mongoose.Schema.Types.ObjectId,ref:'Red_conocimiento',required:true},
