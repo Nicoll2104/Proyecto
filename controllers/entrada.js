@@ -9,7 +9,7 @@ const httpEntrada = {
     getEntradaId: async (req,res)=>{
         const {id}=req.params
         try{
-            const entrd = await entrada.findById(id)
+            const entrd = await entrada.findById(id).populate('idProducto')
             res.json({entrd})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})
