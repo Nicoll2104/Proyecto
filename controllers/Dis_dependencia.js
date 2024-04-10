@@ -1,4 +1,4 @@
-import distribucion_dependencia from "../models/dis_dependencia.js";
+import distribucion_dependencia from "../models/Dis_dependencia.js";
 import Dependencia from "../models/dependencia.js";
 
 const httpDistribucionDependencia = {
