@@ -20,6 +20,8 @@ import redconocimiento from './routes/red_conocimiento.js';
 import det_Salida from './routes/det_Salida.js';
 import provedor from './routes/provedor.js';
 import salida from './routes/salida.js';
+import DisDepRed from './routes/dis_depen_red.js';
+import DisLoteDepen from './routes/dist_lote_depen.js'
 
 
 mongoose.connect(process.env.mongoDB)
@@ -46,6 +48,8 @@ app.use("/api/redConomiento", redconocimiento)
 app.use("/api/detSalida", det_Salida)
 app.use("/api/provedor",provedor)
 app.use("/api/salida", salida)
+app.use("/api/disDepRed", DisDepRed)
+app.use("api/dislotedepe",DisLoteDepen)
 
 
 app.listen(process.env.PORT,()=>{
