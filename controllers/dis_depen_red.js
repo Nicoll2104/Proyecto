@@ -2,7 +2,7 @@ import dis_depen_red from "../models/dis_depen_red.js";
 import dis_depen from "../models/Dis_dependencia.js";
 import red_conoci from "../models/red_conocimiento.js";
 
-const httpDisDepenRed ={
+const httpDisDepenRed = {
     getDisDepR: async (req,res) =>{
         try{
             const distribucion = await dis_depen_red.find().populate('disdepen').populate('redconoci')
