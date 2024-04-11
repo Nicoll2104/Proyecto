@@ -28,14 +28,14 @@ const httpDisContratoLote ={
             const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote } = req.body;
             const distribucion = new dis_contrato_lote({codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote })
             
+            
+            await distribucion.save();
+
             const rContrato = await Contrato.findById(contrato)
             const rLote = await Lote.findById(lote)
 
             distribucion = rLote
             distribucion = rContrato
-
-            await distribucion.save()
-
 
             res.json({ mensaje: 'Distribucion del contrato y ficha agregada exitosamente' , distribucion })
         } catch (error) {

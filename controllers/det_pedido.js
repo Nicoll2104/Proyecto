@@ -1,12 +1,14 @@
 import det_pedido from "../models/det_pedido.js";
+import pedido from "../models/pedido.js";
+import producto from "../models/producto.js";
 
 const httpDetPedido ={
     getDetPedido: async (req, res) => {
         try {
             const Det_pedido = await det_pedido.find().populate('pedido_id').populate('producto_id');
-            res.json({ Det_pedido })
-
+            res.json({ mensaje: 'Busqueda exitosa' , Det_pedido})
         } catch (error) {
+            console.log(error);
             res.status(400).json({ error:'Error interno del servidor' })
         }
     },
@@ -14,7 +16,7 @@ const httpDetPedido ={
         const { id } = req.params
         try {
             const Det_pedido = await det_pedido.findById(id).populate('pedido_id').populate('producto_id');
-            res.json({ Det_pedido })
+            res.json({ mensaje: 'Detalle de pedido  exitosamente' , Det_pedido })
 
         } catch (error) {
             res.status(400).json({ error: 'Error interno del servidor'  })
@@ -25,7 +27,14 @@ const httpDetPedido ={
         try {
             const { cantidad, pedido_id, producto_id,subtotal} = req.body
             const Det_pedido = new det_pedido({ cantidad, pedido_id, producto_id,subtotal })
+            
             await Det_pedido.save()
+
+            const rpedido = await pedido.findById(pedido_id);
+            const rproducto = await producto.findById(producto_id)
+
+           Det_pedido.pedido_id = rpedido
+           Det_pedido.producto_id = rproducto 
 
             res.json({ mensaje: 'Detalle Pedido agregada exitosamente', Det_pedido})
         } catch (error) {
@@ -43,7 +52,16 @@ const httpDetPedido ={
             if(!Det_pedido){
                 return res.status(404).json({mensaje: 'El detalle pedido no existe' })
             }
-            res.json({ mensaje: 'Detalle de pedido actualizado con éxito', Det_pedido });
+
+            await Det_pedido.save()
+
+            const rpedido = await pedido.findById(pedido_id);
+            const rproducto = await producto.findById(producto_id)
+
+           Det_pedido.pedido_id = rpedido
+           Det_pedido.producto_id = rproducto 
+
+           res.json({ mensaje: 'Detalle de pedido actualizado con éxito', Det_pedido });
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor' });
         }
