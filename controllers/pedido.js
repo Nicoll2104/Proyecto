@@ -1,4 +1,6 @@
 import Pedido from "../models/pedido.js";
+import Usuario from "../models/usuario.js";
+import Destino from "../models/destino.js";
 
 const httpPedido = {
     getPedido: async (req, res) => {
@@ -14,11 +16,11 @@ const httpPedido = {
     getPedidoId: async (req, res) => {
         const { id } = req.params;
         try {
-            const pedido = await Pedido.findById(id).populate('instructor_encargado').populate('destino');
-            if (!pedido) {
+            const pedidos = await Pedido.findById(id).populate('instructor_encargado').populate('destino');
+            if (!pedidos) {
                 return res.status(404).json({ mensaje: 'Pedido no encontrado' });
             }
-            res.json(pedido);
+            res.json(pedidos);
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -28,10 +30,17 @@ const httpPedido = {
     postPedido: async (req, res) => {
         try {
             const { fecha_creacion, fecha_entrega, completado, instructor_encargado, destino, total } = req.body;
-            const pedido = new Pedido({ fecha_creacion, fecha_entrega, completado, instructor_encargado, destino, total });
+            const pedidos = new Pedido({ fecha_creacion, fecha_entrega, completado, instructor_encargado, destino, total });
 
-            await pedido.save();
-            res.status(201).json({ mensaje: 'Pedido agregado con éxito', pedido });
+            await pedidos.save();
+
+            const rinst_encar = await Usuario.findById(instructor_encargado);
+            const rdestino = await Destino.findById(destino);
+
+            pedidos.instructor_encargado = rinst_encar;
+            pedidos.destino = rdestino;
+
+            res.status(201).json({ mensaje: 'Pedido agregado con éxito', pedidos });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -43,11 +52,20 @@ const httpPedido = {
         const { fecha_creacion, fecha_entrega, completado, instructor_encargado, destino, total } = req.body;
 
         try {
-            const pedido = await Pedido.findByIdAndUpdate(id, { fecha_creacion, fecha_entrega, completado, instructor_encargado, destino, total }, { new: true });
-            if (!pedido) {
+            const pedidos = await Pedido.findByIdAndUpdate(id, { fecha_creacion, fecha_entrega, completado, instructor_encargado, destino, total }, { new: true });
+            if (!pedidos) {
                 return res.status(404).json({ mensaje: 'Pedido no encontrado' });
             }
-            res.json({ mensaje: 'Pedido actualizado con éxito', pedido });
+            
+            await pedidos.save();
+
+            const rinst_encar = await Usuario.findById(instructor_encargado);
+            const rdestino = await Destino.findById(destino);
+
+            pedidos.instructor_encargado = rinst_encar;
+            pedidos.destino = rdestino;
+            
+            res.json({ mensaje: 'Pedido actualizado con éxito', pedidos });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error interno del servidor' });
