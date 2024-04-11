@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpConLoteRed from "../controllers/conexion_lote_red.js";
+import helpersConexio_lote_red from "../helpers/hp_conexio_lote_red.js";
 
 const router = Router();
 
@@ -18,6 +19,7 @@ router.post("/agregar",[
     check('id_distribucion_dependencia', 'La distribucion de dependencia es obligatorio').not().isEmpty(),
     check("id_red_conocimiento", "La red conocimiento  es obligatorio").not().isEmpty(),
     check("id_tipo_producto", "El tipo de producto  es obligatorio").not().isEmpty(),
+    check('codigo_auxiliar').custom(helpersConexio_lote_red.validarCodigo),
     validarcampos
 ], httpConLoteRed.postConLoteRed);
 
@@ -27,6 +29,7 @@ router.put("/modificar/:id",[
     check('id_distribucion_dependencia', 'La distribucion de dependencia es obligatorio').not().isEmpty(),
     check("id_red_conocimiento", "La red conocimiento  es obligatorio").not().isEmpty(),
     check("id_tipo_producto", "El tipo de producto  es obligatorio").not().isEmpty(),
+    check('codigo_auxiliar').custom(helpersConexio_lote_red.validarCodigo),
     validarcampos
 ], httpConLoteRed.putConLoteRed);
 
