@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpLote from "../controllers/lote.js";
+import helpersLote from "../helpers/hp_lote.js";
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.post("/agregar",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
+    check("codigo").custom(helpersLote.validarCodigo),
     validarcampos
 ], httpLote.postLote);
 
@@ -23,6 +25,7 @@ router.put("/modificar/:id",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("año", "El año es obligatorio").not().isEmpty(),
+    check("codigo").custom(helpersLote.validarCodigo),
     validarcampos
 ],httpLote.putLote);
 

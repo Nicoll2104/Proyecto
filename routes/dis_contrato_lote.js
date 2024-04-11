@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpDisContratoLote from "../controllers/dis_contrato_lote.js";
+import helpersDis_contrato_lote from "../helpers/hp_dis_contrato_lote.js";
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.post("/agregar",[
     check('ano', 'El año es obligatorio').not().isEmpty(),
     check("contrato", "El contrato es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
+    check ("codigo_auxiliar").custom(helpersDis_contrato_lote.validarCodigo),
     validarcampos
 ], httpDisContratoLote.postDisConL);
 
@@ -29,6 +31,7 @@ router.put("/modificar/:id",[
     check('ano', 'El año es obligatorio').not().isEmpty(),
     check("contrato", "El contrato es obligatorio").not().isEmpty(),
     check("lote", "El lote es obligatorio").not().isEmpty(),
+    check ("codigo_auxiliar").custom(helpersDis_contrato_lote.validarCodigo),
     validarcampos
 ],httpDisContratoLote.putDisConL);
 
