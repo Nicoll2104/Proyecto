@@ -2,15 +2,15 @@ import entrada from "../models/entrada.js";
 
 const httpEntrada = {
     getEntrada: async (req,res)=>{
-        const entrd = await entrada.find().populate('idProducto')
-        res.json(entrd);
+        const entradas = await entrada.find().populate('idProducto')
+        res.json(entradas);
     },
 
     getEntradaId: async (req,res)=>{
         const {id}=req.params
         try{
-            const entrd = await entrada.findById(id).populate('idProducto')
-            res.json({entrd})
+            const entradas = await entrada.findById(id).populate('idProducto')
+            res.json({entradas})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})
         }
@@ -19,10 +19,10 @@ const httpEntrada = {
     postEntrada: async (req,res)=>{
         try{
             const {cantidad,total,idProducto}=req.body;
-            const entrd = new entrada({cantidad,total,idProducto});
+            const entradas = new entrada({cantidad,total,idProducto});
 
-            await entrd.save();
-            res.json({mensaje:'La entrada se agrego con exito', entrd })
+            await entradas.save();
+            res.json({mensaje:'La entrada se agrego con exito', entradas })
         }catch(error){
             res.status(500).json({error:'Error interno del servidor'})
         }
@@ -33,12 +33,12 @@ const httpEntrada = {
         const {cantidad,total,idProducto}=req.body;
 
         try{
-            const entrd = await entrada.findByIdAndUpdate(id,{cantidad,total,idProducto}, {new: true});
+            const entradas = await entrada.findByIdAndUpdate(id,{cantidad,total,idProducto}, {new: true});
         
-            if(!entrd){
+            if(!entradas){
                 return res.status(404).json({mensaje:'La entrada no existe' })
             }
-            res.json({mensaje: 'Entrada actualizada con éxito',entrd  })
+            res.json({mensaje: 'Entrada actualizada con éxito',entradas  })
         }catch(error){
             res.status(500).json({ error: 'Error interno del servidor'});
         }
@@ -47,9 +47,9 @@ const httpEntrada = {
     deleteEntrada : async (req,res)=>{
         try{
             const {id} =req.params;
-            const entrd = await entrada.findByIdAndDelete(id);
+            const entradas = await entrada.findByIdAndDelete(id);
 
-            if(!entrd){
+            if(!entradas){
                 return res.status(404).json({mensaje: 'La entrada no existe' })
             }
             res.json({mensaje: 'La entrada ha sido eliminado'})
@@ -61,8 +61,8 @@ const httpEntrada = {
     putInactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const entrd = await entrada.findByIdAndUpdate(id,{status:0},{new:true})
-            res.json({entrd})
+            const entradas = await entrada.findByIdAndUpdate(id,{status:0},{new:true})
+            res.json({entradas})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
@@ -71,8 +71,8 @@ const httpEntrada = {
     putactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const entrd = await entrada.findByIdAndUpdate(id,{status:1},{new:true})
-            res.json({entrd})
+            const entradas = await entrada.findByIdAndUpdate(id,{status:1},{new:true})
+            res.json({entradas})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
