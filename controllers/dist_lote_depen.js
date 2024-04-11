@@ -1,6 +1,6 @@
 import dist_lote_depen from "../models/dist_lote_depen.js";
 import dis_Contrato_Lote from "../models/dis_contrato_lote.js";
-import dis_depen from "../models/Dis_dependencia.js";
+import dis_depen from "../models/dependencia.js";
 
 const httpDisLoteDepen = {
     getDisLoteD: async (req, res) => {
