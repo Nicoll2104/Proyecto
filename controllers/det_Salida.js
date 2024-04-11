@@ -2,14 +2,14 @@ import detalle_salida from "../models/det_Salida.js";
 
 const httpDtSalida = {
     getDsalida: async (req,res)=>{
-        const DetSalida = await detalle_salida.find()
+        const DetSalida = await detalle_salida.find().populate('idSalida').populate('idProducto');
         res.json(DetSalida);
     },
 
     getDsalidaId: async (req,res)=>{
         const {id}=req.params
         try{
-            const DetSalida = await detalle_salida.findById(id)
+            const DetSalida = await detalle_salida.findById(id).populate('idSalida').populate('idProducto');
             res.json({DetSalida})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})
