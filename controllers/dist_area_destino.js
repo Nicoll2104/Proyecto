@@ -1,5 +1,3 @@
-
-
 import DistAreaDestino from "../models/dist_area_destino.js";
 
 const httpDistareadestino = {
