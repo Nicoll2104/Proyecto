@@ -22,6 +22,7 @@ import provedor from './routes/provedor.js';
 import salida from './routes/salida.js';
 import DisDepRed from './routes/dis_depen_red.js';
 import DisLoteDepen from './routes/dist_lote_depen.js'
+import DisRedArea from './routes/dis_red_area.js'
 
 
 mongoose.connect(process.env.mongoDB)
@@ -50,6 +51,7 @@ app.use("/api/provedor",provedor)
 app.use("/api/salida", salida)
 app.use("/api/disDepRed", DisDepRed)
 app.use("/api/dislotedepen", DisLoteDepen);
+app.use("/api/disredarea", DisRedArea)
 
 
 app.listen(process.env.PORT,()=>{

@@ -19,6 +19,7 @@ router.post("/agregar",[
     check("rol","El rol es obligatorio").not().isEmpty(),
     check('cedula').custom(helpersUsuario.validarCedulaUnica),
     check('correo').custom(helpersUsuario.ValidarCorreoUnico),
+    check('telefono').custom(helpersUsuario.validarTelefonoUnico),
     validarcampos
 ], httpUsuario.postUsuario);
 
@@ -31,6 +32,7 @@ router.put("/modificar/:id",[
     check("rol","El rol es obligatorio").not().isEmpty(),
     check('cedula').custom(helpersUsuario.validarCedulaUnica),
     check('correo').custom(helpersUsuario.ValidarCorreoUnico),
+    check('telefono').custom(helpersUsuario.validarTelefonoUnico),
     validarcampos
 ],httpUsuario.putUsuario);
 

@@ -1,8 +1,8 @@
-import Usuario from "../models/usuario.js";
+import Proveedor from "../models/provedor.js"
 
-const helpersUsuario = {
-    validarCedulaUnica: async (cedula, req)=>{
-        const existe = await Usuario.findOne({ cedula });
+const helpersProveedor = {
+    validarCedulaUnica: async (dni, req)=>{
+        const existe = await Proveedor.findOne({ dni });
 
     if(existe){
         if(req.req.method === "PUT" && req.req.body._id != existe._id){
@@ -13,7 +13,7 @@ const helpersUsuario = {
     }
     },
     ValidarCorreoUnico: async (correo, req)=>{
-        const existe = await Usuario.findOne({ correo });
+        const existe = await Proveedor.findOne({ correo });
 
     if(existe){
         if(req.req.method === "PUT" && req.req.body._id != existe._id){
@@ -24,7 +24,7 @@ const helpersUsuario = {
     }
     },
     validarTelefonoUnico: async (telefono, req)=>{
-        const existe = await Usuario.findOne({ telefono });
+        const existe = await Proveedor.findOne({ telefono });
 
         if(existe){
             if(req.req.method === "PUT" && req.req.body._id != existe._id){
@@ -34,6 +34,6 @@ const helpersUsuario = {
             }else if(req.req.method === 'POST') throw new Error(`Ya existe este numero de telefono`)
         }
     }
-};
+}
 
-export default helpersUsuario;
+export default helpersProveedor;

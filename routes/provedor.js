@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpProvedor from "../controllers/provedor.js";
+import helpersProveedor from "../helpers/hp_provedor.js";
 
 const router = Router();
 
@@ -14,6 +15,9 @@ router.post("/agregar",[
     check("dni", "El dni es obligatorio").not().isEmpty(),
     check('correo', 'El correo tiene que llevar @ y es obligatorio').isEmail().notEmpty(),
     check('telefono', 'El teléfono es obligatorio y debe tener minimo 9 números').isLength({ min: 9 }),
+    check('dni').custom(helpersProveedor.validarCedulaUnica),
+    check('correo').custom(helpersProveedor.ValidarCorreoUnico),
+    check('telefono').custom(helpersProveedor.validarTelefonoUnico),
     validarcampos 
 ],httpProvedor.postProvedor);
 
@@ -22,6 +26,9 @@ router.put("/modificar/:id",[
     check("dni", "El dni es obligatorio").not().isEmpty(),
     check('correo', 'El correo tiene que llevar @ y es obligatorio').isEmail().notEmpty(),
     check('telefono', 'El teléfono es obligatorio y debe tener minimo 9 números').isLength({ min: 9 }),
+    check('dni').custom(helpersProveedor.validarCedulaUnica),
+    check('correo').custom(helpersProveedor.ValidarCorreoUnico),
+    check('telefono').custom(helpersProveedor.validarTelefonoUnico),
     validarcampos 
 ],httpProvedor.putProvedor);
 
