@@ -49,7 +49,7 @@ app.use("/api/detSalida", det_Salida)
 app.use("/api/provedor",provedor)
 app.use("/api/salida", salida)
 app.use("/api/disDepRed", DisDepRed)
-app.use("api/dislotedepe",DisLoteDepen)
+app.use("/api/dislotedepen", DisLoteDepen);
 
 
 app.listen(process.env.PORT,()=>{
