@@ -2,6 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpArea_tematica from "../controllers/area_tematica.js";
+import helpersArea from "../helpers/hp_area_tematica.js"
 
 const router = Router();
 
@@ -14,11 +15,13 @@ router.get("/areaTematica/:id",[
 
 router.post("/agregar",[
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check('nombre').custom(helpersArea.validarNombreUnico),
     validarcampos
 ], httpArea_tematica.postAreaTematica);
 
 router.put("/modificar/:id",[
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check('nombre').custom(helpersArea.validarNombreUnico),
     validarcampos
 ], httpArea_tematica.putAreaTematica);
 

@@ -1,18 +1,18 @@
-import ficha from "../models/ficha.js";
+import destino from "../models/destino.js";
 
-const helpersFicha = {
-    validarCodigo: async (codigo_ficha, req) => {
-        const existe = await ficha.findOne({ codigo_ficha });
+const helpersDestino = {
+    validarCodigo: async (codigo, req) => {
+        const existe = await destino.findOne({ codigo });
 
         if (existe && req.req.method === 'POST') {
             throw new Error(`Ya existe este código`);
         } else if (existe && req.req.method === 'PUT') {
             const bodyKeys = Object.keys(req.req.body);
-            if (bodyKeys.includes('codigo_ficha') && req.req.body.codigo_ficha !== existe.codigo_ficha) {
+            if (bodyKeys.includes('codigo') && req.req.body.codigo !== existe.codigo) {
                 throw new Error(`Ya existe este código`);
             }
         }
     },
 };
 
-export default helpersFicha;
+export default helpersDestino;

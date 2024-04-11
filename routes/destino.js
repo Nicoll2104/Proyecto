@@ -2,7 +2,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
 import httpDestino from "../controllers/destino.js";
-/* import helpersFicha from "../helpers/hp_ficha.js"; */
+ import helpersDestino from "../helpers/hp_destino.js";
 
 const router = Router();
 
@@ -19,7 +19,7 @@ router.post("/agregar",[
     check("nivel_de_formacion", 'El nivel de formacion').not().isEmpty(),
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
-/*     check("codigo").custom(helpersFicha.validarCodigo), */
+    check("codigo").custom(helpersDestino.validarCodigo),
     validarcampos
 ], httpDestino.postDestino);
 
@@ -29,7 +29,7 @@ router.put("/modificar/:id",[
     check("nivel_de_formacion", 'El nivel de formacion').not().isEmpty(),
     check("fecha_inicio", "La fecha inicio es obligatoria").not().isEmpty(),
     check("fecha_fin", "La fecha fin es obligatoria").not().isEmpty(),
-/*     check("codigo").custom(helpersFicha.validarCodigo), */
+    check("codigo").custom(helpersDestino.validarCodigo),
     validarcampos
 ],httpDestino.putDestino);
 

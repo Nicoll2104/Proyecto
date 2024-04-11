@@ -1,4 +1,4 @@
-import Area from "../models/area.js";
+import Area from "../models/area_tematica.js";
 
 const helpersArea = {
     validarNombreUnico: async (nombre, req)=>{
