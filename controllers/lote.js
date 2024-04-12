@@ -22,8 +22,8 @@ const httpLote = {
 
     postLote: async (req, res)=>{
         try {
-            const { codigo, nombre, año } = req.body;
-            const nuevoLote = new lote({ codigo, nombre, año }); // Corregido el nombre del modelo
+            const { nombre } = req.body;
+            const nuevoLote = new lote({ nombre }); // Corregido el nombre del modelo
 
             await nuevoLote.save();
             res.json({ mensaje: 'Lote agregado con éxito', lote: nuevoLote });
@@ -35,10 +35,10 @@ const httpLote = {
 
     putLote: async (req,res) =>{
         const { id } = req.params;
-        const { codigo, nombre, año } = req.body;
+        const { nombre } = req.body;
 
         try{
-            const lotes  = await lote.findByIdAndUpdate(id, { codigo, nombre, año }, { new: true });
+            const lotes  = await lote.findByIdAndUpdate(id, { nombre}, { new: true });
 
             if(!lotes){
                 return res.status(404).json({mensaje: 'El lote no existe' })

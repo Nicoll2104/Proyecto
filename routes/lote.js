@@ -14,18 +14,12 @@ router.get("/depen/:id",[
 ], httpLote.getLoteid);
 
 router.post("/agregar",[
-    check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("año", "El año es obligatorio").not().isEmpty(),
-    check('codigo').custom(helpersLote.validarCodigo),
     validarcampos
 ], httpLote.postLote);
 
 router.put("/modificar/:id",[
-    check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("año", "El año es obligatorio").not().isEmpty(),
-    check('codigo').custom(helpersLote.validarCodigo),
     validarcampos
 ],httpLote.putLote);
 
