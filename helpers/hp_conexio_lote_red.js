@@ -16,3 +16,4 @@ const helpersConexio_lote_red = {
 };
 
 export default helpersConexio_lote_red;
+

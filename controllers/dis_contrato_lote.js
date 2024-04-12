@@ -25,23 +25,30 @@ const httpDisContratoLote ={
 
     postDisConL: async (req, res) => {
         try {
-            const {codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote } = req.body;
-            const distribucion = new dis_contrato_lote({codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote })
+            const { codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote } = req.body;
             
-            
+            const distribucion = new dis_contrato_lote({ codigo_auxiliar, presupuesto_asignado, presupuesto_actual, ano, contrato, lote });
             await distribucion.save();
+    
+            const rContrato = await Contrato.findById(contrato);
+            const rLote = await Lote.findById(lote);
+    
+            if (!rContrato || !rLote) {
+                return res.status(404).json({ error: 'No se encontró el contrato o el lote relacionado' });
+            }
 
-            const rContrato = await Contrato.findById(contrato)
-            const rLote = await Lote.findById(lote)
+            distribucion.contrato = rContrato;
+            distribucion.lote = rLote;
 
-            distribucion = rLote
-            distribucion = rContrato
-
-            res.json({ mensaje: 'Distribucion del contrato y ficha agregada exitosamente' , distribucion })
+            await distribucion.save();
+    
+            res.json({ mensaje: 'Distribución del contrato y lote agregada exitosamente', distribucion });
         } catch (error) {
-            res.status(400).json({ error: 'Error interno del servidor' })
+            console.error(error); 
+            res.status(500).json({ error: 'Error interno del servidor' });
         }
     },
+    
 
     putDisConL: async (req,res) =>{
         const {id} = req.params;
