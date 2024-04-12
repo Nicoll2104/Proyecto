@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/ver", httpLote.getLote);
 
-router.get("/depen/:id",[
+router.get("/lote/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
 ], httpLote.getLoteid);
