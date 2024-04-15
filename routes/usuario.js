@@ -47,4 +47,10 @@ router.post("/login",[
 
 router.delete("/eliminar/:id",httpUsuario.deleteUsuario)
 
+router.get("/recuperar/:correo", httpUsuario.codigoRecuperar)
+
+router.get("/codigo/:codigo", httpUsuario.confirmarCodigo)
+
+router.put("/nuevacontrasena", httpUsuario.nuevaPassword)
+
 export default router;
