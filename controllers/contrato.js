@@ -5,14 +5,14 @@ import Proceso from "../models/proceso.js";
 
 const httpContrato = {
     getcontrato: async (req,res)=>{
-        const contratos = await Contrato.find()
+        const contratos = await Contrato.find().populate('supervisor').populate('proveedor').populate('proceso')
         res.json(contratos);
     },
 
     getcontratoid: async (req,res)=>{
         const {id}=req.params
         try{
-            const contratos = await Contrato.findById(id)
+            const contratos = await Contrato.findById(id).populate('supervisor').populate('proveedor').populate('proceso')
             res.json({contratos})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})
@@ -21,8 +21,8 @@ const httpContrato = {
 
     postcontrato: async (req,res)=>{
         try{
-            const {codigo,nombre,presupuestoAsignado,presupuestoActual}=req.body;
-            const contratos = new Contrato({codigo,nombre,presupuestoAsignado,presupuestoActual});
+            const {codigo,nombre,presupuestoAsignado,presupuestoActual,supervisor,proveedor,proceso}=req.body;
+            const contratos = new Contrato({codigo,nombre,presupuestoAsignado,presupuestoActual,supervisor,proveedor,proceso});
 
             await contratos.save();
             res.json({mensaje:'El contrato se agrego con exito', contratos })
@@ -33,10 +33,10 @@ const httpContrato = {
 
     putcontrato: async (req,res)=>{
         const {id}=req.params;
-        const {codigo,nombre,presupuestoAsignado,presupuestoActual}=req.body;
+        const {codigo,nombre,presupuestoAsignado,presupuestoActual,supervisor,proveedor,proceso}=req.body;
 
         try{
-            const contratos = await Contrato.findByIdAndUpdate(id,{codigo,nombre,presupuestoAsignado,presupuestoActual}, {new: true});
+            const contratos = await Contrato.findByIdAndUpdate(id,{codigo,nombre,presupuestoAsignado,presupuestoActual,supervisor,proveedor,proceso}, {new: true});
         
             if(!contratos){
                 return res.status(404).json({mensaje:'El contrato no existe' })
