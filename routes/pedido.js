@@ -26,8 +26,8 @@ router.put("/modificar/:id",[
     check("fecha_creacion","La fecha de creacion es obligatoria").not().isEmpty(),
     check("fecha_entrega", "La fecha de entrega es obligatoria").not().isEmpty(),
     check("instructor_encargado", "El instructor encargado es obligatorio").not().isEmpty(),
-    check("ficha", "La ficha es obligatoria").not().isEmpty(),
-    check('rol_usuario', 'El usuario es obligatorio').not().isEmpty(),
+    check("destino", "La destino es obligatoria").not().isEmpty(),
+    check('total', 'El usuario es obligatorio').not().isEmpty(),
     validarcampos
 ],httpPedido.putPedido);
 
