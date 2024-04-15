@@ -16,7 +16,7 @@ router.post("/agregar",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("presupuestoAsignado", "El presupuestoAsignado es obligatorio").not().isEmpty(),
     check("presupuestoDisponible", "El presupuestoDisponible es obligatorio").not().isEmpty(),
-    check("Fecha", "La fecha es obligatoria").not().isEmpty(),
+    check("fecha", "La fecha es obligatoria").not().isEmpty(),
     validarcampos
 ], httpProceso.postProceso);
 
@@ -24,7 +24,7 @@ router.put("/modificar/:id",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("presupuestoAsignado", "El presupuestoAsignado es obligatorio").not().isEmpty(),
     check("presupuestoDisponible", "El presupuestoDisponible es obligatorio").not().isEmpty(),
-    check("Fecha", "La fecha es obligatoria").not().isEmpty(),
+    check("fecha", "La fecha es obligatoria").not().isEmpty(),
     validarcampos
 ], httpProceso.putProceso);
 
