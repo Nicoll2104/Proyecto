@@ -1,4 +1,7 @@
 import Contrato from "../models/contrato.js";
+import Usuario from "../models/usuario.js";
+import Proveedor from "../models/provedor.js";
+import Proceso from "../models/proceso.js";
 
 const httpContrato = {
     getcontrato: async (req,res)=>{
