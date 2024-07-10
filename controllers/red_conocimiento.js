@@ -1,15 +1,16 @@
 import red_conocimiento from "../models/red_conocimiento.js";
+import Dependencias from "../models/dependencia.js";
 
 const httpRedConocimiento = {
     getRedcon: async (req,res)=>{
-        const RedConoc = await red_conocimiento.find()
+        const RedConoc = await red_conocimiento.find().populate('Id_depedencias')
         res.json(RedConoc);
     },
 
     getRedconid: async (req,res)=>{
         const {id}=req.params
         try{
-            const RedConoc = await red_conocimiento.findById(id)
+            const RedConoc = await red_conocimiento.findById(id).populate('Id_depedencias')
             res.json({RedConoc})
         }catch(error){
             res.status(400).json({error:'No encotramos el id'})
@@ -18,7 +19,7 @@ const httpRedConocimiento = {
 
     postRedcon: async (req,res)=>{
         try{
-            const { nombre}=req.body;
+            const { nombre,Id_depedencias}=req.body;
             const RedConoc = new red_conocimiento({ nombre, Id_depedencias});
 
             await RedConoc.save();
@@ -31,11 +32,16 @@ const httpRedConocimiento = {
     putRedcon: async (req,res)=>{
         const {id}=req.params;
 
-        const { nombre}=req.body;
+        const { nombre,Id_depedencias}=req.body;
 
         try{
             const RedConoc = await red_conocimiento.findByIdAndUpdate(id,{nombre, Id_depedencias}, {new: true});
 
+            await RedConoc.save();
+
+            const Dep = await Dependencias.findById(Id_depedencias);
+
+            RedConoc.Id_depedencias= Dep;   
         
             if(!RedConoc){
                 return res.status(404).json({mensaje:'La red conocimiento no existe' })
