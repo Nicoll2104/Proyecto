@@ -14,11 +14,13 @@ router.get("/redConomiento/:id",[
 
 router.post("/agregar",[
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("Id_depedencias", "El nombre es obligatorio").not().isEmpty(),
     validarcampos
 ], httpRedConocimiento.postRedcon);
 
 router.put("/modificar/:id",[
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("Id_depedencias", "El nombre es obligatorio").not().isEmpty(),
     validarcampos
 ], httpRedConocimiento.putRedcon);
 

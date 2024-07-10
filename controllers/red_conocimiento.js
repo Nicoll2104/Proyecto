@@ -19,7 +19,7 @@ const httpRedConocimiento = {
     postRedcon: async (req,res)=>{
         try{
             const { nombre}=req.body;
-            const RedConoc = new red_conocimiento({ nombre});
+            const RedConoc = new red_conocimiento({ nombre, Id_depedencias});
 
             await RedConoc.save();
             res.json({mensaje:'La red conocimiento se agrego con exito', RedConoc })
@@ -34,7 +34,7 @@ const httpRedConocimiento = {
         const { nombre}=req.body;
 
         try{
-            const RedConoc = await red_conocimiento.findByIdAndUpdate(id,{nombre}, {new: true});
+            const RedConoc = await red_conocimiento.findByIdAndUpdate(id,{nombre, Id_depedencias}, {new: true});
 
         
             if(!RedConoc){
