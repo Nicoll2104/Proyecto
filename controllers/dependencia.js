@@ -1,5 +1,5 @@
 import dependencia from "../models/dependencia.js";
-
+/*prueba */
 const httpDependencia = {
     getDependencia: async (req,res)=>{
         const dep = await dependencia.find()
@@ -79,3 +79,4 @@ const httpDependencia = {
     },
 }
 export default httpDependencia;
+
