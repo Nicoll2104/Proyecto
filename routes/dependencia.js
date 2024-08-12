@@ -15,12 +15,14 @@ router.get("/dependencia/:id",[
 router.post("/agregar",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
     validarcampos
 ], httpDependencia.postDependencia);
 
 router.put("/modificar/:id",[
     check("codigo","El codigo es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
     validarcampos
 ], httpDependencia.putDependencia);
 

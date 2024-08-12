@@ -1,5 +1,5 @@
 import dependencia from "../models/dependencia.js";
-/*prueba */
+
 const httpDependencia = {
     getDependencia: async (req,res)=>{
         const dep = await dependencia.find()
@@ -18,8 +18,8 @@ const httpDependencia = {
 
     postDependencia: async (req,res)=>{
         try{
-            const {codigo, nombre}=req.body;
-            const dep = new dependencia({codigo, nombre});
+            const {codigo, nombre, vigencia}=req.body;
+            const dep = new dependencia({codigo, nombre, vigencia});
 
             await dep.save();
             res.json({mensaje:'La dependencia se agrego con exito', dep })
@@ -30,10 +30,10 @@ const httpDependencia = {
 
     putDependencia: async (req,res)=>{
         const {id}=req.params;
-        const {codigo, nombre}=req.body;
+        const {codigo, nombre, vigencia}=req.body;
 
         try{
-            const dep = await dependencia.findByIdAndUpdate(id,{codigo, nombre}, {new: true});
+            const dep = await dependencia.findByIdAndUpdate(id,{codigo, nombre,vigencia}, {new: true});
         
             if(!dep){
                 return res.status(404).json({mensaje:'La dependencia no existe' })
