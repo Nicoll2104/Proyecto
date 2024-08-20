@@ -1,54 +1,46 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpProducto from "../controllers/producto.js";
+import httpItemPresupuesto from "../controllers/items_presupuesto.js";
 
 const router = Router();
 
-router.get("/ver", httpProducto.getProducto);
+router.get("/ver", httpItemPresupuesto.getPresupuesto);
 
-router.get("/producto/:id",[
+router.get("/presupuesto/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpProducto.getProductoId);
+], httpItemPresupuesto.getPresupuestoId);
 
 router.post("/agregar",[
-    check("codigo", "El codigo es obligatorio").not().isEmpty(),
+    check("codigo_presupuestal", "El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("descripcion","La descripcion es obligatoria").not().isEmpty(),
-    check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
-    check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
-    check("iva"," El iva es obligatorios").not().isEmpty(),
-    check("cantidad", "La cantidad es obligatorio").not().isEmpty(),
-    check("lote", "El lote es obligatoria").not().isEmpty(),
+    check("presupuesto_inicial","El presupuesto inicial es obligatorio").not().isEmpty(),
+    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
     validarcampos
-], httpProducto.postProducto);
+], httpItemPresupuesto.postPresupuesto);
 
 router.put("/modificar/:id",[
-    check("codigo", "El codigo es obligatorio").not().isEmpty(),
+    check("codigo_presupuestal", "El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("descripcion","La descripcion es obligatoria").not().isEmpty(),
-    check("unidad_medida", "La unidad_medida es obligatoria").not().isEmpty(),
-    check("precio_unitario", "El precio_unitario es obligatorio").not().isEmpty(),
-    check("iva"," El iva es obligatorios").not().isEmpty(),
-    check("cantidad", "La cantidad es obligatorio").not().isEmpty(),
-    check("lote", "El lote es obligatoria").not().isEmpty(),
+    check("presupuesto_inicial","El presupuesto inicial es obligatorio").not().isEmpty(),
+    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
     validarcampos
-],httpProducto.putProducto);
+],httpItemPresupuesto.putPresupuesto);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpProducto.putInactivar);
+], httpItemPresupuesto.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpProducto.putActivar);
+], httpItemPresupuesto.putActivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpProducto.deleteProducto)
+], httpItemPresupuesto.deletePresupuesto)
 
 export default router;
