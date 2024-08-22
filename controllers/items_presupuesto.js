@@ -4,7 +4,7 @@ const httpItemPresupuesto = {
     getPresupuesto: async (req, res) => {
         try {
             const Presupuesto = await item_presupuesto.find()
-            res.json('Presupuesto',Presupuesto);
+            res.json(Presupuesto);
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
