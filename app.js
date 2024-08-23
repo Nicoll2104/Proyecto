@@ -24,6 +24,7 @@ import DisLoteDepen from './routes/dist_lote_depen.js';
 import DisRedArea from './routes/dis_red_area.js';
 import Proceso from './routes/proceso.js';
 import Presupuesto from './routes/items_presupuesto.js';
+import DisDependencias from './routes/dis_dependencias.js';
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected to MongoDB'));
@@ -53,6 +54,8 @@ app.use("/api/dislotedepen", DisLoteDepen)
 app.use("/api/disredarea", DisRedArea)
 app.use("/api/proceso", Proceso)
 app.use("/api/presupuesto", Presupuesto)
+app.use("/api/disDependencia", DisDependencias)
+
 
 
 app.listen(process.env.PORT,()=>{
