@@ -3,8 +3,8 @@ import item_presupuesto from "../models/items_presupuesto.js";
 const httpItemPresupuesto = {
     getPresupuesto: async (req, res) => {
         try {
-            const Presupuesto = await item_presupuesto.find();
-            res.json(Presupuesto);
+            const presupuesto = await item_presupuesto.find();
+            res.json(presupuesto);
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
@@ -13,11 +13,11 @@ const httpItemPresupuesto = {
     getPresupuestoId: async (req, res) => {
         const { id } = req.params;
         try {
-            const Presupuesto = await item_presupuesto.findById(id)
-            if (!Presupuesto) {
+            const presupuesto = await item_presupuesto.findById(id)
+            if (!presupuesto) {
                 return res.status(404).json({ mensaje: 'El presupuesto no existe' });
             }
-            res.json({ Presupuesto });
+            res.json({ presupuesto });
         } catch (error) {
             res.status(400).json({ error: 'No se encontró el ID del presupuesto' });
         }
@@ -26,9 +26,9 @@ const httpItemPresupuesto = {
     postPresupuesto: async (req, res) => {
         try {
             const {codigo_presupuestal,nombre,presupuesto_inicial,vigencia } = req.body;
-            const Presupuesto = new item_presupuesto({codigo_presupuestal,nombre,presupuesto_inicial,vigencia}); 
+            const presupuesto = new item_presupuesto({codigo_presupuestal,nombre,presupuesto_inicial,vigencia}); 
 
-            res.json({ mensaje: 'El presupuesto se agregó con éxito', Presupuesto });
+            res.json({ mensaje: 'El presupuesto se agregó con éxito', presupuesto });
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -40,12 +40,12 @@ const httpItemPresupuesto = {
         const {codigo_presupuestal,nombre,presupuesto_inicial,vigencia} = req.body;
     
         try{
-            const Presupuesto =await item_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal,nombre,presupuesto_inicial,vigencia}, { new: true });
+            const presupuesto =await item_presupuesto.findByIdAndUpdate(id, { codigo_presupuestal,nombre,presupuesto_inicial,vigencia}, { new: true });
 
-            if(!Presupuesto){
+            if(!presupuesto){
                 return res.status(404).json({mensaje: 'El presupuesto no existe' })
             }
-            res.json({ mensaje: 'Presupuesto actualizado con éxito', Presupuesto });
+            res.json({ mensaje: 'Presupuesto actualizado con éxito', presupuesto });
         }catch(error){
             console.log(error);
             res.status(500).json({ error: 'Error interno del servidor' });
@@ -55,9 +55,9 @@ const httpItemPresupuesto = {
     deletePresupuesto: async (req,res) =>{
         try{
             const {id} = req.params;
-            const Presupuesto = await item_presupuesto.findByIdAndDelete(id);
+            const presupuesto = await item_presupuesto.findByIdAndDelete(id);
 
-            if(!Presupuesto){
+            if(!presupuesto){
                 return res.status(404).json({ mensaje: 'El presupuesto no existe' });
             }
             res.json({ mensaje: 'El presupuesto ha sido eliminado' });
@@ -69,8 +69,8 @@ const httpItemPresupuesto = {
     putInactivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const Presupuesto = await item_presupuesto.findByIdAndUpdate(id,{status:0},{new:true})
-            res.json({Presupuesto})
+            const presupuesto = await item_presupuesto.findByIdAndUpdate(id,{status:0},{new:true})
+            res.json({presupuesto})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
@@ -79,8 +79,8 @@ const httpItemPresupuesto = {
     putActivar: async (req, res) =>{
         try{
             const {id}=req.params
-            const Presupuesto = await item_presupuesto.findByIdAndUpdate(id,{status:1},{new:true})
-            res.json({Presupuesto})
+            const presupuesto = await item_presupuesto.findByIdAndUpdate(id,{status:1},{new:true})
+            res.json({presupuesto})
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
         }
