@@ -3,7 +3,7 @@ import item_presupuesto from "../models/items_presupuesto.js";
 const httpItemPresupuesto = {
     getPresupuesto: async (req, res) => {
         try {
-            const Presupuesto = await item_presupuesto.find()
+            const Presupuesto = await item_presupuesto.find();
             res.json(Presupuesto);
         } catch (error) {
             res.status(500).json({ error: 'Error interno del servidor' });
