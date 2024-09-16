@@ -1,41 +1,47 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { validarcampos } from "../middlewares/validarcampos.js";
-import httpLote from "../controllers/lote.js";
+import httpItemPresupuesto from "../controllers/items_presupuesto.js";
 import helpersLote from "../helpers/hp_lote.js";
 
 const router = Router();
 
-router.get("/ver", httpLote.getLote);
+router.get("/ver", httpItemPresupuesto.getItemPresupuesto);
 
-router.get("/lote/:id",[
+router.get("/presupuesto/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
     validarcampos
-], httpLote.getLoteid);
+], httpItemPresupuesto.getItemPresupuestoid);
 
 router.post("/agregar",[
+    check("codigo_presupuestal", "El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("presupuesto_inicial", "El presupuesto inicial es obligatorio").not().isEmpty(),
+    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
     validarcampos
-], httpLote.postLote);
+], httpItemPresupuesto.postItemPresupuesto);
 
 router.put("/modificar/:id",[
+    check("codigo_presupuestal", "El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("presupuesto_inicial", "El presupuesto inicial es obligatorio").not().isEmpty(),
+    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
     validarcampos
-],httpLote.putLote);
+],httpItemPresupuesto.putItemPresupuesto);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpLote.putInactivar);
+], httpItemPresupuesto.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpLote.putActivar);
+], httpItemPresupuesto.putActivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
     validarcampos
-], httpLote.deleteLote)
+], httpItemPresupuesto.deleteItemPresupuesto)
 
 export default router;
