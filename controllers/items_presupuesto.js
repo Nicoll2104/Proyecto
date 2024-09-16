@@ -76,7 +76,7 @@ const httpItemPresupuesto = {
     putActivar: async (req, res) =>{
         try{
             const { id } = req.params;
-            const item_Presupuesto = await lote.findByIdAndUpdate(id,{ status: 1 },{ new: true });
+            const item_Presupuesto = await Items_presupuesto.findByIdAndUpdate(id,{ status: 1 },{ new: true });
             res.json({ mensaje: 'Presupuesto activado con exito', item_Presupuesto });
         }catch(error){
             res.status(400).json({error: 'Se produjo un error'})
