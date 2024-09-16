@@ -1,40 +1,41 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import httpItemPresupuesto from "../controllers/items_presupuesto.js";
+import { validarcampos } from "../middlewares/validarcampos.js";
+import httpLote from "../controllers/lote.js";
+import helpersLote from "../helpers/hp_lote.js";
 
 const router = Router();
 
-router.get("/ver", httpItemPresupuesto.getPresupuesto);
+router.get("/ver", httpLote.getLote);
 
-router.get("/presupuesto/:id",[
+router.get("/lote/:id",[
     check("id", "El id es obligatorio").not().isEmpty(),
-
-], httpItemPresupuesto.getPresupuestoId);
+    validarcampos
+], httpLote.getLoteid);
 
 router.post("/agregar",[
-    check("codigo_presupuestal", "El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("presupuesto_inicial","El presupuesto inicial es obligatorio").not().isEmpty(),
-    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
-], httpItemPresupuesto.postPresupuesto);
+    validarcampos
+], httpLote.postLote);
 
 router.put("/modificar/:id",[
-    check("codigo_presupuestal", "El codigo presupuestal es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("presupuesto_inicial","El presupuesto inicial es obligatorio").not().isEmpty(),
-    check("vigencia", "La vigencia es obligatoria").not().isEmpty(),
-],httpItemPresupuesto.putPresupuesto);
+    validarcampos
+],httpLote.putLote);
 
 router.put("/inactivar/:id",[
     check("id", "Digite ID").not().isEmpty(),
-], httpItemPresupuesto.putInactivar);
+    validarcampos
+], httpLote.putInactivar);
 
 router.put("/activar/:id",[
     check("id", "Digite ID").not().isEmpty(),
-], httpItemPresupuesto.putActivar);
+    validarcampos
+], httpLote.putActivar);
 
 router.delete("/eliminar/:id",[
     check("id", "Digite ID").not().isEmpty(),
-], httpItemPresupuesto.deletePresupuesto)
+    validarcampos
+], httpLote.deleteLote)
 
 export default router;
